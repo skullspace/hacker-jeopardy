@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Ballet",
+    "questions": [
+      {
+        "question": "A \"pas de chat\" is a leap that resembles the movement of this animal",
+        "answer": "Cat"
+      },
+      {
+        "question": "Geo. Balanchine choreographed this ballet based on the biblical story of a child who returned home",
+        "answer": "The Prodigal Son"
+      },
+      {
+        "question": "Russian dancer who was the choreographer & star of the 1912 production of \"The Afternoon of a Faun\"",
+        "answer": "Nijinski"
+      },
+      {
+        "question": "The group of dancers in a ballet troupe who perform as an ensemble",
+        "answer": "The Corps de Ballet"
+      },
+      {
+        "question": "Tchaikovsky wrote the music to 3 ballets: \"The Sleeping Beauty\", \"The Nutcracker\" & this",
+        "answer": "Swan Lake"
+      }
+    ]
+  },
+  {
+    "name": "Starts with \"V\"",
+    "questions": [
+      {
+        "question": "Though its name means \"sour wine\", it can be made from berries, melons & cereal, not just grapes",
+        "answer": "Vinegar"
+      },
+      {
+        "question": "In this 1958 Alfred Hitchcock film, James Stewart played a former police detective afraid of heights",
+        "answer": "Vertigo"
+      },
+      {
+        "question": "Either of two lower chambers of the heart that pump blood into the arteries",
+        "answer": "The Ventricals"
+      },
+      {
+        "question": "Hindus believe this god descended from heaven in several forms, including Krishna",
+        "answer": "Vishnu"
+      },
+      {
+        "question": "Expressed as a number, it's the capacity of an atom to combine with other atoms",
+        "answer": "Valence"
+      }
+    ]
+  },
+  {
+    "name": "Hollywood Quotes",
+    "questions": [
+      {
+        "question": "Vivien Leigh said of this role, \"I knew it was a marvelous part, but I never cared for her\"",
+        "answer": "Scarlett O'Hara"
+      },
+      {
+        "question": "\"I stare at life through fields of mayonnaise,\" which may have been how he came up with \"Blazing Saddles\"",
+        "answer": "Mel Brooks"
+      },
+      {
+        "question": "Movie mogul famed for statements like \"He has warmth & charmth\" & \"It rolls off my back like a duck\"",
+        "answer": "Sam Goldwyn"
+      },
+      {
+        "question": "This mustachioed comic quipped, \"I've been around so long, I knew Doris Day before she was a virgin\"",
+        "answer": "Groucho Marx"
+      },
+      {
+        "question": "Frank Capra dubbed this director of \"The Birth of a Nation\" \"The Poor Man's Shakespeare\"",
+        "answer": "D. W. Griffith"
+      }
+    ]
+  },
+  {
+    "name": "Mary had a little lamb",
+    "questions": [
+      {
+        "question": "According to the poem, it was against the rules",
+        "answer": "Bringing a lamb to school"
+      },
+      {
+        "question": "In the 1830s Lowell Mason did this with the poem",
+        "answer": "Set it to music"
+      },
+      {
+        "question": "His recitation of the poem in 1877 didn't amaze people until he played it back",
+        "answer": "Thomas Edison"
+      },
+      {
+        "question": "\"Mary\" is said to be Mary Sawyer from either Sterling or Sudbury in this state",
+        "answer": "Massachusetts"
+      },
+      {
+        "question": "She wrote the poem, or at least its last 3 verses",
+        "answer": "Sarah Josepha Hale"
+      }
+    ]
+  },
+  {
+    "name": "Electricity",
+    "questions": [
+      {
+        "question": "His experiments in electricity led him to invent the lightning rod",
+        "answer": "Benjamin Franklin"
+      },
+      {
+        "question": "World Book defines it as \"electrons or ions that are not moving\"",
+        "answer": "Static Electricity"
+      },
+      {
+        "question": "Wrap a wire around an iron bar, send a current through the wire & you've made one of these",
+        "answer": "Electromagnet"
+      },
+      {
+        "question": "George Westinghouse promoted this type of current that we use today",
+        "answer": "Alternating Current (AC)"
+      },
+      {
+        "question": "Galvani thought this dead animal released electricity when touched to metal & its legs kicked",
+        "answer": "The Frog"
+      }
+    ]
+  },
+  {
+    "name": "1981",
+    "questions": [
+      {
+        "question": "The U.S. Auto Club reversed an earlier decision & declared Bobby Unser the winner of this race",
+        "answer": "Indianapolis 500"
+      },
+      {
+        "question": "The Vatican reduced from 37 to 6 the number of offenses that cause this to happen automatically",
+        "answer": "Excommunication"
+      },
+      {
+        "question": "With Reagan as a character witness, this entertainer was given a license by the Nev. Gaming Commission",
+        "answer": "Frank Sinatra"
+      },
+      {
+        "question": "Movie remake that gave us the following song, a Top 10 hit in 1981: \"On the boats and on the planes / They're coming to America...\"",
+        "answer": "The Jazz Singer"
+      },
+      {
+        "question": "Later made into a movie, this off-Broadway play by Beth Henley won a Pulitzer Prize",
+        "answer": "Crimes of the Heart"
+      }
+    ]
+  }
+]
