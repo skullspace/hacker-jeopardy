@@ -8,6 +8,10 @@ answered_questions = []
 max_question = 100
 max_category = 0
 in_question = False
+correct_answer = False
+incorrect_answer = False
+buzzable = False
+buzzed_in_player = ""
 
 questions_file = 'practice.json'
 questions = []
@@ -23,7 +27,10 @@ def main(screen):
 	# initialize selected question bounds
 	max_question = int(len(questions[0]["questions"]) * 100)
 	max_category = len(questions) - 1
-	in_question = False
+	global in_question
+	global correct_answer
+	global incorrect_answer
+	global buzzable
 
 	# draw window decorations
 	draw_window(screen)
@@ -55,10 +62,25 @@ def main(screen):
 		elif event == ord(" "):
 			screen.clear()
 			if in_question:
+				correct_answer = False
+				incorrect_answer = False
 				in_question = False
 			else:
 				in_question = True
-		
+		elif event == ord('r') and in_question:
+			correct_answer = True
+			incorrect_answer = False
+		elif event == ord('w') and in_question:
+			incorrect_answer = True
+			correct_answer = False
+		elif event == ord('s') and in_question:
+			incorrect_answer = False
+			correct_answer = False
+			buzzable = True
+
+		if buzzable:
+			check_buzzin()
+
 		draw_window(screen)
 		if in_question:
 			draw_question(screen)
@@ -72,24 +94,37 @@ def init_colors():
 	curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
 	curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
 	curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
+	curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
 
 # draws window decorations
 def draw_window(screen):
 	height, width = screen.getmaxyx()
 
-	# draw app title
-	screen.addstr("SkullSpace:: Hacker Jeopardy", curses.color_pair(1))
-
 	# create divider the same width as screen
 	line = ""
+	spacer = ""
 	while len(line) < width:
 		line += "="
+		spacer += " "
 
-	screen.addstr(1, 0, line, curses.color_pair(3))
-	screen.addstr(height-2, 0, line, curses.color_pair(3))
+	title = " SkullSpace:: Hacker Jeopardy"
+	while len(title) < width:
+		title += " "
 
+	# draw app title
+	screen.addstr(spacer, curses.color_pair(1))
+	screen.addstr(1, 0, title, curses.color_pair(1))
+	screen.addstr(2, 0, spacer, curses.color_pair(1))
+
+	screen.addstr(3, 0, line, curses.color_pair(3))
+	screen.addstr(height-3, 0, line, curses.color_pair(3))
+
+	# draw response actions
+	screen.addstr(height-2, 2, " correct answer: r ", curses.color_pair(4))
+	screen.addstr(height-2, 22, " incorrect answer: w ", curses.color_pair(5))
+	screen.addstr(height-2, 44, " allow buzz in: s ", curses.color_pair(1))
 	# draw exit instructions	
-	screen.addstr(height-1, width-8,"exit: q", curses.color_pair(2))
+	screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
 
 # draw question grid on screen
 def draw_grid(screen):
@@ -114,7 +149,7 @@ def draw_grid(screen):
 	pos = 1
 	i = 0
 	while i < columns:
-		screen.addstr(3, pos, fill, curses.color_pair(1))
+		screen.addstr(5, pos, fill, curses.color_pair(1))
 		category_length = len(questions[i]["name"])
 		dif = category_width - category_length
 		title = questions[i]["name"]
@@ -129,15 +164,15 @@ def draw_grid(screen):
 		else:
 			title = title
 
-		screen.addstr(4, pos, title, curses.color_pair(1))
-		screen.addstr(5, pos, fill, curses.color_pair(1))
+		screen.addstr(6, pos, title, curses.color_pair(1))
+		screen.addstr(7, pos, fill, curses.color_pair(1))
 
 		# print question values
 		space = ""
 		while len(space) < int(math.floor((category_width-4)/2)):
 			space += " "
 
-		ypos = 7
+		ypos = 9
 		j = 1
 		while j <= rows:
 			cur_color = curses.color_pair(1)
@@ -180,15 +215,38 @@ def draw_question(screen):
 			question = question + " "
 			while len(question) < width - 4:
 				question = " " + question + " "
+	# default colour to blue
+	bkg_color = curses.color_pair(1)
+	if correct_answer:
+		# if answer is correct, switch to green colour
+		bkg_color = curses.color_pair(4)
+	elif incorrect_answer:
+		# if answer is incorrect, switch to red colour
+		bkg_color = curses.color_pair(2)
 
 	while pos < box_height:
 		if pos == halfway:
-			screen.addstr(pos, 2, question, curses.color_pair(1))
+			screen.addstr(pos, 2, question, bkg_color)
 		else:
-			screen.addstr(pos, 2, fill, curses.color_pair(1))
+			screen.addstr(pos, 2, fill, bkg_color)
 		pos += 1
+	if len(buzzed_in_player) > 0:
+		player = buzzed_in_player
+		while len(player) < width-4:
+			player = " " + player + " "
+		if len(player) > width-4:
+			player = player[:-1]
+		screen.addstr(pos, 2, player, curses.color_pair(4))
 
 	answered_questions.append([selected_question[0],selected_question[1]])
+
+# get the buzzed in player name
+def check_buzzin():
+	global buzzed_in_player
+	buzzin = open('buzzin')
+	for line in buzzin:
+		if len(line) > 0:
+			buzzed_in_player = line[:-1]
 
 # load questions from json
 def map_questions():
