@@ -3,6 +3,12 @@
 import curses, json, math
 from curses import wrapper
 
+selected_question = [0, 100]
+answered_questions = []
+max_question = 100
+max_category = 0
+in_question = False
+
 questions_file = 'practice.json'
 questions = []
 
@@ -14,9 +20,15 @@ def main(screen):
 	init_colors()
 	# initialize questions
 	map_questions()
+	# initialize selected question bounds
+	max_question = int(len(questions[0]["questions"]) * 100)
+	max_category = len(questions) - 1
+	in_question = False
 
 	# draw window decorations
 	draw_window(screen)
+	# inialial draw grid
+	draw_grid(screen)
 
 	while True:
 		event = screen.getch()
@@ -26,11 +38,32 @@ def main(screen):
 			break
 		elif event == curses.KEY_UP:
 			screen.clear()
+			if selected_question[1] > 100 and not in_question:
+				selected_question[1] -= 100
 		elif event == curses.KEY_DOWN:
 			screen.clear()
+			if selected_question[1] < max_question and not in_question:
+				selected_question[1] += 100
+		elif event == curses.KEY_RIGHT:
+			screen.clear()
+			if selected_question[0] < max_category and not in_question:
+				selected_question[0] += 1
+		elif event == curses.KEY_LEFT:
+			screen.clear()
+			if selected_question[0] > 0 and not in_question:
+				selected_question[0] -= 1
+		elif event == ord(" "):
+			screen.clear()
+			if in_question:
+				in_question = False
+			else:
+				in_question = True
 		
 		draw_window(screen)
-		draw_grid(screen)
+		if in_question:
+			draw_question(screen)
+		else:
+			draw_grid(screen)
 		screen.refresh()
 
 # initialize colour pairs that will be used in app
@@ -38,6 +71,7 @@ def init_colors():
 	curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
 	curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
 	curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
+	curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
 
 # draws window decorations
 def draw_window(screen):
@@ -45,7 +79,7 @@ def draw_window(screen):
 
 	# draw app title
 	screen.addstr("SkullSpace:: Hacker Jeopardy", curses.color_pair(1))
-	
+
 	# create divider the same width as screen
 	line = ""
 	while len(line) < width:
@@ -106,17 +140,55 @@ def draw_grid(screen):
 		ypos = 7
 		j = 1
 		while j <= rows:
-			screen.addstr(ypos, pos, empty, curses.color_pair(1))
+			cur_color = curses.color_pair(1)
+			if i == selected_question[0] and j*100 == selected_question[1]:
+				cur_color = curses.color_pair(4)
+			elif [i, int(j*100)] in answered_questions:
+				cur_color = curses.color_pair(2)
+
+			screen.addstr(ypos, pos, empty, cur_color)
 			ypos += 1
 			level = space + str(j) + "00 " + space
-			screen.addstr(ypos, pos, level, curses.color_pair(1))
+			screen.addstr(ypos, pos, level, cur_color)
 			ypos += 1
-			screen.addstr(ypos, pos, empty, curses.color_pair(1))
+			screen.addstr(ypos, pos, empty, cur_color)
 			ypos += 2
 			j += 1
 
 		pos += category_width + 2
 		i += 1
+
+# draws the selected question on the screen
+def draw_question(screen):
+	height, width = screen.getmaxyx()
+
+	fill = ""
+	while len(fill) < width - 4:
+		fill += " "
+
+	box_height = height - 6
+	halfway = math.floor((height-3)/2)
+	pos = 4
+
+	question = questions[selected_question[0]]["questions"][int(selected_question[1]/100-1)]["question"]
+	dif = width - 4 - len(question)
+	if dif > 0:
+		if dif % 2 == 0:
+			while len(question) < width - 4:
+				question = " " + question + " "
+		else:
+			question = question + " "
+			while len(question) < width - 4:
+				question = " " + question + " "
+
+	while pos < box_height:
+		if pos == halfway:
+			screen.addstr(pos, 2, question, curses.color_pair(1))
+		else:
+			screen.addstr(pos, 2, fill, curses.color_pair(1))
+		pos += 1
+
+	answered_questions.append([selected_question[0],selected_question[1]])
 
 # load questions from json
 def map_questions():
