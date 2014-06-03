@@ -11,6 +11,8 @@
 
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 
+from buzz import PORT as BUZZ_PORT
+
 class BuzzWaitHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         try:
@@ -24,7 +26,7 @@ class BuzzWaitHandler(BaseHTTPRequestHandler):
         self.end_headers()
 
 def wait_4_buzz():
-    srvr = HTTPServer(('', 8000), BuzzWaitHandler)
+    srvr = HTTPServer(('', BUZZ_PORT), BuzzWaitHandler)
     # keep handling requests one at a time until one of them manages
     # to set the buzz_from attribute
     while True:
