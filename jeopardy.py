@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 
-import curses, json, math, sys, BaseHTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
+import curses, json, math, sys
 from curses import wrapper
+
+from wait_4_buzz import wait_4_buzz
 
 current_screen = 'menu'
 selected_question = [0, 100]
@@ -12,16 +13,16 @@ max_category = 0
 in_question = False
 correct_answer = False
 incorrect_answer = False
-buzzable = False
 buzzed_in_player = ""
+
+NOBODY_BUZZED = -1
 
 questions_file = 'questions.json'
 questions = []
 
-HandlerClass = SimpleHTTPRequestHandler
-ServerClass = BaseHTTPServer.HTTPServer
-Protocol = "HTTP/1.0"
-server_address = ('127.0.0.1', 8080)
+with open('buzzin') as f:
+	player_names = tuple( player_name.strip()
+			      for player_name in f )
 
 # main game loop
 def main(screen):
@@ -86,9 +87,6 @@ def main(screen):
 		elif event == ord('s') and in_question:
 			incorrect_answer = False
 			correct_answer = False
-			buzzable = True
-
-		if buzzable:
 			check_buzzin()
 
 		draw_window(screen)
@@ -294,10 +292,13 @@ def draw_question(screen):
 # get the buzzed in player name
 def check_buzzin():
 	global buzzed_in_player
-	buzzin = open('buzzin')
-	for line in buzzin:
-		if len(line) > 0:
-			buzzed_in_player = line[:-1]
+	buzzed_in_player_id = wait_4_buzz()
+
+	if buzzed_in_player_id != NOBODY_BUZZED:
+		buzzed_in_player = player_names[buzzed_in_player_id]
+	else:
+		# need to do something here
+		raise Exception("Nobody buzzed not yet implemented!")
 
 # load questions from json
 def map_questions():
