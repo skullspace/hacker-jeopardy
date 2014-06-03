@@ -1,9 +1,0 @@
-[ {"name": "jams", "questions":
-    [ {"question":"abc"}, {"question": "def"}
-  ]},
-  {"name": "torts", "questions":
-    [ {"question": "nnn"},
-      {"question": "bbb"}
-  ]}
-
-] 
