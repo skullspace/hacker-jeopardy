@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 
-import curses, json, math
+import curses, json, math, sys, BaseHTTPServer
+from SimpleHTTPServer import SimpleHTTPRequestHandler
 from curses import wrapper
 
+current_screen = 'menu'
 selected_question = [0, 100]
 answered_questions = []
 max_question = 100
@@ -13,8 +15,13 @@ incorrect_answer = False
 buzzable = False
 buzzed_in_player = ""
 
-questions_file = 'practice.json'
+questions_file = 'questions.json'
 questions = []
+
+HandlerClass = SimpleHTTPRequestHandler
+ServerClass = BaseHTTPServer.HTTPServer
+Protocol = "HTTP/1.0"
+server_address = ('127.0.0.1', 8080)
 
 # main game loop
 def main(screen):
@@ -32,10 +39,13 @@ def main(screen):
 	global incorrect_answer
 	global buzzable
 
-	# draw window decorations
-	draw_window(screen)
-	# inialial draw grid
-	draw_grid(screen)
+	if current_screen == 'menu':
+		draw_menu(screen)
+	else:
+		# draw window decorations
+		draw_window(screen)
+		# initial draw grid
+		draw_grid(screen)
 
 	while True:
 		event = screen.getch()
@@ -96,6 +106,41 @@ def init_colors():
 	curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
 	curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
 
+def draw_menu(screen):
+	height, width = screen.getmaxyx()
+
+	# create divider the same width as screen
+	line = ""
+	spacer = ""
+	while len(line) < width:
+		line += "="
+		spacer += " "
+
+	screen.addstr(1,2, "                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(2,2, "                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(3,2, "                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(4,2, "                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(5,2, "  /$$   /$$                     /$$                                    /$$$$$                                                         /$$          ",curses.color_pair(1))
+	screen.addstr(6,2, " | $$  | $$                    | $$                                   |__  $$                                                        | $$          ",curses.color_pair(1))
+	screen.addstr(7,2, " | $$  | $$  /$$$$$$   /$$$$$$$| $$   /$$  /$$$$$$   /$$$$$$             | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$ /$$   /$$",curses.color_pair(1))
+	screen.addstr(8,2, " | $$$$$$$$ |____  $$ /$$_____/| $$  /$$/ /$$__  $$ /$$__  $$            | $$ /$$__  $$ /$$__  $$ /$$__  $$ |____  $$ /$$__  $$ /$$__  $$| $$  | $$",curses.color_pair(1))
+	screen.addstr(9,2, " | $$__  $$  /$$$$$$$| $$      | $$$$$$/ | $$$$$$$$| $$  \__/       /$$  | $$| $$$$$$$$| $$  \ $$| $$  \ $$  /$$$$$$$| $$  \__/| $$  | $$| $$  | $$",curses.color_pair(1))
+	screen.addstr(10,2," | $$  | $$ /$$__  $$| $$      | $$_  $$ | $$_____/| $$            | $$  | $$| $$_____/| $$  | $$| $$  | $$ /$$__  $$| $$      | $$  | $$| $$  | $$",curses.color_pair(1))
+	screen.addstr(11,2," | $$  | $$|  $$$$$$$|  $$$$$$$| $$ \  $$|  $$$$$$$| $$            |  $$$$$$/|  $$$$$$$|  $$$$$$/| $$$$$$$/|  $$$$$$$| $$      |  $$$$$$$|  $$$$$$$",curses.color_pair(1))
+	screen.addstr(12,2," |__/  |__/ \_______/ \_______/|__/  \__/ \_______/|__/             \______/  \_______/ \______/ | $$____/  \_______/|__/       \_______/ \____  $$",curses.color_pair(1))
+	screen.addstr(13,2,"                                                                                                 | $$                                     /$$  | $$",curses.color_pair(1))
+	screen.addstr(14,2,"                                                                                                 | $$                                    |  $$$$$$/",curses.color_pair(1))
+	screen.addstr(15,2,"                                                                                                 |__/                                     \______/ ",curses.color_pair(1))
+	screen.addstr(16,2,"                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(17,2,"                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(18,2,"                                                                                                                                                   ",curses.color_pair(1))
+	screen.addstr(19,2,"                                                                                                                                                   ",curses.color_pair(1))
+
+	screen.addstr(height-3, 0, line, curses.color_pair(3))
+
+	# draw exit instructions	
+	screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
+
 # draws window decorations
 def draw_window(screen):
 	height, width = screen.getmaxyx()
@@ -107,7 +152,7 @@ def draw_window(screen):
 		line += "="
 		spacer += " "
 
-	title = " SkullSpace:: Hacker Jeopardy"
+	title = " Hacker Jeopardy"
 	while len(title) < width:
 		title += " "
 
@@ -144,6 +189,12 @@ def draw_grid(screen):
 	while len(fill) < category_width:
 		fill += "*"
 		empty += " "
+
+	# i = 0
+	# lns = 1
+	# while i < columns:
+	# 	if len(questions[i]["name"]):
+	# 	# check if the questions is wider than the screen	
 
 	# print out each category
 	pos = 1
