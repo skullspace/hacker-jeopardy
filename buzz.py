@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # Copyright Skullspace, 2014
 #
 # Copying and distribution of this file, with or without modification,
@@ -17,3 +19,7 @@ def buzz(buzz_number):
         urlopen("http://%s:%s/%s" % (HOST, PORT, buzz_number) )
     except IOError:
         pass
+
+if __name__ == "__main__":
+    from sys import argv
+    buzz(int(argv[1]))
