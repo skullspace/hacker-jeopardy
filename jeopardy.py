@@ -9,8 +9,6 @@ selected_question = [0, 100]
 answered_questions = set()
 max_question = 100
 max_category = 0
-correct_answer = False
-incorrect_answer = False
 
 NOBODY_BUZZED = -1
 
@@ -48,7 +46,9 @@ def prompt_right_answer(screen, height):
                   " incorrect answer: w ", curses.color_pair(5))
 
 def draw_window_question_prompts_and_refresh(
-    screen, prompts_func, player_name=""):
+    screen, prompts_func,
+    correct_answer, incorrect_answer,
+    player_name=""):
     screen.clear()
     draw_window(screen)
 
@@ -56,15 +56,13 @@ def draw_window_question_prompts_and_refresh(
     # draw response actions
     prompts_func(screen, height)
 
-    draw_question(screen, player_name)
+    draw_question(screen, correct_answer, incorrect_answer, player_name)
     screen.refresh()
 
 def run_questions_menu(screen):
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
     max_category = len(questions) - 1
-    global correct_answer
-    global incorrect_answer
 
     draw_window_grid_and_refresh(screen)
 
@@ -86,19 +84,14 @@ def run_questions_menu(screen):
             if selected_question[0] > 0:
                 selected_question[0] -= 1
         elif event == ord(" "):
-            correct_answer = False
-            incorrect_answer = False
-            
             if run_question(screen):
                 answered_questions.add( tuple(selected_question) )
 
         draw_window_grid_and_refresh(screen)
 
 def run_question(screen):
-    global correct_answer
-    global incorrect_answer
-
-    draw_window_question_prompts_and_refresh(screen, prompt_buzz_enable)
+    draw_window_question_prompts_and_refresh(
+        screen, prompt_buzz_enable, False, False)
 
     question_attempted = False
 
@@ -106,8 +99,6 @@ def run_question(screen):
         event = screen.getch()
 
         if event == ord('s'):
-            incorrect_answer = False
-            correct_answer = False
             run_buzzin_attempts(screen)
             question_attempted = True
             break
@@ -258,7 +249,7 @@ def draw_grid(screen):
         i += 1
 
 # draws the selected question on the screen
-def draw_question(screen, player_name):
+def draw_question(screen, correct_answer, incorrect_answer, player_name):
     height, width = screen.getmaxyx()
 
     fill = ""
@@ -303,8 +294,8 @@ def draw_question(screen, player_name):
 
 # get the buzzed in player name
 def run_buzzin_attempts(screen):
-    global correct_answer
-    global incorrect_answer
+    correct_answer = False
+    incorrect_answer = False
 
     players_allowed = set(
         (NOBODY_BUZZED,) + 
@@ -314,7 +305,8 @@ def run_buzzin_attempts(screen):
 
     while True:
         draw_window_question_prompts_and_refresh(
-            screen, waiting_for_buzz_prompt)
+            screen, waiting_for_buzz_prompt,
+            correct_answer, incorrect_answer, )
 
         buzzed_in_player_id = wait_4_buzz(players_allowed)
 
@@ -326,12 +318,15 @@ def run_buzzin_attempts(screen):
             # draw name of player and prompt re correct answer
             draw_window_question_prompts_and_refresh(
                 screen, prompt_right_answer,
+                False, False, 
                 player_names[buzzed_in_player_id] )
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
             draw_window_question_prompts_and_refresh(
-                screen, waiting_for_buzz_prompt)
+                screen, waiting_for_buzz_prompt,
+                correct_answer, incorrect_answer,
+                )
 
         # if all the players have had a chance
         if len(players_allowed) == 1:
