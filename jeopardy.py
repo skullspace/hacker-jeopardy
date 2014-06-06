@@ -5,23 +5,20 @@ from curses import wrapper
 
 from wait_4_buzz import wait_4_buzz
 
-selected_question = [0, 100]
-answered_questions = set()
-
 NOBODY_BUZZED = -1
 
 questions_file = 'questions.json'
-questions = []
 
 with open('buzzin') as f:
     player_names = tuple( player_name.strip()
                           for player_name in f )
 
-def draw_window_grid_and_refresh(screen):
+def draw_window_grid_and_refresh(
+    screen, questions, selected_question, answered_questions):
     screen.clear()
 
     draw_window(screen)
-    draw_grid(screen)
+    draw_grid(screen, questions, selected_question, answered_questions)
     height, width = screen.getmaxyx()
 
     # draw exit instructions    
@@ -58,12 +55,15 @@ def draw_window_question_prompts_and_refresh(
                   question, player_name)
     screen.refresh()
 
-def run_questions_menu(screen):
+def run_questions_menu(screen, questions, answered_questions):
+    selected_question = [0, 100]
+
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
     max_category = len(questions) - 1
 
-    draw_window_grid_and_refresh(screen)
+    draw_window_grid_and_refresh(
+        screen, questions, selected_question, answered_questions)
 
     while True:
         event = screen.getch()
@@ -91,7 +91,8 @@ def run_questions_menu(screen):
                 
                 answered_questions.add( tuple(selected_question) )
 
-        draw_window_grid_and_refresh(screen)
+        draw_window_grid_and_refresh(
+            screen, questions, selected_question, answered_questions)
 
 def run_question(screen, question):
     draw_window_question_prompts_and_refresh(
@@ -118,14 +119,17 @@ def main(screen):
     
     # initialize colours
     init_colors()
-    # initialize questions
-    map_questions()
 
     draw_splash(screen)
     screen.getch()
     screen.clear()    
-    
-    run_questions_menu(screen)
+
+    with open(questions_file) as f:
+        questions = json.load(f)
+
+    answered_questions = set()
+
+    run_questions_menu(screen, questions, answered_questions)
     screen.clear()
 
 # initialize colour pairs that will be used in app
@@ -180,7 +184,7 @@ def draw_window(screen):
     screen.addstr(height-3, 0, line, curses.color_pair(3))
 
 # draw question grid on screen
-def draw_grid(screen):
+def draw_grid(screen, questions, selected_question, answered_questions):
     height, width = screen.getmaxyx()
 
     columns = len(questions)
@@ -340,13 +344,6 @@ def run_wait_for_right_wrong(screen):
             return True
         elif event == ord('w'):
             return False
-
-# load questions from json
-def map_questions():
-    global questions
-    questions_json = open(questions_file)
-    with questions_json as f:
-        questions = json.load(f)
 
 if __name__=='__main__':
     curses.wrapper(main)
