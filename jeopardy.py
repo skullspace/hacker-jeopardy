@@ -27,6 +27,11 @@ def draw_window_grid_and_refresh(screen):
     draw_grid(screen)
     screen.refresh()
 
+def draw_window_question_and_refresh(screen):
+    draw_window(screen)
+    draw_question(screen)
+    screen.refresh()
+
 def run_questions_menu(screen):
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
@@ -73,10 +78,8 @@ def run_question(screen):
     global correct_answer
     global incorrect_answer
 
-    draw_window(screen)
-    draw_question(screen)
-    screen.refresh()
-    
+    draw_window_question_and_refresh(screen)
+
     question_attempted = False
 
     while True:
@@ -97,9 +100,7 @@ def run_question(screen):
         elif event == ord(" "):
             break
 
-        draw_window(screen)
-        draw_question(screen)
-        screen.refresh()
+        draw_window_question_and_refresh(screen)
 
     return question_attempted
 
