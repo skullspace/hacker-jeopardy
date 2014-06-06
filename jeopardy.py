@@ -7,8 +7,6 @@ from wait_4_buzz import wait_4_buzz
 
 selected_question = [0, 100]
 answered_questions = set()
-max_question = 100
-max_category = 0
 
 NOBODY_BUZZED = -1
 
