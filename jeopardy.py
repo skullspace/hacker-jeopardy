@@ -62,23 +62,18 @@ def run_questions_menu(screen):
         if event == ord("q"):
             break
         elif event == curses.KEY_UP:
-            screen.clear()
             if selected_question[1] > 100:
                 selected_question[1] -= 100
         elif event == curses.KEY_DOWN:
-            screen.clear()
             if selected_question[1] < max_question:
                 selected_question[1] += 100
         elif event == curses.KEY_RIGHT:
-            screen.clear()
             if selected_question[0] < max_category:
                 selected_question[0] += 1
         elif event == curses.KEY_LEFT:
-            screen.clear()
             if selected_question[0] > 0:
                 selected_question[0] -= 1
         elif event == ord(" "):
-            screen.clear()
             correct_answer = False
             incorrect_answer = False
             
