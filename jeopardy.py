@@ -105,6 +105,11 @@ def init_colors():
 	curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
 
 def draw_menu(screen):
+	with open('splash_ascii_art.txt') as f:
+		splash_ascii_art = tuple(
+			line[:-1] # remove newline character from each line
+			for line in f)
+
 	height, width = screen.getmaxyx()
 
 	# create divider the same width as screen
@@ -114,25 +119,9 @@ def draw_menu(screen):
 		line += "="
 		spacer += " "
 
-	screen.addstr(1,2, "                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(2,2, "                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(3,2, "                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(4,2, "                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(5,2, "  /$$   /$$                     /$$                                    /$$$$$                                                         /$$          ",curses.color_pair(1))
-	screen.addstr(6,2, " | $$  | $$                    | $$                                   |__  $$                                                        | $$          ",curses.color_pair(1))
-	screen.addstr(7,2, " | $$  | $$  /$$$$$$   /$$$$$$$| $$   /$$  /$$$$$$   /$$$$$$             | $$  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$$ /$$   /$$",curses.color_pair(1))
-	screen.addstr(8,2, " | $$$$$$$$ |____  $$ /$$_____/| $$  /$$/ /$$__  $$ /$$__  $$            | $$ /$$__  $$ /$$__  $$ /$$__  $$ |____  $$ /$$__  $$ /$$__  $$| $$  | $$",curses.color_pair(1))
-	screen.addstr(9,2, " | $$__  $$  /$$$$$$$| $$      | $$$$$$/ | $$$$$$$$| $$  \__/       /$$  | $$| $$$$$$$$| $$  \ $$| $$  \ $$  /$$$$$$$| $$  \__/| $$  | $$| $$  | $$",curses.color_pair(1))
-	screen.addstr(10,2," | $$  | $$ /$$__  $$| $$      | $$_  $$ | $$_____/| $$            | $$  | $$| $$_____/| $$  | $$| $$  | $$ /$$__  $$| $$      | $$  | $$| $$  | $$",curses.color_pair(1))
-	screen.addstr(11,2," | $$  | $$|  $$$$$$$|  $$$$$$$| $$ \  $$|  $$$$$$$| $$            |  $$$$$$/|  $$$$$$$|  $$$$$$/| $$$$$$$/|  $$$$$$$| $$      |  $$$$$$$|  $$$$$$$",curses.color_pair(1))
-	screen.addstr(12,2," |__/  |__/ \_______/ \_______/|__/  \__/ \_______/|__/             \______/  \_______/ \______/ | $$____/  \_______/|__/       \_______/ \____  $$",curses.color_pair(1))
-	screen.addstr(13,2,"                                                                                                 | $$                                     /$$  | $$",curses.color_pair(1))
-	screen.addstr(14,2,"                                                                                                 | $$                                    |  $$$$$$/",curses.color_pair(1))
-	screen.addstr(15,2,"                                                                                                 |__/                                     \______/ ",curses.color_pair(1))
-	screen.addstr(16,2,"                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(17,2,"                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(18,2,"                                                                                                                                                   ",curses.color_pair(1))
-	screen.addstr(19,2,"                                                                                                                                                   ",curses.color_pair(1))
+	# add each line to the screen, starting from row 1 and column 2
+	for i,file_line in enumerate(splash_ascii_art,1):
+		screen.addstr(i,2, file_line, curses.color_pair(1) )
 
 	screen.addstr(height-3, 0, line, curses.color_pair(3))
 
