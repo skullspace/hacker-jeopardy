@@ -92,23 +92,18 @@ def run_question(screen):
 
     while True:
         event = screen.getch()
-        screen.clear()
 
-        if event == ord('r'):
-            correct_answer = True
-            incorrect_answer = False
-        elif event == ord('w'):
-            incorrect_answer = True
-            correct_answer = False
-        elif event == ord('s'):
+        if event == ord('s'):
             incorrect_answer = False
             correct_answer = False
-            check_buzzin()
+            run_buzzin_attempts(screen)
             question_attempted = True
+            break
+
         elif event == ord(" "):
             break
 
-        draw_window_question_and_refresh(screen)
+    screen.clear()
 
     return question_attempted
 
@@ -297,16 +292,50 @@ def draw_question(screen):
         screen.addstr(pos, 2, player, curses.color_pair(4))
 
 # get the buzzed in player name
-def check_buzzin():
+def run_buzzin_attempts(screen):
     global buzzed_in_player
-    buzzed_in_player_id = wait_4_buzz(
-        (NOBODY_BUZZED,) + tuple(range(len(player_names) )) )
+    global correct_answer
+    global incorrect_answer
 
-    if buzzed_in_player_id != NOBODY_BUZZED:
-        buzzed_in_player = player_names[buzzed_in_player_id]
-    else:
-        # need to do something here
-        raise Exception("Nobody buzzed not yet implemented!")
+    players_allowed = set(
+        (NOBODY_BUZZED,) + 
+        tuple( range(len(player_names)) ))
+
+    # should draw something to show our readyness for buzzing
+
+    while True:
+        buzzed_in_player_id = wait_4_buzz(players_allowed)
+
+        screen.clear()
+        draw_window_question_and_refresh(screen)
+
+        if buzzed_in_player_id == NOBODY_BUZZED:
+            break
+        else: # else a real player
+            players_allowed.remove(buzzed_in_player_id)
+            buzzed_in_player = player_names[buzzed_in_player_id]
+
+            screen.clear()
+            # draw name of player and prompt re correct answer
+            draw_window_question_and_refresh(screen)
+
+            correct_answer = run_wait_for_right_wrong(screen)
+            incorrect_answer = not correct_answer
+            screen.clear()
+            draw_window_question_and_refresh(screen)
+
+        # if all the players have had a chance
+        if len(players_allowed) == 1:
+            break
+
+def run_wait_for_right_wrong(screen):
+    while True:
+        event = screen.getch()
+        
+        if event == ord('r'):
+            return True
+        elif event == ord('w'):
+            return False
 
 # load questions from json
 def map_questions():
