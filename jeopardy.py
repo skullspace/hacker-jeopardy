@@ -5,7 +5,6 @@ from curses import wrapper
 
 from wait_4_buzz import wait_4_buzz
 
-current_screen = 'menu'
 selected_question = [0, 100]
 answered_questions = []
 max_question = 100
@@ -40,13 +39,13 @@ def main(screen):
     global incorrect_answer
     global buzzable
 
-    if current_screen == 'menu':
-        draw_splash(screen)
-    else:
-        # draw window decorations
-        draw_window(screen)
-        # initial draw grid
-        draw_grid(screen)
+    draw_splash(screen)
+    screen.getch()
+    screen.clear()    
+    
+    draw_window(screen) # draw window decorations
+    draw_grid(screen) # initial draw grid
+    screen.refresh()
 
     while True:
         event = screen.getch()
@@ -125,8 +124,10 @@ def draw_splash(screen):
 
     screen.addstr(height-3, 0, line, curses.color_pair(3))
 
-    # draw exit instructions    
-    screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
+    # draw any key instructions
+    any_key_msg = " press any key to continue "
+    screen.addstr(height-2, width-len(any_key_msg)-2,
+                  any_key_msg, curses.color_pair(2))
 
 # draws window decorations
 def draw_window(screen):
