@@ -11,11 +11,14 @@
 import curses, math
 
 def draw_window_grid_and_refresh(
-    screen, questions, selected_question, answered_questions):
+    screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
 
     draw_window(screen)
-    draw_grid(screen, questions, selected_question, answered_questions)
+    draw_grid(
+        screen, questions,
+        selected_question, answered_questions,
+        player_scores )
     height, width = screen.getmaxyx()
 
     # draw exit instructions    
@@ -104,7 +107,10 @@ def draw_window(screen):
     screen.addstr(height-3, 0, line, curses.color_pair(3))
 
 # draw question grid on screen
-def draw_grid(screen, questions, selected_question, answered_questions):
+def draw_grid(
+    screen, questions,
+    selected_question, answered_questions,
+    player_scores ):
     height, width = screen.getmaxyx()
 
     columns = len(questions)
@@ -175,6 +181,9 @@ def draw_grid(screen, questions, selected_question, answered_questions):
 
         pos += category_width + 2
         i += 1
+
+    for a, player_score in enumerate(player_scores):
+        screen.addstr(ypos+2+a, 20, player_score, curses.color_pair(3) )
 
 # draws the selected question on the screen
 def draw_question(screen, correct_answer, incorrect_answer,
