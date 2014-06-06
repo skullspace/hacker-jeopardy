@@ -28,7 +28,9 @@ def draw_window_grid_and_refresh(screen):
     height, width = screen.getmaxyx()
 
     # draw exit instructions    
-    screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
+    exit_instructions = " exit: q "
+    screen.addstr(height-2, width-len(exit_instructions)-2,
+                  exit_instructions, curses.color_pair(2))
 
     screen.refresh()
 
