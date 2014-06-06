@@ -41,7 +41,7 @@ def main(screen):
     global buzzable
 
     if current_screen == 'menu':
-        draw_menu(screen)
+        draw_splash(screen)
     else:
         # draw window decorations
         draw_window(screen)
@@ -104,7 +104,7 @@ def init_colors():
     curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
     curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
 
-def draw_menu(screen):
+def draw_splash(screen):
     with open('splash_ascii_art.txt') as f:
         splash_ascii_art = tuple(
             line[:-1] # remove newline character from each line
