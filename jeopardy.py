@@ -23,6 +23,8 @@ with open('buzzin') as f:
                           for player_name in f )
 
 def draw_window_grid_and_refresh(screen):
+    screen.clear()
+
     draw_window(screen)
     draw_grid(screen)
     height, width = screen.getmaxyx()
@@ -35,6 +37,7 @@ def draw_window_grid_and_refresh(screen):
     screen.refresh()
 
 def draw_window_question_and_refresh(screen):
+    screen.clear()
     draw_window(screen)
 
     height, width = screen.getmaxyx()
@@ -57,7 +60,6 @@ def run_questions_menu(screen):
 
     while True:
         event = screen.getch()
-        screen.clear()
 
         if event == ord("q"):
             break
@@ -103,8 +105,6 @@ def run_question(screen):
         elif event == ord(" "):
             break
 
-    screen.clear()
-
     return question_attempted
 
 # main game loop
@@ -121,6 +121,7 @@ def main(screen):
     screen.clear()    
     
     run_questions_menu(screen)
+    screen.clear()
 
 # initialize colour pairs that will be used in app
 def init_colors():
@@ -306,7 +307,6 @@ def run_buzzin_attempts(screen):
     while True:
         buzzed_in_player_id = wait_4_buzz(players_allowed)
 
-        screen.clear()
         draw_window_question_and_refresh(screen)
 
         if buzzed_in_player_id == NOBODY_BUZZED:
@@ -315,13 +315,11 @@ def run_buzzin_attempts(screen):
             players_allowed.remove(buzzed_in_player_id)
             buzzed_in_player = player_names[buzzed_in_player_id]
 
-            screen.clear()
             # draw name of player and prompt re correct answer
             draw_window_question_and_refresh(screen)
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
-            screen.clear()
             draw_window_question_and_refresh(screen)
 
         # if all the players have had a chance
