@@ -36,15 +36,25 @@ def draw_window_grid_and_refresh(screen):
 
     screen.refresh()
 
-def draw_window_question_and_refresh(screen):
+def waiting_for_buzz_prompt(screen, height):
+    screen.addstr(height-2, 2, " waiting for buzz ", curses.color_pair(1))
+
+def prompt_buzz_enable(screen, height):
+    screen.addstr(height-2, 2, " allow buzz in: s ", curses.color_pair(1))
+
+def prompt_right_answer(screen, height):
+    correct_answer_prompt = " correct answer: r "
+    screen.addstr(height-2, 2, correct_answer_prompt, curses.color_pair(4))
+    screen.addstr(height-2, 2 + len(correct_answer_prompt),
+                  " incorrect answer: w ", curses.color_pair(5))
+
+def draw_window_question_prompts_and_refresh(screen, prompts_func):
     screen.clear()
     draw_window(screen)
 
     height, width = screen.getmaxyx()
     # draw response actions
-    screen.addstr(height-2, 2, " correct answer: r ", curses.color_pair(4))
-    screen.addstr(height-2, 22, " incorrect answer: w ", curses.color_pair(5))
-    screen.addstr(height-2, 44, " allow buzz in: s ", curses.color_pair(1))
+    prompts_func(screen, height)
 
     draw_question(screen)
     screen.refresh()
@@ -88,7 +98,7 @@ def run_question(screen):
     global correct_answer
     global incorrect_answer
 
-    draw_window_question_and_refresh(screen)
+    draw_window_question_prompts_and_refresh(screen, prompt_buzz_enable)
 
     question_attempted = False
 
@@ -305,9 +315,10 @@ def run_buzzin_attempts(screen):
     # should draw something to show our readyness for buzzing
 
     while True:
-        buzzed_in_player_id = wait_4_buzz(players_allowed)
+        draw_window_question_prompts_and_refresh(
+            screen, waiting_for_buzz_prompt)
 
-        draw_window_question_and_refresh(screen)
+        buzzed_in_player_id = wait_4_buzz(players_allowed)
 
         if buzzed_in_player_id == NOBODY_BUZZED:
             break
@@ -316,11 +327,13 @@ def run_buzzin_attempts(screen):
             buzzed_in_player = player_names[buzzed_in_player_id]
 
             # draw name of player and prompt re correct answer
-            draw_window_question_and_refresh(screen)
+            draw_window_question_prompts_and_refresh(
+                screen, prompt_right_answer)
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
-            draw_window_question_and_refresh(screen)
+            draw_window_question_prompts_and_refresh(
+                screen, waiting_for_buzz_prompt)
 
         # if all the players have had a chance
         if len(players_allowed) == 1:
