@@ -23,14 +23,7 @@ with open('buzzin') as f:
     player_names = tuple( player_name.strip()
                           for player_name in f )
 
-# main game loop
-def main(screen):
-    screen.keypad(1)
-    
-    # initialize colours
-    init_colors()
-    # initialize questions
-    map_questions()
+def run_questions_menu(screen):
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
     max_category = len(questions) - 1
@@ -38,14 +31,6 @@ def main(screen):
     global correct_answer
     global incorrect_answer
     global buzzable
-
-    draw_splash(screen)
-    screen.getch()
-    screen.clear()    
-    
-    draw_window(screen) # draw window decorations
-    draw_grid(screen) # initial draw grid
-    screen.refresh()
 
     while True:
         event = screen.getch()
@@ -93,7 +78,26 @@ def main(screen):
             draw_question(screen)
         else:
             draw_grid(screen)
-        screen.refresh()
+        screen.refresh()    
+
+# main game loop
+def main(screen):
+    screen.keypad(1)
+    
+    # initialize colours
+    init_colors()
+    # initialize questions
+    map_questions()
+
+    draw_splash(screen)
+    screen.getch()
+    screen.clear()    
+    
+    draw_window(screen) # draw window decorations
+    draw_grid(screen) # initial draw grid
+    screen.refresh()
+
+    run_questions_menu(screen)
 
 # initialize colour pairs that will be used in app
 def init_colors():
