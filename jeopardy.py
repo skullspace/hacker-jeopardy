@@ -11,7 +11,6 @@ max_question = 100
 max_category = 0
 correct_answer = False
 incorrect_answer = False
-buzzed_in_player = ""
 
 NOBODY_BUZZED = -1
 
@@ -48,7 +47,8 @@ def prompt_right_answer(screen, height):
     screen.addstr(height-2, 2 + len(correct_answer_prompt),
                   " incorrect answer: w ", curses.color_pair(5))
 
-def draw_window_question_prompts_and_refresh(screen, prompts_func):
+def draw_window_question_prompts_and_refresh(
+    screen, prompts_func, player_name=""):
     screen.clear()
     draw_window(screen)
 
@@ -56,7 +56,7 @@ def draw_window_question_prompts_and_refresh(screen, prompts_func):
     # draw response actions
     prompts_func(screen, height)
 
-    draw_question(screen)
+    draw_question(screen, player_name)
     screen.refresh()
 
 def run_questions_menu(screen):
@@ -258,7 +258,7 @@ def draw_grid(screen):
         i += 1
 
 # draws the selected question on the screen
-def draw_question(screen):
+def draw_question(screen, player_name):
     height, width = screen.getmaxyx()
 
     fill = ""
@@ -294,17 +294,15 @@ def draw_question(screen):
         else:
             screen.addstr(pos, 2, fill, bkg_color)
         pos += 1
-    if len(buzzed_in_player) > 0:
-        player = buzzed_in_player
-        while len(player) < width-4:
-            player = " " + player + " "
-        if len(player) > width-4:
-            player = player[:-1]
-        screen.addstr(pos, 2, player, curses.color_pair(4))
+    if len(player_name) > 0:
+        while len(player_name) < width-4:
+            player_name = " " + player_name + " "
+        if len(player_name) > width-4:
+            player_name = player_name[:-1]
+        screen.addstr(pos, 2, player_name, curses.color_pair(4))
 
 # get the buzzed in player name
 def run_buzzin_attempts(screen):
-    global buzzed_in_player
     global correct_answer
     global incorrect_answer
 
@@ -324,11 +322,11 @@ def run_buzzin_attempts(screen):
             break
         else: # else a real player
             players_allowed.remove(buzzed_in_player_id)
-            buzzed_in_player = player_names[buzzed_in_player_id]
 
             # draw name of player and prompt re correct answer
             draw_window_question_prompts_and_refresh(
-                screen, prompt_right_answer)
+                screen, prompt_right_answer,
+                player_names[buzzed_in_player_id] )
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
