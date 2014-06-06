@@ -23,6 +23,8 @@ def draw_window_grid_and_refresh(
         player_scores )
     height, width = screen.getmaxyx()
 
+    screen.addstr(height-2, 2, " edit scores: e ", curses.color_pair(2) )
+
     # draw exit instructions    
     exit_instructions = " exit: q "
     screen.addstr(height-2, width-len(exit_instructions)-2,
