@@ -73,6 +73,9 @@ def run_questions_menu(screen, questions, answered_questions, scores):
                 screen,
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
+                # documenting the silly convention here, someday this should be
+                # 0 through n-1 indexed and calucated by adding 1 and multipling
+                # by 100 or whatever. (change to *200 for modern jeopardy..)
                 selected_question[1]*100//100,
                 selected_question, answered_questions, scores
                 )
