@@ -73,7 +73,7 @@ def run_questions_menu(screen, questions, answered_questions, scores):
                 screen,
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
-                100, # FIXME with real score
+                selected_question[1]*100//100,
                 selected_question, answered_questions, scores
                 )
                 
