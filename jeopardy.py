@@ -34,6 +34,8 @@ def run_questions_menu(screen):
     global correct_answer
     global incorrect_answer
 
+    draw_window_grid_and_refresh(screen)
+
     while True:
         event = screen.getch()
         screen.clear()
@@ -114,7 +116,6 @@ def main(screen):
     screen.getch()
     screen.clear()    
     
-    draw_window_grid_and_refresh(screen)
     run_questions_menu(screen)
 
 # initialize colour pairs that will be used in app
