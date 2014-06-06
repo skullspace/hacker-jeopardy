@@ -111,20 +111,14 @@ def draw_splash(screen):
 
     height, width = screen.getmaxyx()
 
-    # create divider the same width as screen
-    line = ""
-    spacer = ""
-    while len(line) < width:
-        line += "="
-        spacer += " "
-
-    # add each line to the screen, starting from row 1 and column 2
+    # add each line of art to the screen, starting from row 1 and column 2
     for i,file_line in enumerate(splash_ascii_art,1):
         screen.addstr(i,2, file_line, curses.color_pair(1) )
 
-    screen.addstr(height-3, 0, line, curses.color_pair(3))
+    # create divider the same width as screen
+    screen.addstr(height-3, 0, "=" * width, curses.color_pair(3))
 
-    # draw any key instructions
+    # draw any key instructions right justified (so starting at width-len)
     any_key_msg = " press any key to continue "
     screen.addstr(height-2, width-len(any_key_msg)-2,
                   any_key_msg, curses.color_pair(2))
