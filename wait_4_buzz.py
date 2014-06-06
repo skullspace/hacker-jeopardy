@@ -25,13 +25,14 @@ class BuzzWaitHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
 
-def wait_4_buzz():
+def wait_4_buzz(players_allowed_to_answer):
     srvr = HTTPServer(('', BUZZ_PORT), BuzzWaitHandler)
     # keep handling requests one at a time until one of them manages
     # to set the buzz_from attribute
     while True:
         srvr.handle_request()
-        if hasattr(srvr, 'buzz_from'):
+        if (hasattr(srvr, 'buzz_from') and
+            srvr.buzz_from in players_allowed_to_answer ):
             # shutdown the server and drop everybody else in the queue
             srvr.server_close()
             return srvr.buzz_from
