@@ -200,6 +200,8 @@ def draw_question(screen, correct_answer, incorrect_answer,
     halfway = math.floor((height-3)/2)
     pos = 4
 
+    original_question = question
+
     dif = width - 4 - len(question)
     if dif > 0:
         if dif % 2 == 0:
@@ -221,8 +223,8 @@ def draw_question(screen, correct_answer, incorrect_answer,
     while pos < box_height:
         if pos == halfway:
             # for large multi-line questions
-            if len(question) +20 > width:
-                question_lines = wrap(question, width-20)
+            if len(original_question) +20 > width:
+                question_lines = wrap(original_question, width-20)
                 for a, question_line in enumerate(question_lines):
                     screen.addstr(pos+a, 2, center(question_line,width-4),
                                   bkg_color)
