@@ -6,7 +6,7 @@ from curses import wrapper
 from wait_4_buzz import wait_4_buzz
 
 selected_question = [0, 100]
-answered_questions = []
+answered_questions = set()
 max_question = 100
 max_category = 0
 correct_answer = False
@@ -55,7 +55,10 @@ def run_questions_menu(screen):
             screen.clear()
             correct_answer = False
             incorrect_answer = False
-            run_question(screen)
+            
+            if run_question(screen):
+                answered_questions.add(
+                    (selected_question[0],selected_question[1]) )
 
         draw_window(screen)
         draw_grid(screen)
@@ -69,6 +72,8 @@ def run_question(screen):
     draw_question(screen)
     screen.refresh()
     
+    question_attempted = False
+
     while True:
         event = screen.getch()
         screen.clear()
@@ -83,12 +88,15 @@ def run_question(screen):
             incorrect_answer = False
             correct_answer = False
             check_buzzin()
+            question_attempted = True
         elif event == ord(" "):
             break
 
         draw_window(screen)
         draw_question(screen)
         screen.refresh()
+
+    return question_attempted
 
 # main game loop
 def main(screen):
@@ -225,7 +233,7 @@ def draw_grid(screen):
             cur_color = curses.color_pair(1)
             if i == selected_question[0] and j*100 == selected_question[1]:
                 cur_color = curses.color_pair(4)
-            elif [i, int(j*100)] in answered_questions:
+            elif (i, int(j*100)) in answered_questions:
                 cur_color = curses.color_pair(2)
 
             screen.addstr(ypos, pos, empty, cur_color)
@@ -284,8 +292,6 @@ def draw_question(screen):
         if len(player) > width-4:
             player = player[:-1]
         screen.addstr(pos, 2, player, curses.color_pair(4))
-
-    answered_questions.append([selected_question[0],selected_question[1]])
 
 # get the buzzed in player name
 def check_buzzin():
