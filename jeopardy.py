@@ -12,6 +12,8 @@
 
 import curses, json
 from curses import wrapper
+from pickle import dump, load
+from os.path import exists
 
 # from this project
 from wait_4_buzz import wait_4_buzz
@@ -25,12 +27,13 @@ from curses_drawing import \
 NOBODY_BUZZED = -1
 
 questions_file = 'questions.json'
+PERSIST_FILE = 'database.pickle'
 
 with open('buzzin') as f:
     player_names = tuple( player_name.strip()
                           for player_name in f )
 
-def run_questions_menu(screen, questions, answered_questions):
+def run_questions_menu(screen, questions, answered_questions, scores):
     selected_question = [0, 100]
 
     # initialize selected question bounds
@@ -62,18 +65,20 @@ def run_questions_menu(screen, questions, answered_questions):
             selected_question_dict = \
                 questions[selected_question[0]]["questions"][
                 selected_question[1]//100-1]
-            if run_question(
+            run_question(
                 screen,
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
-                ):
+                0, # FIXME with real score
+                selected_question, answered_questions, scores
+                )
                 
-                answered_questions.add( tuple(selected_question) )
-
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions)
 
-def run_question(screen, question, answer):
+def run_question(
+    screen, question, answer, question_score, 
+    selected_question, answered_questions, scores):
     draw_window_question_prompts_and_refresh(
         screen, prompt_buzz_enable, False, False, question)
 
@@ -81,7 +86,10 @@ def run_question(screen, question, answer):
         event = screen.getch()
 
         if event == ord('s'):
-            run_buzzin_attempts(screen, question, answer)
+            answered_questions.add( tuple(selected_question) )
+            save_database(answered_questions, scores)
+            run_buzzin_attempts(screen, question, answer, question_score,
+                                answered_questions, scores)
             return True
 
         elif event == ord(" "):
@@ -100,13 +108,15 @@ def main(screen):
     with open(questions_file) as f:
         questions = json.load(f)
 
-    answered_questions = set()
+    answered_questions, scores = load_database(questions)
 
-    run_questions_menu(screen, questions, answered_questions)
+    run_questions_menu(screen, questions, answered_questions, scores)
     screen.clear()
 
 # get the buzzed in player name
-def run_buzzin_attempts(screen, question, answer):
+def run_buzzin_attempts(
+    screen, question, answer, question_score,
+    answered_questions, scores):
     correct_answer = False
     incorrect_answer = False
 
@@ -159,6 +169,20 @@ def run_wait_for_right_wrong(screen):
             return True
         elif event == ord('w'):
             return False
+
+def load_database(questions):
+    if not exists(PERSIST_FILE):
+        attempted_questions = set()
+        scores = [0,] * len(player_names)
+    else:
+        with open(PERSIST_FILE) as f:
+            attempted_questions, scores = load(f)
+
+    return attempted_questions, scores
+
+def save_database(attempted_questions, scores):
+    with open(PERSIST_FILE, 'w') as f:
+        dump( (attempted_questions, scores), f )
 
 if __name__=='__main__':
     curses.wrapper(main)
