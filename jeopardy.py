@@ -327,11 +327,6 @@ def run_buzzin_attempts(screen, question):
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
-            draw_window_question_prompts_and_refresh(
-                screen, waiting_for_buzz_prompt,
-                correct_answer, incorrect_answer,
-                question,
-                )
 
         # if all the players have had a chance
         if len(players_allowed) == 1:
