@@ -308,7 +308,6 @@ def map_questions():
 		
 	for category in categories:
 		questions.append(category)
-	questions_json.close()
 
 if __name__=='__main__':
 	curses.wrapper(main)
