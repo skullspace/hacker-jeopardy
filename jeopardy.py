@@ -59,17 +59,21 @@ def run_questions_menu(screen, questions, answered_questions):
                 selected_question[0] -= 1
         elif event == ord(" "):
 
+            selected_question_dict = \
+                questions[selected_question[0]]["questions"][
+                selected_question[1]//100-1]
             if run_question(
                 screen,
-                questions[selected_question[0]]["questions"][
-                    selected_question[1]//100-1]["question"] ):
+                selected_question_dict["question"],
+                selected_question_dict["answer"],
+                ):
                 
                 answered_questions.add( tuple(selected_question) )
 
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions)
 
-def run_question(screen, question):
+def run_question(screen, question, answer):
     draw_window_question_prompts_and_refresh(
         screen, prompt_buzz_enable, False, False, question)
 
@@ -79,7 +83,7 @@ def run_question(screen, question):
         event = screen.getch()
 
         if event == ord('s'):
-            run_buzzin_attempts(screen, question)
+            run_buzzin_attempts(screen, question, answer)
             question_attempted = True
             break
 
@@ -107,7 +111,7 @@ def main(screen):
     screen.clear()
 
 # get the buzzed in player name
-def run_buzzin_attempts(screen, question):
+def run_buzzin_attempts(screen, question, answer):
     correct_answer = False
     incorrect_answer = False
 
@@ -137,10 +141,20 @@ def run_buzzin_attempts(screen, question):
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
-
+            if correct_answer:
+                break
+            
         # if all the players have had a chance
         if len(players_allowed) == 1:
             break
+    
+    if not correct_answer:
+        draw_window_question_prompts_and_refresh(
+            screen, lambda *x: None,
+            False, True, answer )
+        while True:
+            if screen.getch() == ord(' '):
+                break
 
 def run_wait_for_right_wrong(screen):
     while True:
