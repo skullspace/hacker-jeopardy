@@ -302,12 +302,10 @@ def check_buzzin():
 
 # load questions from json
 def map_questions():
+	global questions
 	questions_json = open(questions_file)
 	with questions_json as f:
-		categories = json.load(f)
-		
-	for category in categories:
-		questions.append(category)
+		questions = json.load(f)
 
 if __name__=='__main__':
 	curses.wrapper(main)
