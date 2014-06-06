@@ -88,7 +88,6 @@ def run_question(screen, question):
 
     return question_attempted
 
-# main game loop
 def main(screen):
     screen.keypad(1)
     
