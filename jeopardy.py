@@ -69,7 +69,7 @@ def run_questions_menu(screen, questions, answered_questions, scores):
                 screen,
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
-                0, # FIXME with real score
+                100, # FIXME with real score
                 selected_question, answered_questions, scores
                 )
                 
@@ -147,8 +147,15 @@ def run_buzzin_attempts(
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
             if correct_answer:
+                adjust_score_and_save(
+                    buzzed_in_player_id, answered_questions,
+                    scores, question_score)
                 break
-            
+            else:
+                adjust_score_and_save(
+                    buzzed_in_player_id, answered_questions,
+                    scores, -question_score)
+
         # if all the players have had a chance
         if len(players_allowed) == 1:
             break
@@ -179,6 +186,10 @@ def load_database(questions):
             attempted_questions, scores = load(f)
 
     return attempted_questions, scores
+
+def adjust_score_and_save(player_id, attempted_questions, scores, adj):
+    scores[player_id] += adj
+    save_database(attempted_questions, scores)
 
 def save_database(attempted_questions, scores):
     with open(PERSIST_FILE, 'w') as f:
