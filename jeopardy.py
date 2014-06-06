@@ -77,20 +77,15 @@ def run_question(screen, question, answer):
     draw_window_question_prompts_and_refresh(
         screen, prompt_buzz_enable, False, False, question)
 
-    question_attempted = False
-
     while True:
         event = screen.getch()
 
         if event == ord('s'):
             run_buzzin_attempts(screen, question, answer)
-            question_attempted = True
-            break
+            return True
 
         elif event == ord(" "):
-            break
-
-    return question_attempted
+            return False
 
 def main(screen):
     screen.keypad(1)
