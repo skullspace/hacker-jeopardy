@@ -23,6 +23,7 @@ from curses_drawing import \
      draw_window_question_prompts_and_refresh,
      init_colors, draw_splash, 
      )
+from beep_sound import beep_for_player
 
 NOBODY_BUZZED = -1
 
@@ -162,6 +163,7 @@ def run_buzzin_attempts(
             correct_answer, incorrect_answer, question)
 
         buzzed_in_player_id = wait_4_buzz(players_allowed)
+        beep_for_player(buzzed_in_player_id)
 
         if buzzed_in_player_id == NOBODY_BUZZED:
             break
