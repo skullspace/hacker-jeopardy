@@ -28,7 +28,6 @@ def run_questions_menu(screen):
     max_category = len(questions) - 1
     global correct_answer
     global incorrect_answer
-    global buzzable
 
     while True:
         event = screen.getch()
