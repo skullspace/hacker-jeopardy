@@ -9,7 +9,6 @@ selected_question = [0, 100]
 answered_questions = []
 max_question = 100
 max_category = 0
-in_question = False
 correct_answer = False
 incorrect_answer = False
 buzzed_in_player = ""
@@ -27,7 +26,6 @@ def run_questions_menu(screen):
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
     max_category = len(questions) - 1
-    global in_question
     global correct_answer
     global incorrect_answer
     global buzzable
@@ -40,45 +38,58 @@ def run_questions_menu(screen):
             break
         elif event == curses.KEY_UP:
             screen.clear()
-            if selected_question[1] > 100 and not in_question:
+            if selected_question[1] > 100:
                 selected_question[1] -= 100
         elif event == curses.KEY_DOWN:
             screen.clear()
-            if selected_question[1] < max_question and not in_question:
+            if selected_question[1] < max_question:
                 selected_question[1] += 100
         elif event == curses.KEY_RIGHT:
             screen.clear()
-            if selected_question[0] < max_category and not in_question:
+            if selected_question[0] < max_category:
                 selected_question[0] += 1
         elif event == curses.KEY_LEFT:
             screen.clear()
-            if selected_question[0] > 0 and not in_question:
+            if selected_question[0] > 0:
                 selected_question[0] -= 1
         elif event == ord(" "):
             screen.clear()
-            if in_question:
-                correct_answer = False
-                incorrect_answer = False
-                in_question = False
-            else:
-                in_question = True
-        elif event == ord('r') and in_question:
+            correct_answer = False
+            incorrect_answer = False
+            run_question(screen)
+
+        draw_window(screen)
+        draw_grid(screen)
+        screen.refresh()    
+
+def run_question(screen):
+    global correct_answer
+    global incorrect_answer
+
+    draw_window(screen)
+    draw_question(screen)
+    screen.refresh()
+    
+    while True:
+        event = screen.getch()
+        screen.clear()
+
+        if event == ord('r'):
             correct_answer = True
             incorrect_answer = False
-        elif event == ord('w') and in_question:
+        elif event == ord('w'):
             incorrect_answer = True
             correct_answer = False
-        elif event == ord('s') and in_question:
+        elif event == ord('s'):
             incorrect_answer = False
             correct_answer = False
             check_buzzin()
+        elif event == ord(" "):
+            break
 
         draw_window(screen)
-        if in_question:
-            draw_question(screen)
-        else:
-            draw_grid(screen)
-        screen.refresh()    
+        draw_question(screen)
+        screen.refresh()
 
 # main game loop
 def main(screen):
