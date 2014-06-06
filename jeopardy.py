@@ -10,7 +10,7 @@
 # @author Jeremy Hiebert <jkhiebert@gmail.com>
 # @author Mark Jenkins <mark@markjenkins.ca>
 
-import curses, json, sys
+import curses, json
 from curses import wrapper
 
 # from this project
