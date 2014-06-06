@@ -9,6 +9,8 @@
 # @author Mark Jenkins <mark@markjenkins.ca>
 
 import curses, math
+from textwrap import wrap
+from string import center
 
 def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
@@ -218,7 +220,15 @@ def draw_question(screen, correct_answer, incorrect_answer,
 
     while pos < box_height:
         if pos == halfway:
-            screen.addstr(pos, 2, question, bkg_color)
+            # for large multi-line questions
+            if len(question) +20 > width:
+                question_lines = wrap(question, width-20)
+                for a, question_line in enumerate(question_lines):
+                    screen.addstr(pos+a, 2, center(question_line,width-4),
+                                  bkg_color)
+                pos += len(question_lines)-1
+            else:
+                screen.addstr(pos, 2, question, bkg_color)
         else:
             screen.addstr(pos, 2, fill, bkg_color)
         pos += 1
