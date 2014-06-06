@@ -290,7 +290,8 @@ def draw_question(screen):
 # get the buzzed in player name
 def check_buzzin():
     global buzzed_in_player
-    buzzed_in_player_id = wait_4_buzz()
+    buzzed_in_player_id = wait_4_buzz(
+        (NOBODY_BUZZED,) + tuple(range(len(player_names) )) )
 
     if buzzed_in_player_id != NOBODY_BUZZED:
         buzzed_in_player = player_names[buzzed_in_player_id]
