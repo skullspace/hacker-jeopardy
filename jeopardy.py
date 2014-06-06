@@ -25,10 +25,22 @@ with open('buzzin') as f:
 def draw_window_grid_and_refresh(screen):
     draw_window(screen)
     draw_grid(screen)
+    height, width = screen.getmaxyx()
+
+    # draw exit instructions    
+    screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
+
     screen.refresh()
 
 def draw_window_question_and_refresh(screen):
     draw_window(screen)
+
+    height, width = screen.getmaxyx()
+    # draw response actions
+    screen.addstr(height-2, 2, " correct answer: r ", curses.color_pair(4))
+    screen.addstr(height-2, 22, " incorrect answer: w ", curses.color_pair(5))
+    screen.addstr(height-2, 44, " allow buzz in: s ", curses.color_pair(1))
+
     draw_question(screen)
     screen.refresh()
 
@@ -169,13 +181,6 @@ def draw_window(screen):
 
     screen.addstr(3, 0, line, curses.color_pair(3))
     screen.addstr(height-3, 0, line, curses.color_pair(3))
-
-    # draw response actions
-    screen.addstr(height-2, 2, " correct answer: r ", curses.color_pair(4))
-    screen.addstr(height-2, 22, " incorrect answer: w ", curses.color_pair(5))
-    screen.addstr(height-2, 44, " allow buzz in: s ", curses.color_pair(1))
-    # draw exit instructions    
-    screen.addstr(height-2, width-11, " exit: q ", curses.color_pair(2))
 
 # draw question grid on screen
 def draw_grid(screen):
