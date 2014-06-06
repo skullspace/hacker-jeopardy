@@ -22,6 +22,11 @@ with open('buzzin') as f:
     player_names = tuple( player_name.strip()
                           for player_name in f )
 
+def draw_window_grid_and_refresh(screen):
+    draw_window(screen)
+    draw_grid(screen)
+    screen.refresh()
+
 def run_questions_menu(screen):
     # initialize selected question bounds
     max_question = int(len(questions[0]["questions"]) * 100)
@@ -60,9 +65,7 @@ def run_questions_menu(screen):
                 answered_questions.add(
                     (selected_question[0],selected_question[1]) )
 
-        draw_window(screen)
-        draw_grid(screen)
-        screen.refresh()    
+        draw_window_grid_and_refresh(screen)
 
 def run_question(screen):
     global correct_answer
@@ -111,10 +114,7 @@ def main(screen):
     screen.getch()
     screen.clear()    
     
-    draw_window(screen) # draw window decorations
-    draw_grid(screen) # initial draw grid
-    screen.refresh()
-
+    draw_window_grid_and_refresh(screen)
     run_questions_menu(screen)
 
 # initialize colour pairs that will be used in app
