@@ -83,8 +83,7 @@ def run_questions_menu(screen):
             incorrect_answer = False
             
             if run_question(screen):
-                answered_questions.add(
-                    (selected_question[0],selected_question[1]) )
+                answered_questions.add( tuple(selected_question) )
 
         draw_window_grid_and_refresh(screen)
 
