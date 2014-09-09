@@ -13,7 +13,7 @@ from buzz import buzz
 import RPi.GPIO as GPIO
 
 # Mapping GIPO pins to player IDs
-pin_table = {17: -1, 18: 0, 21: 1, 22: 2} 
+pin_table = {17: -1, 18: 0, 27: 1, 22: 2} 
 
 def button_pressed(pin):
     buzz(pin_table[pin])
