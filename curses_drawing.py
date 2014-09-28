@@ -132,12 +132,6 @@ def draw_grid(
         fill += "*"
         empty += " "
 
-    # i = 0
-    # lns = 1
-    # while i < columns:
-    #   if len(questions[i]["name"]):
-    #   # check if the questions is wider than the screen   
-
     # print out each category
     pos = 1
     i = 0
