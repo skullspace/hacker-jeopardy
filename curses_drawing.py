@@ -143,9 +143,9 @@ def draw_grid(
     i = 0
     while i < columns:
         screen.addstr(5, pos, fill, curses.color_pair(1))
-        category_length = len(questions[i]["name"])
+        category_length = len(questions[i]["abrev_name"])
         dif = category_width - category_length
-        title = questions[i]["name"]
+        title = questions[i]["abrev_name"]
         if dif > 0:
             if dif % 2 == 0:
                 while len(title) < category_width:
