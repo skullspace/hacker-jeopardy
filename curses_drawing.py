@@ -161,8 +161,8 @@ def draw_grid(
         pos += category_width + 2
         i += 1
 
-    for a, player_score in enumerate(player_scores):
-        screen.addstr(ypos+2+a, 20, player_score, curses.color_pair(3) )
+    
+    screen.addstr(ypos+2, 15, "  ".join(player_scores), curses.color_pair(3) )
 
 # draws the selected question on the screen
 def draw_question(screen, correct_answer, incorrect_answer,
