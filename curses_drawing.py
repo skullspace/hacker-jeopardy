@@ -111,9 +111,9 @@ def draw_grid(
     rows = len(questions[0]["questions"])
 
     # 4 is the num of line used for window decorations
-    category_height = int(math.floor(height/rows))-4
+    category_height = height//rows-4
     # columns *2 allows 1 row space on each side of category
-    category_width = int(math.floor((width-(columns*2))/columns))
+    category_width = (width-columns*2)//columns
 
     # border for categories 
     fill = ""
