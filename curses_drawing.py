@@ -73,7 +73,7 @@ def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
     allowable_width = width - horiz_border*2
     output_lines = wrap(text, width=allowable_width)
     assert( len(output_lines) + vert_border*2 <= height )
-    start_line = vert_border + (height-vert_border*2)//2
+    start_line = vert_border + (height-vert_border*2)//2 - len(output_lines)//2
     for i, line_txt in enumerate(output_lines, start_line):
         screen.addstr(i, horiz_border+1,
                       center(line_txt, allowable_width, " "),
