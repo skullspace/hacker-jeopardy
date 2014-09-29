@@ -75,12 +75,10 @@ def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
     assert( len(output_lines) + vert_border*2 <= height )
     start_line = vert_border + (height-vert_border*2)//2
     for i, line_txt in enumerate(output_lines, start_line):
-        left_start = horiz_border+1
-        if len(line_txt) < allowable_width:
-            center = allowable_width // 2
-            half_txt = len(line_txt) // 2
-            left_start += center - half_txt
-        screen.addstr(i, left_start, line_txt, curses.color_pair(color) )
+        screen.addstr(i, horiz_border+1,
+                      center(line_txt, allowable_width, " "),
+                      curses.color_pair(color) )
+    return output_lines
 
 def draw_splash(screen):
     text_in_screen_center(screen, SPLASH_TEXT, color=1)
