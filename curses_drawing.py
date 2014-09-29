@@ -14,6 +14,8 @@ from string import center
 
 SPLASH_TEXT = "Hacker Jeopardy!!!"
 
+BOT_INSTRUCT_OFFSET = 1
+
 def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
@@ -24,25 +26,31 @@ def draw_window_grid_and_refresh(
         player_scores )
     height, width = screen.getmaxyx()
 
-    screen.addstr(height-2, 2, " edit scores: e ", curses.color_pair(2) )
+    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
+                  " edit scores: e ", curses.color_pair(2) )
 
     # draw exit instructions    
     exit_instructions = " exit: q "
-    screen.addstr(height-2, width-len(exit_instructions)-2,
+    screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                  width-len(exit_instructions)-2,
                   exit_instructions, curses.color_pair(2))
 
     screen.refresh()
 
 def waiting_for_buzz_prompt(screen, height):
-    screen.addstr(height-2, 2, " waiting for buzz ", curses.color_pair(1))
+    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
+                  " waiting for buzz ", curses.color_pair(1))
 
 def prompt_buzz_enable(screen, height):
-    screen.addstr(height-2, 2, " allow buzz in: s ", curses.color_pair(1))
+    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
+                  " allow buzz in: s ", curses.color_pair(1))
 
 def prompt_right_answer(screen, height):
     correct_answer_prompt = " correct answer: r "
-    screen.addstr(height-2, 2, correct_answer_prompt, curses.color_pair(4))
-    screen.addstr(height-2, 2 + len(correct_answer_prompt),
+    screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                  2, correct_answer_prompt, curses.color_pair(4))
+    screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                  2 + len(correct_answer_prompt),
                   " incorrect answer: w ", curses.color_pair(5))
 
 def draw_window_question_prompts_and_refresh(
@@ -88,7 +96,8 @@ def draw_splash(screen):
 
     # draw any key instructions right justified (so starting at width-len)
     any_key_msg = " press any key to continue "
-    screen.addstr(height-2, width-len(any_key_msg)-2,
+    screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                  width-len(any_key_msg)-2,
                   any_key_msg, curses.color_pair(2))
 
 # draw question grid on screen
