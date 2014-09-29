@@ -18,7 +18,6 @@ def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
 
-    draw_window(screen)
     draw_grid(
         screen, questions,
         selected_question, answered_questions,
@@ -51,7 +50,6 @@ def draw_window_question_prompts_and_refresh(
     correct_answer, incorrect_answer,
     question, player_name=""):
     screen.clear()
-    draw_window(screen)
 
     height, width = screen.getmaxyx()
     # draw response actions
@@ -95,29 +93,6 @@ def draw_splash(screen):
     any_key_msg = " press any key to continue "
     screen.addstr(height-2, width-len(any_key_msg)-2,
                   any_key_msg, curses.color_pair(2))
-
-# draws window decorations
-def draw_window(screen):
-    height, width = screen.getmaxyx()
-
-    # create divider the same width as screen
-    line = ""
-    spacer = ""
-    while len(line) < width:
-        line += "="
-        spacer += " "
-
-    title = " Hacker Jeopardy"
-    while len(title) < width:
-        title += " "
-
-    # draw app title
-    screen.addstr(spacer, curses.color_pair(1))
-    screen.addstr(1, 0, title, curses.color_pair(1))
-    screen.addstr(2, 0, spacer, curses.color_pair(1))
-
-    screen.addstr(3, 0, line, curses.color_pair(3))
-    screen.addstr(height-3, 0, line, curses.color_pair(3))
 
 # draw question grid on screen
 def draw_grid(
