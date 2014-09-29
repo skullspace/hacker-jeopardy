@@ -187,8 +187,5 @@ def draw_question(screen, correct_answer, incorrect_answer,
     text_in_screen_center(screen, question, horiz_border=10, color=bkg_color)
 
     if len(player_name) > 0:
-        while len(player_name) < width-4:
-            player_name = " " + player_name + " "
-        if len(player_name) > width-4:
-            player_name = player_name[:-1]
+        player_name = center(player_name, width-4, " ")
         screen.addstr(height-6, 2, player_name, curses.color_pair(4))
