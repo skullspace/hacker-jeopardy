@@ -78,7 +78,6 @@ def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
         screen.addstr(i, horiz_border+1,
                       center(line_txt, allowable_width, " "),
                       curses.color_pair(color) )
-    return output_lines
 
 def draw_splash(screen):
     text_in_screen_center(screen, SPLASH_TEXT, color=1)
@@ -170,51 +169,26 @@ def draw_question(screen, correct_answer, incorrect_answer,
                   question, player_name):
     height, width = screen.getmaxyx()
 
-    fill = ""
-    while len(fill) < width - 4:
-        fill += " "
+    fill = " " * (width-4)
 
-    box_height = height - 6
-    halfway = math.floor((height-3)/2)
-    pos = 4
-
-    original_question = question
-
-    dif = width - 4 - len(question)
-    if dif > 0:
-        if dif % 2 == 0:
-            while len(question) < width - 4:
-                question = " " + question + " "
-        else:
-            question = question + " "
-            while len(question) < width - 4:
-                question = " " + question + " "
     # default colour to blue
-    bkg_color = curses.color_pair(1)
+    bkg_color = 1
     if correct_answer:
         # if answer is correct, switch to green colour
-        bkg_color = curses.color_pair(4)
+        bkg_color = 4
     elif incorrect_answer:
         # if answer is incorrect, switch to red colour
-        bkg_color = curses.color_pair(2)
+        bkg_color = 2
 
-    while pos < box_height:
-        if pos == halfway:
-            # for large multi-line questions
-            if len(original_question) +20 > width:
-                question_lines = wrap(original_question, width-20)
-                for a, question_line in enumerate(question_lines):
-                    screen.addstr(pos+a, 2, center(question_line,width-4),
-                                  bkg_color)
-                pos += len(question_lines)-1
-            else:
-                screen.addstr(pos, 2, question, bkg_color)
-        else:
-            screen.addstr(pos, 2, fill, bkg_color)
-        pos += 1
+    # okay, so its a little inefficient to draw all the fill and over
+    # draw it with text second. Sue me.
+    for i in range(0+2, height - 6):
+        screen.addstr(i, 2, fill, curses.color_pair(bkg_color))        
+    text_in_screen_center(screen, question, horiz_border=10, color=bkg_color)
+
     if len(player_name) > 0:
         while len(player_name) < width-4:
             player_name = " " + player_name + " "
         if len(player_name) > width-4:
             player_name = player_name[:-1]
-        screen.addstr(pos, 2, player_name, curses.color_pair(4))
+        screen.addstr(height-6, 2, player_name, curses.color_pair(4))
