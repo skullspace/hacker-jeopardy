@@ -12,6 +12,8 @@ import curses, math
 from textwrap import wrap
 from string import center
 
+SPLASH_TEXT = "Hacker Jeopardy!!!"
+
 def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
@@ -67,17 +69,24 @@ def init_colors():
     curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
     curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
 
-def draw_splash(screen):
-    with open('splash_ascii_art.txt') as f:
-        splash_ascii_art = tuple(
-            line[:-1] # remove newline character from each line
-            for line in f)
-
+def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
+                          color=3):
     height, width = screen.getmaxyx()
+    allowable_width = width - horiz_border*2
+    output_lines = wrap(text, width=allowable_width)
+    assert( len(output_lines) + vert_border*2 <= height )
+    start_line = vert_border + (height-vert_border*2)//2
+    for i, line_txt in enumerate(output_lines, start_line):
+        left_start = horiz_border+1
+        if len(line_txt) < allowable_width:
+            center = allowable_width // 2
+            half_txt = len(line_txt) // 2
+            left_start += center - half_txt
+        screen.addstr(i, left_start, line_txt, curses.color_pair(color) )
 
-    # add each line of art to the screen, starting from row 1 and column 2
-    for i,file_line in enumerate(splash_ascii_art,1):
-        screen.addstr(i,2, file_line, curses.color_pair(1) )
+def draw_splash(screen):
+    text_in_screen_center(screen, SPLASH_TEXT, color=1)
+    height, width = screen.getmaxyx()
 
     # create divider the same width as screen
     screen.addstr(height-3, 0, "=" * width, curses.color_pair(3))
