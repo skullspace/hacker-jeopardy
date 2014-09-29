@@ -16,6 +16,14 @@ SPLASH_TEXT = "Hacker Jeopardy!!!"
 
 BOT_INSTRUCT_OFFSET = 1
 
+GRID_HORIZ_BORDER = 2
+GRID_VERT_OFFSET = 2
+INNER_GRID_BORDER = 1
+SPACE_FROM_CATEGORY_TO_LEVELS = 1
+SPACE_BETWEEN_LEVELS = 1
+
+POINTS = tuple( range(100, 500+1, 100) )
+
 def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
@@ -110,68 +118,47 @@ def draw_grid(
     columns = len(questions)
     rows = len(questions[0]["questions"])
 
-    # 4 is the num of line used for window decorations
-    category_height = height//rows-4
-    # columns *2 allows 1 row space on each side of category
-    category_width = (width-columns*2)//columns
+    # take the total screen width, subtract the border zone,
+    # and allow INNER_GRID_BORDER space between each column
+    category_width = (width-4-columns*INNER_GRID_BORDER)//columns
 
-    # border for categories 
-    fill = ""
-    empty = ""
-    while len(fill) < category_width:
-        fill += "*"
-        empty += " "
+    question_grid_start = (GRID_VERT_OFFSET +
+                           SPACE_FROM_CATEGORY_TO_LEVELS +
+                           SPACE_BETWEEN_LEVELS )
 
-    # print out each category
-    pos = 1
-    i = 0
-    while i < columns:
-        screen.addstr(5, pos, fill, curses.color_pair(1))
-        category_length = len(questions[i]["abrev_name"])
-        dif = category_width - category_length
-        title = questions[i]["abrev_name"]
-        if dif > 0:
-            if dif % 2 == 0:
-                while len(title) < category_width:
-                    title = " " + title + " "
-            else:
-                title = " " + title
-                while len(title) < category_width:
-                    title = " " + title + " "
-        else:
-            title = title
+    for i, category in enumerate(questions):
+        category_name = (category["name"]
+                         if len(category["name"]) <= category_width
+                         else category["abrev_name"]
+                         )
+        assert( len(category_name) <= category_width )
 
-        screen.addstr(6, pos, title, curses.color_pair(1))
-        screen.addstr(7, pos, fill, curses.color_pair(1))
+        horizontal_position = (
+            GRID_HORIZ_BORDER + i*category_width +
+            i*INNER_GRID_BORDER
+            )
 
-        # print question values
-        space = ""
-        while len(space) < int(math.floor((category_width-4)/2)):
-            space += " "
+        screen.addstr(
+            GRID_VERT_OFFSET,
+            horizontal_position,
+            center(category_name, category_width, " "),
+            curses.color_pair(1)
+            )
 
-        ypos = 9
-        j = 1
-        while j <= rows:
+        for j, score in enumerate(POINTS):
             cur_color = curses.color_pair(1)
-            if i == selected_question[0] and j*100 == selected_question[1]:
+            if (i, score) == tuple(selected_question):
                 cur_color = curses.color_pair(4)
-            elif (i, int(j*100)) in answered_questions:
+            elif (i, score) in answered_questions:
                 cur_color = curses.color_pair(2)
 
-            screen.addstr(ypos, pos, empty, cur_color)
-            ypos += 1
-            level = space + str(j) + "00 " + space
-            screen.addstr(ypos, pos, level, cur_color)
-            ypos += 1
-            screen.addstr(ypos, pos, empty, cur_color)
-            ypos += 2
-            j += 1
-
-        pos += category_width + 2
-        i += 1
-
+            screen.addstr(
+                question_grid_start + j+j*INNER_GRID_BORDER,
+                horizontal_position,
+                center(str(score), category_width, " "),
+                cur_color )
     
-    screen.addstr(ypos+2, 15, "  ".join(player_scores), curses.color_pair(3) )
+    screen.addstr(height-2, 15, "  ".join(player_scores), curses.color_pair(3) )
 
 # draws the selected question on the screen
 def draw_question(screen, correct_answer, incorrect_answer,
