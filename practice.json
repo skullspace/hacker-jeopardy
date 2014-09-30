@@ -1,6 +1,7 @@
 [
   {
     "name": "Ballet",
+    "abrev_name": "Ballet",
     "questions": [
       {
         "question": "A \"pas de chat\" is a leap that resembles the movement of this animal",
@@ -26,6 +27,7 @@
   },
   {
     "name": "Starts with \"V\"",
+    "abrev_name": "^V",
     "questions": [
       {
         "question": "Though its name means \"sour wine\", it can be made from berries, melons & cereal, not just grapes",
@@ -51,6 +53,7 @@
   },
   {
     "name": "Hollywood Quotes",
+    "abrev_name": "Hldquo",
     "questions": [
       {
         "question": "Vivien Leigh said of this role, \"I knew it was a marvelous part, but I never cared for her\"",
@@ -76,6 +79,7 @@
   },
   {
     "name": "Mary had a little lamb",
+    "abrev_name": "Mrylmb",
     "questions": [
       {
         "question": "According to the poem, it was against the rules",
@@ -101,6 +105,7 @@
   },
   {
     "name": "Electricity",
+    "abrev_name": "Elctry",
     "questions": [
       {
         "question": "His experiments in electricity led him to invent the lightning rod",
@@ -126,6 +131,7 @@
   },
   {
     "name": "1981",
+    "abrev_name": "1981",    
     "questions": [
       {
         "question": "The U.S. Auto Club reversed an earlier decision & declared Bobby Unser the winner of this race",
