@@ -31,6 +31,9 @@ SPLASH_VERT_BORDER = 0
 SPLASH_DIVIDER_OFFSET = 2
 SPLASH_BOT_INSTRUCT_OFFSET = 1
 
+SCORE_INSTRUCT_OFFSET = 2
+EXIT_INSTRUCT_OFFSET = 1
+
 GRID_PLAYER_SCORES_HORIZ_OFFSET = 0
 
 PLAYER_SEP_CHARS = " "
@@ -54,13 +57,14 @@ def draw_window_grid_and_refresh(
         player_scores )
     height, width = screen.getmaxyx()
 
-    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
+    screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                  SCORE_INSTRUCT_OFFSET,
                   " edit scores: e ", CURSES_COLOUR_PAIR_BAD_FEEL )
 
     # draw exit instructions    
     exit_instructions = " exit: q "
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                  width-len(exit_instructions)-2,
+                  width-len(exit_instructions)-EXIT_INSTRUCT_OFFSET,
                   exit_instructions, CURSES_COLOUR_PAIR_BAD_FEEL)
 
     screen.refresh()
