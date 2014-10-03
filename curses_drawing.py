@@ -50,31 +50,31 @@ def draw_window_grid_and_refresh(
     height, width = screen.getmaxyx()
 
     screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
-                  " edit scores: e ", curses.color_pair(2) )
+                  " edit scores: e ", CURSES_COLOUR_PAIR_BAD_FEEL )
 
     # draw exit instructions    
     exit_instructions = " exit: q "
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
                   width-len(exit_instructions)-2,
-                  exit_instructions, curses.color_pair(2))
+                  exit_instructions, CURSES_COLOUR_PAIR_BAD_FEEL)
 
     screen.refresh()
 
 def waiting_for_buzz_prompt(screen, height):
     screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
-                  " waiting for buzz ", curses.color_pair(1))
+                  " waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL)
 
 def prompt_buzz_enable(screen, height):
     screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
-                  " allow buzz in: s ", curses.color_pair(1))
+                  " allow buzz in: s ", CURSES_COLOUR_PAIR_GOOD_FEEL)
 
 def prompt_right_answer(screen, height):
     correct_answer_prompt = " correct answer: r "
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                  2, correct_answer_prompt, curses.color_pair(4))
+                  2, correct_answer_prompt, CURSES_COLOUR_PAIR_REALLY_GOOD)
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
                   2 + len(correct_answer_prompt),
-                  " incorrect answer: w ", curses.color_pair(5))
+                  " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH)
 
 def draw_window_question_prompts_and_refresh(
     screen, prompts_func,
@@ -120,7 +120,7 @@ def init_colors():
         )
 
 def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
-                          color=3):
+                          color=COLOUR_PAIR_MAX_CONTRAST):
     height, width = screen.getmaxyx()
     allowable_width = width - horiz_border*2
     output_lines = wrap(text, width=allowable_width)
@@ -141,7 +141,7 @@ def draw_splash(screen):
         # create divider the same width as screen
         screen.addstr(
             height-SPLASH_DIVIDER_OFFSET, 0,
-            "=" * width, curses.color_pair(3))
+            "=" * width, CURSES_COLOUR_PAIR_MAX_CONTRAST)
 
     # draw any key instructions right justified (so starting at width-len)
     assert(len(SPLASH_ANY_KEY_MSG) <= width)
@@ -149,7 +149,7 @@ def draw_splash(screen):
         screen.addstr(height-SPLASH_BOT_INSTRUCT_OFFSET,
                       0,
                       SPLASH_ANY_KEY_MSG,
-                      curses.color_pair(2))
+                      CURSES_COLOUR_PAIR_BAD_FEEL)
 
 # draw question grid on screen
 def draw_grid(
@@ -185,15 +185,15 @@ def draw_grid(
             GRID_VERT_OFFSET,
             horizontal_position,
             center(category_name, category_width, " "),
-            curses.color_pair(1)
+            CURSES_COLOUR_PAIR_GOOD_FEEL
             )
 
         for j, score in enumerate(POINTS):
-            cur_color = curses.color_pair(1)
+            cur_color = CURSES_COLOUR_PAIR_GOOD_FEEL
             if (i, score) == tuple(selected_question):
-                cur_color = curses.color_pair(4)
+                cur_color = CURSES_COLOUR_PAIR_REALLY_GOOD
             elif (i, score) in answered_questions:
-                cur_color = curses.color_pair(2)
+                cur_color = CURSES_COLOUR_PAIR_BAD_FEEL
 
             screen.addstr(
                 question_grid_start + j+j*INNER_GRID_BORDER,
@@ -201,7 +201,8 @@ def draw_grid(
                 center(str(score), category_width, " "),
                 cur_color )
     
-    screen.addstr(height-2, 15, "  ".join(player_scores), curses.color_pair(3) )
+    screen.addstr(height-2, 15, "  ".join(player_scores),
+                  CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
 def draw_question(screen, correct_answer, incorrect_answer,
@@ -211,13 +212,13 @@ def draw_question(screen, correct_answer, incorrect_answer,
     fill = " " * (width-4)
 
     # default colour to blue
-    bkg_color = 1
+    bkg_color = COLOUR_PAIR_GOOD_FEEL
     if correct_answer:
         # if answer is correct, switch to green colour
-        bkg_color = 4
+        bkg_color = COLOUR_PAIR_REALLY_GOOD
     elif incorrect_answer:
         # if answer is incorrect, switch to red colour
-        bkg_color = 2
+        bkg_color = COLOUR_PAIR_BAD_FEEL
 
     # okay, so its a little inefficient to draw all the fill and over
     # draw it with text second. Sue me.
@@ -227,4 +228,4 @@ def draw_question(screen, correct_answer, incorrect_answer,
 
     if len(player_name) > 0:
         player_name = center(player_name, width-4, " ")
-        screen.addstr(height-6, 2, player_name, curses.color_pair(4))
+        screen.addstr(height-6, 2, player_name, CURSES_COLOUR_PAIR_REALLY_GOOD)
