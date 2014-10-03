@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from os import system, getenv
 from os.path import exists, join
 
@@ -19,3 +21,12 @@ def beep_for_player(i):
         (i+1, beep_table[2][1], beep_table[2][2])
         if i not in beep_table else beep_table[i] )
         system("%s -r %s -l %s -f %s" % (BEEP_COMMAND, r, l, f) )
+
+
+if __name__ == "__main__":
+    from time import sleep
+    beep_for_player(-1)
+    for i in range(3):
+        sleep(2)
+        beep_for_player(i)
+        
