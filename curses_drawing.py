@@ -33,6 +33,8 @@ SPLASH_BOT_INSTRUCT_OFFSET = 1
 
 GRID_PLAYER_SCORES_HORIZ_OFFSET = 0
 
+PLAYER_SEP_CHARS = " "
+
 POINTS = tuple( range(100, 500+1, 100) )
 
 (COLOUR_PAIR_GOOD_FEEL,
@@ -166,7 +168,8 @@ def draw_grid(
 
     # take the total screen width, subtract the border zone,
     # and allow INNER_GRID_BORDER space between each column
-    category_width = (width-GRID_HORIZ_BORDER*2-columns*INNER_GRID_BORDER)//columns
+    category_width = ( width-GRID_HORIZ_BORDER*2-
+                       (columns-1)*INNER_GRID_BORDER ) // columns
 
     question_grid_start = GRID_VERT_OFFSET + SPACE_FROM_CATEGORY_TO_LEVELS
 
@@ -203,7 +206,7 @@ def draw_grid(
                 cur_color )
     
     screen.addstr(height-2, GRID_PLAYER_SCORES_HORIZ_OFFSET,
-                  "  ".join(player_scores),
+                  PLAYER_SEP_CHARS.join(player_scores),
                   CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
