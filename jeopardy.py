@@ -25,6 +25,8 @@ from curses_drawing import \
      )
 from beep_sound import beep_for_player
 
+PLAYER_SCORE_SEPARATION = ": "
+
 NOBODY_BUZZED = -1
 
 questions_file = 'questions.json'
@@ -35,7 +37,8 @@ with open('buzzin') as f:
                           for player_name in f )
 
 def make_player_scores(scores):
-    return tuple("%s: %s" % a for a in zip(player_names, scores) )
+    return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
+                 for a in zip(player_names, scores) )
 
 def edit_scores(screen, scores):
     height, width = screen.getmaxyx()
