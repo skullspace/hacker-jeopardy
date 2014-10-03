@@ -13,7 +13,9 @@ from textwrap import wrap
 from string import center
 
 SPLASH_TEXT = "Hacker Jeopardy!!!"
+SPLASH_ANY_KEY_MSG = " any key to continue"
 
+# has to be greater than 1
 BOT_INSTRUCT_OFFSET = 1
 
 GRID_HORIZ_BORDER = 2
@@ -21,6 +23,12 @@ GRID_VERT_OFFSET = 2
 INNER_GRID_BORDER = 1
 SPACE_FROM_CATEGORY_TO_LEVELS = 1
 SPACE_BETWEEN_LEVELS = 1
+
+SPLASH_HORIZON_BORDER = 1
+SPLASH_VERT_BORDER = 0
+
+SPLASH_DIVIDER_OFFSET = 2
+SPLASH_BOT_INSTRUCT_OFFSET = 1
 
 POINTS = tuple( range(100, 500+1, 100) )
 
@@ -91,22 +99,29 @@ def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
     assert( len(output_lines) + vert_border*2 <= height )
     start_line = vert_border + (height-vert_border*2)//2 - len(output_lines)//2
     for i, line_txt in enumerate(output_lines, start_line):
-        screen.addstr(i, horiz_border+1,
+        screen.addstr(i, horiz_border,
                       center(line_txt, allowable_width, " "),
                       curses.color_pair(color) )
 
 def draw_splash(screen):
-    text_in_screen_center(screen, SPLASH_TEXT, color=1)
+    text_in_screen_center(screen, SPLASH_TEXT, color=1,
+                          horiz_border=SPLASH_HORIZON_BORDER,
+                          vert_border=SPLASH_VERT_BORDER)
     height, width = screen.getmaxyx()
 
-    # create divider the same width as screen
-    screen.addstr(height-3, 0, "=" * width, curses.color_pair(3))
+    if SPLASH_DIVIDER_OFFSET > SPLASH_BOT_INSTRUCT_OFFSET:
+        # create divider the same width as screen
+        screen.addstr(
+            height-SPLASH_DIVIDER_OFFSET, 0,
+            "=" * width, curses.color_pair(3))
 
     # draw any key instructions right justified (so starting at width-len)
-    any_key_msg = " press any key to continue "
-    screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                  width-len(any_key_msg)-2,
-                  any_key_msg, curses.color_pair(2))
+    assert(len(SPLASH_ANY_KEY_MSG) <= width)
+    if SPLASH_BOT_INSTRUCT_OFFSET >= 1:
+        screen.addstr(height-SPLASH_BOT_INSTRUCT_OFFSET,
+                      0,
+                      SPLASH_ANY_KEY_MSG,
+                      curses.color_pair(2))
 
 # draw question grid on screen
 def draw_grid(
