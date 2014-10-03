@@ -101,6 +101,24 @@ def init_colors():
         ), 1 ):
         curses.init_pair(i, curses.COLOR_WHITE, background )
 
+    global CURSES_COLOUR_PAIR_GOOD_FEEL
+    global CURSES_COLOUR_PAIR_BAD_FEEL
+    global CURSES_COLOUR_PAIR_MAX_CONTRAST
+    global CURSES_COLOUR_PAIR_REALLY_GOOD
+    global CURSES_COLOUR_PAIR_MEH
+
+    (CURSES_COLOUR_PAIR_GOOD_FEEL, CURSES_COLOUR_PAIR_BAD_FEEL,
+     CURSES_COLOUR_PAIR_MAX_CONTRAST, CURSES_COLOUR_PAIR_REALLY_GOOD,
+     CURSES_COLOUR_PAIR_MEH) = tuple(
+        curses.color_pair(pair_code)
+        for pair_code in
+         (COLOUR_PAIR_GOOD_FEEL,
+          COLOUR_PAIR_BAD_FEEL,
+         COLOUR_PAIR_MAX_CONTRAST,
+          COLOUR_PAIR_REALLY_GOOD,
+          COLOUR_PAIR_MEH)
+        )
+
 def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
                           color=3):
     height, width = screen.getmaxyx()
