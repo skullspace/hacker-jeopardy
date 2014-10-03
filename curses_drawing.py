@@ -35,12 +35,12 @@ SCORE_INSTRUCT_OFFSET = 0
 EXIT_INSTRUCT_OFFSET = 1
 assert(EXIT_INSTRUCT_OFFSET >= 1 )
 
-QUESTION_BOX_HORIZ_BORDER = 2 
-QUESTION_BOX_TOP_OFFSET = 2
-QUESTION_BOX_BOTTOM_OFFSET = 5
-QUESTION_TXT_VERT_BORDER = 5
-QUESTION_TXT_HORIZ_BORDER = 10
-PLAYER_NAME_BOTTOM_OFFSET = 5
+QUESTION_BOX_HORIZ_BORDER = 0
+QUESTION_BOX_TOP_OFFSET = 0
+QUESTION_BOX_BOTTOM_OFFSET = 2
+QUESTION_TXT_VERT_BORDER = 0
+QUESTION_TXT_HORIZ_BORDER = 0
+PLAYER_NAME_BOTTOM_OFFSET = 2
 
 EXIT_INSTRUCT = "exit: q"
 EDIT_SCORE_INSTRUCT = "edit scores: e"
@@ -140,13 +140,15 @@ def init_colors():
           COLOUR_PAIR_MEH)
         )
 
-def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
+def text_in_screen_center(screen, text, horiz_border=5,
+                          vert_top_skip=0, vert_bottom_skip=2,
                           color=COLOUR_PAIR_MAX_CONTRAST):
     height, width = screen.getmaxyx()
     allowable_width = width - horiz_border*2
     output_lines = wrap(text, width=allowable_width)
-    assert( len(output_lines) + vert_border*2 <= height )
-    start_line = vert_border + (height-vert_border*2)//2 - len(output_lines)//2
+    allowable_height = height - vert_top_skip - vert_bottom_skip
+    output_lines = output_lines[:allowable_height]
+    start_line = vert_top_skip + allowable_height//2 - len(output_lines)//2
     for i, line_txt in enumerate(output_lines, start_line):
         screen.addstr(i, horiz_border,
                       center(line_txt, allowable_width, " "),
@@ -154,8 +156,10 @@ def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
 
 def draw_splash(screen):
     text_in_screen_center(screen, SPLASH_TEXT, color=1,
+                          vert_top_skip=SPLASH_VERT_BORDER,
+                          vert_bottom_skip=SPLASH_VERT_BORDER,
                           horiz_border=SPLASH_HORIZON_BORDER,
-                          vert_border=SPLASH_VERT_BORDER)
+                          )
     height, width = screen.getmaxyx()
 
     if SPLASH_DIVIDER_OFFSET > SPLASH_BOT_INSTRUCT_OFFSET:
@@ -253,7 +257,7 @@ def draw_question(screen, correct_answer, incorrect_answer,
             fill, curses.color_pair(bkg_color) )
     text_in_screen_center(
         screen, question,
-        vert_border=QUESTION_TXT_VERT_BORDER,
+        vert_top_skip=0, vert_bottom_skip=2,
         horiz_border=QUESTION_TXT_HORIZ_BORDER,
         color=bkg_color)
 
