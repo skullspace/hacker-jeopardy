@@ -205,8 +205,11 @@ def draw_grid(
                 center(str(score), category_width, " "),
                 cur_color )
     
+    player_scores_str = PLAYER_SEP_CHARS.join(player_scores)
+    player_scores_str = \
+        player_scores_str[:(width-GRID_PLAYER_SCORES_HORIZ_OFFSET)]
     screen.addstr(height-2, GRID_PLAYER_SCORES_HORIZ_OFFSET,
-                  PLAYER_SEP_CHARS.join(player_scores),
+                  player_scores_str,
                   CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
