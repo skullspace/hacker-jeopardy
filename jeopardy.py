@@ -25,7 +25,7 @@ from curses_drawing import \
      )
 from beep_sound import beep_for_player
 
-PLAYER_SCORE_SEPARATION = ": "
+PLAYER_SCORE_SEPARATION = ":"
 
 NOBODY_BUZZED = -1
 
