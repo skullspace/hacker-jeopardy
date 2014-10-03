@@ -35,6 +35,13 @@ SCORE_INSTRUCT_OFFSET = 0
 EXIT_INSTRUCT_OFFSET = 1
 assert(EXIT_INSTRUCT_OFFSET >= 1 )
 
+QUESTION_BOX_HORIZ_BORDER = 2 
+QUESTION_BOX_TOP_OFFSET = 2
+QUESTION_BOX_BOTTOM_OFFSET = 5
+QUESTION_TXT_VERT_BORDER = 5
+QUESTION_TXT_HORIZ_BORDER = 10
+PLAYER_NAME_BOTTOM_OFFSET = 5
+
 EXIT_INSTRUCT = "exit: q"
 EDIT_SCORE_INSTRUCT = "edit scores: e"
 
@@ -226,7 +233,7 @@ def draw_question(screen, correct_answer, incorrect_answer,
                   question, player_name):
     height, width = screen.getmaxyx()
 
-    fill = " " * (width-4)
+    fill = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
 
     # default colour to blue
     bkg_color = COLOUR_PAIR_GOOD_FEEL
@@ -239,10 +246,22 @@ def draw_question(screen, correct_answer, incorrect_answer,
 
     # okay, so its a little inefficient to draw all the fill and over
     # draw it with text second. Sue me.
-    for i in range(0+2, height - 6):
-        screen.addstr(i, 2, fill, curses.color_pair(bkg_color))        
-    text_in_screen_center(screen, question, horiz_border=10, color=bkg_color)
+    for i in range(0+QUESTION_BOX_TOP_OFFSET,
+                   height - QUESTION_BOX_BOTTOM_OFFSET):
+        screen.addstr(
+            i, QUESTION_BOX_HORIZ_BORDER,
+            fill, curses.color_pair(bkg_color) )
+    text_in_screen_center(
+        screen, question,
+        vert_border=QUESTION_TXT_VERT_BORDER,
+        horiz_border=QUESTION_TXT_HORIZ_BORDER,
+        color=bkg_color)
 
     if len(player_name) > 0:
-        player_name = center(player_name, width-4, " ")
-        screen.addstr(height-6, 2, player_name, CURSES_COLOUR_PAIR_REALLY_GOOD)
+        player_name = center(player_name,
+                             width-QUESTION_BOX_HORIZ_BORDER*2,
+                             " ")
+        screen.addstr(
+            height-PLAYER_NAME_BOTTOM_OFFSET,
+            QUESTION_BOX_HORIZ_BORDER, player_name,
+            CURSES_COLOUR_PAIR_REALLY_GOOD)
