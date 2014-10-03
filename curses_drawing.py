@@ -114,7 +114,7 @@ def init_colors():
         for pair_code in
          (COLOUR_PAIR_GOOD_FEEL,
           COLOUR_PAIR_BAD_FEEL,
-         COLOUR_PAIR_MAX_CONTRAST,
+          COLOUR_PAIR_MAX_CONTRAST,
           COLOUR_PAIR_REALLY_GOOD,
           COLOUR_PAIR_MEH)
         )
