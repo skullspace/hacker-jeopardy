@@ -35,6 +35,9 @@ SCORE_INSTRUCT_OFFSET = 0
 EXIT_INSTRUCT_OFFSET = 1
 assert(EXIT_INSTRUCT_OFFSET >= 1 )
 
+EXIT_INSTRUCT = " exit: q "
+EDIT_SCORE_INSTRUCT = " edit scores: e "
+
 GRID_PLAYER_SCORES_HORIZ_OFFSET = 0
 
 PLAYER_SEP_CHARS = " "
@@ -60,10 +63,11 @@ def draw_window_grid_and_refresh(
 
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
                   SCORE_INSTRUCT_OFFSET,
-                  " edit scores: e ", CURSES_COLOUR_PAIR_BAD_FEEL )
+                  EDIT_SCORE_INSTRUCT,
+                  CURSES_COLOUR_PAIR_BAD_FEEL )
 
     # draw exit instructions    
-    exit_instructions = " exit: q "
+    exit_instructions = EXIT_INSTRUCT
     screen.addstr(height-BOT_INSTRUCT_OFFSET,
                   width-len(exit_instructions)-EXIT_INSTRUCT_OFFSET,
                   exit_instructions, CURSES_COLOUR_PAIR_BAD_FEEL)
