@@ -32,6 +32,13 @@ SPLASH_BOT_INSTRUCT_OFFSET = 1
 
 POINTS = tuple( range(100, 500+1, 100) )
 
+(COLOUR_PAIR_GOOD_FEEL,
+ COLOUR_PAIR_BAD_FEEL,
+ COLOUR_PAIR_MAX_CONTRAST,
+ COLOUR_PAIR_REALLY_GOOD,
+ COLOUR_PAIR_MEH
+ ) = tuple(range(1, 5+1))
+
 def draw_window_grid_and_refresh(
     screen, questions, selected_question, answered_questions, player_scores):
     screen.clear()
@@ -85,11 +92,14 @@ def draw_window_question_prompts_and_refresh(
 
 # initialize colour pairs that will be used in app
 def init_colors():
-    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLUE)
-    curses.init_pair(2, curses.COLOR_WHITE, curses.COLOR_RED)
-    curses.init_pair(3, curses.COLOR_WHITE, curses.COLOR_BLACK)
-    curses.init_pair(4, curses.COLOR_WHITE, curses.COLOR_GREEN)
-    curses.init_pair(5, curses.COLOR_WHITE, curses.COLOR_YELLOW)
+    for i, background in enumerate( (
+        curses.COLOR_BLUE, # COLOUR_PAIR_GOOD_FEEL
+        curses.COLOR_RED, # COLOUR_PAIR_BAD_FEEL,
+        curses.COLOR_BLACK, # COLOUR_PAIR_MAX_CONTRAST
+        curses.COLOR_GREEN, # COLOUR_PAIR_REALLY_GOOD,
+        curses.COLOR_YELLOW, # COLOUR_PAIR_MEH
+        ), 1 ):
+        curses.init_pair(i, curses.COLOR_WHITE, background )
 
 def text_in_screen_center(screen, text, horiz_border=5, vert_border=5,
                           color=3):
