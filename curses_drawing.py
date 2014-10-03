@@ -20,7 +20,8 @@ BOT_INSTRUCT_OFFSET = 1
 
 GRID_HORIZ_BORDER = 0
 GRID_VERT_OFFSET = 0
-INNER_GRID_BORDER = 0
+INNER_GRID_BORDER = 1
+VERT_INNER_GRID_BORDER = 0
 SPACE_FROM_CATEGORY_TO_LEVELS = 1
 SPACE_BETWEEN_LEVELS = 1
 
@@ -29,6 +30,8 @@ SPLASH_VERT_BORDER = 0
 
 SPLASH_DIVIDER_OFFSET = 2
 SPLASH_BOT_INSTRUCT_OFFSET = 1
+
+GRID_PLAYER_SCORES_HORIZ_OFFSET = 0
 
 POINTS = tuple( range(100, 500+1, 100) )
 
@@ -163,17 +166,15 @@ def draw_grid(
 
     # take the total screen width, subtract the border zone,
     # and allow INNER_GRID_BORDER space between each column
-    category_width = (width-4-columns*INNER_GRID_BORDER)//columns
+    category_width = (width-GRID_HORIZ_BORDER*2-columns*INNER_GRID_BORDER)//columns
 
-    question_grid_start = (GRID_VERT_OFFSET +
-                           SPACE_FROM_CATEGORY_TO_LEVELS +
-                           SPACE_BETWEEN_LEVELS )
+    question_grid_start = GRID_VERT_OFFSET + SPACE_FROM_CATEGORY_TO_LEVELS
 
     for i, category in enumerate(questions):
         category_name = (category["name"]
                          if len(category["name"]) <= category_width
                          else category["abrev_name"]
-                         )
+                         )[:category_width]
         assert( len(category_name) <= category_width )
 
         horizontal_position = (
@@ -196,12 +197,13 @@ def draw_grid(
                 cur_color = CURSES_COLOUR_PAIR_BAD_FEEL
 
             screen.addstr(
-                question_grid_start + j+j*INNER_GRID_BORDER,
+                question_grid_start + j+j*VERT_INNER_GRID_BORDER,
                 horizontal_position,
                 center(str(score), category_width, " "),
                 cur_color )
     
-    screen.addstr(height-2, 15, "  ".join(player_scores),
+    screen.addstr(height-2, GRID_PLAYER_SCORES_HORIZ_OFFSET,
+                  "  ".join(player_scores),
                   CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
