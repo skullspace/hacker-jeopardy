@@ -29,6 +29,8 @@ from question_states import *
 
 PLAYER_SCORE_SEPARATION = ":"
 
+SHOW_CATEGORY = True
+
 NOBODY_BUZZED = -1
 
 questions_file = 'questions.json'
@@ -95,6 +97,7 @@ def run_questions_menu(screen, questions, answered_questions, scores):
                 selected_question[1]//100-1]
             run_question(
                 screen,
+                questions[selected_question[0]]["name"],
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
                 # documenting the silly convention here, someday this should be
@@ -113,10 +116,15 @@ def run_questions_menu(screen, questions, answered_questions, scores):
             make_player_scores(scores) )
 
 def run_question(
-    screen, question, answer, question_score, 
+    screen, category, question, answer, question_score, 
     selected_question, answered_questions, scores):
+
+    pre_question = (
+        question if not SHOW_CATEGORY
+        else "%s for %s" % (category, question_score) )
+        
     draw_window_question_prompts_and_refresh(
-        screen, question,
+        screen, pre_question,
         player_names, NOBODY_BUZZED,
         state=QUESTION_PRE_BUZZ_EXIT)
 
