@@ -166,11 +166,11 @@ def run_buzzin_attempts(
 
     # should draw something to show our readyness for buzzing
     while state not in END_STATES:
+        player_name = ("" if buzzed_in_player_id == NOBODY_BUZZED
+                       else player_names[buzzed_in_player_id] )
+        draw_window_question_prompts_and_refresh(
+            screen, question, player_name, state=state)
         if state in STATES_WITH_BUZZ_OPEN:
-            draw_window_question_prompts_and_refresh(
-                screen, question,
-                state=state)
-
             buzzed_in_player_id = wait_4_buzz(players_allowed)
             if state == QUESTION_PRE_BUZZ:
                 if buzzed_in_player_id == NOBODY_BUZZED:
@@ -194,13 +194,6 @@ def run_buzzin_attempts(
             # only possible state we could be in, two END_STATES stop the loop
             # three apply to above if, one is never in this loop
             assert(state == QUESTION_WAIT_ANSWER)
-
-            # draw name of player and prompt re correct answer
-            draw_window_question_prompts_and_refresh(
-                screen,
-                question,
-                player_names[buzzed_in_player_id],
-                state=state)
 
             if run_wait_for_right_wrong(screen):
                 adjust_score_and_save(
