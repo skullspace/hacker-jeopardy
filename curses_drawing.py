@@ -39,7 +39,8 @@ assert(EXIT_INSTRUCT_OFFSET >= 1 )
 
 QUESTION_BOX_HORIZ_BORDER = 0
 QUESTION_BOX_TOP_OFFSET = 0
-QUESTION_BOX_BOTTOM_OFFSET = 2
+QUESTION_BOX_BOTTOM_OFFSET = 1
+assert(QUESTION_BOX_BOTTOM_OFFSET>=1)
 QUESTION_TXT_VERT_BORDER = 0
 QUESTION_TXT_HORIZ_BORDER = 0
 PLAYER_NAME_BOTTOM_OFFSET = 2
@@ -235,7 +236,7 @@ def draw_window_question_prompts_and_refresh(
             fill, curses.color_pair(bkg_color) )
     text_in_screen_center(
         screen, question,
-        vert_top_skip=0, vert_bottom_skip=2,
+        vert_top_skip=0, vert_bottom_skip=QUESTION_BOX_BOTTOM_OFFSET,
         horiz_border=QUESTION_TXT_HORIZ_BORDER,
         color=bkg_color)
 
