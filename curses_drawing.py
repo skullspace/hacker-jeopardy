@@ -51,6 +51,8 @@ GRID_PLAYER_SCORES_HORIZ_OFFSET = 0
 
 PLAYER_SEP_CHARS = " "
 
+ALL_PLAYER_SEP = " "
+
 POINTS = tuple( range(100, 500+1, 100) )
 
 (COLOUR_PAIR_GOOD_FEEL,
@@ -237,6 +239,24 @@ def draw_window_question_prompts_and_refresh(
         horiz_border=QUESTION_TXT_HORIZ_BORDER,
         color=bkg_color)
 
+    status_characters_remaining = width-1 # -1 to avoid writing last char
+    status_horiz_cursor = 0
+
+    player_str = ""
+    if state == QUESTION_PRE_BUZZ:
+        player_str = ALL_PLAYER_SEP.join(player_names)
+    elif state == QUESTION_WAIT_ANSWER:
+        player_str = player_names[buzzed_in_player_id]
+    
+    
+    player_str = player_str[:status_characters_remaining]
+    add_to_screen_if_gt_zero(screen, player_str,
+                             height-BOT_INSTRUCT_OFFSET,
+                             status_horiz_cursor,
+                             CURSES_COLOUR_PAIR_GOOD_FEEL )
+    status_characters_remaining -= len(player_str)
+    status_horiz_cursor += len(player_str)    
+
     msg_stuff = {
         QUESTION_PRE_BUZZ_EXIT:
             (" space to return, s to show ", CURSES_COLOUR_PAIR_GOOD_FEEL),
@@ -251,29 +271,18 @@ def draw_window_question_prompts_and_refresh(
         QUESTION_EVERYBODY_WRONG: None,
         }[state]
     if msg_stuff != None:
-        horiz_position = 2
         for msg, msg_color_pair in zip(*[iter(msg_stuff)]*2 ):
-            screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                          horiz_position, msg, msg_color_pair)
-            horiz_position += len(msg)
-
-    player_name = (
-        "" if buzzed_in_player_id < 0
-        else player_names[buzzed_in_player_id])
-
-    if len(player_name) > 0:
-        player_line = center(player_name,
-                             width-QUESTION_BOX_HORIZ_BORDER*2,
-                             " ")
-        player_line_color = CURSES_COLOUR_PAIR_REALLY_GOOD
-    else:
-        player_line = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
-        player_line_color = CURSES_COLOUR_PAIR_MAX_CONTRAST
-    screen.addstr(
-        height-PLAYER_NAME_BOTTOM_OFFSET,
-        QUESTION_BOX_HORIZ_BORDER, player_line,
-        player_line_color)
-            
+            msg = msg[:status_characters_remaining]
+            add_to_screen_if_gt_zero(screen, msg,
+                             height-BOT_INSTRUCT_OFFSET,
+                             status_horiz_cursor,
+                             msg_color_pair )
+            status_characters_remaining -= len(msg)
+            status_horiz_cursor += len(msg)
 
     screen.refresh()
 
+def add_to_screen_if_gt_zero(screen, msg, y, x, curses_color_pair):
+    if len(msg)>0:
+        screen.addstr(
+            y, x, msg, curses_color_pair )
