@@ -24,6 +24,7 @@ from curses_drawing import \
      init_colors, draw_splash, 
      )
 from beep_sound import beep_for_player
+from question_states import *
 
 PLAYER_SCORE_SEPARATION = ":"
 
@@ -114,7 +115,8 @@ def run_question(
     screen, question, answer, question_score, 
     selected_question, answered_questions, scores):
     draw_window_question_prompts_and_refresh(
-        screen, prompt_buzz_enable, False, False, question)
+        screen, prompt_buzz_enable, False, False, question,
+        state=QUESTION_PRE_BUZZ_EXIT)
 
     while True:
         event = screen.getch()
@@ -151,6 +153,7 @@ def main(screen):
 def run_buzzin_attempts(
     screen, question, answer, question_score,
     answered_questions, scores):
+    state = QUESTION_PRE_BUZZ # was QUESTION_PRE_BUZZ_EXIT until now
     correct_answer = False
     incorrect_answer = False
 
@@ -160,10 +163,11 @@ def run_buzzin_attempts(
 
     # should draw something to show our readyness for buzzing
 
-    while True:
+    while state not in END_STATES:
         draw_window_question_prompts_and_refresh(
             screen, waiting_for_buzz_prompt,
-            correct_answer, incorrect_answer, question)
+            correct_answer, incorrect_answer, question,
+            state=state)
 
         buzzed_in_player_id = wait_4_buzz(players_allowed)
         beep_for_player(buzzed_in_player_id)
@@ -177,7 +181,8 @@ def run_buzzin_attempts(
             draw_window_question_prompts_and_refresh(
                 screen, prompt_right_answer,
                 False, False, question,
-                player_names[buzzed_in_player_id] )
+                player_names[buzzed_in_player_id],
+                state=state)
 
             correct_answer = run_wait_for_right_wrong(screen)
             incorrect_answer = not correct_answer
@@ -198,7 +203,7 @@ def run_buzzin_attempts(
     if not correct_answer:
         draw_window_question_prompts_and_refresh(
             screen, lambda *x: None,
-            False, True, answer )
+            False, True, answer, state=state )
         while True:
             if screen.getch() == ord(' '):
                 break

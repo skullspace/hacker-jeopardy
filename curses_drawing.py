@@ -100,7 +100,7 @@ def prompt_right_answer(screen, height):
 def draw_window_question_prompts_and_refresh(
     screen, prompts_func,
     correct_answer, incorrect_answer,
-    question, player_name=""):
+    question, player_name="", state=None):
     screen.clear()
 
     height, width = screen.getmaxyx()
