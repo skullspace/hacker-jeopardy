@@ -259,13 +259,18 @@ def draw_window_question_prompts_and_refresh(
         color=bkg_color)
 
     if len(player_name) > 0:
-        player_name = center(player_name,
+        player_line = center(player_name,
                              width-QUESTION_BOX_HORIZ_BORDER*2,
                              " ")
-        screen.addstr(
-            height-PLAYER_NAME_BOTTOM_OFFSET,
-            QUESTION_BOX_HORIZ_BORDER, player_name,
-            CURSES_COLOUR_PAIR_REALLY_GOOD)
+        player_line_color = CURSES_COLOUR_PAIR_REALLY_GOOD
+    else:
+        player_line = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
+        player_line_color = CURSES_COLOUR_PAIR_MAX_CONTRAST
+    screen.addstr(
+        height-PLAYER_NAME_BOTTOM_OFFSET,
+        QUESTION_BOX_HORIZ_BORDER, player_line,
+        player_line_color)
+            
 
     screen.refresh()
 
