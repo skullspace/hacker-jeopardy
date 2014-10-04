@@ -14,6 +14,8 @@ import curses, json
 from curses import wrapper
 from pickle import dump, load
 from os.path import exists
+from os import devnull
+import sys
 
 # from this project
 from wait_4_buzz import wait_4_buzz
@@ -132,6 +134,8 @@ def run_question(
             return False
 
 def main(screen):
+    sys.stderr = open(devnull, 'w')
+
     screen.keypad(1)
     
     # initialize colours
