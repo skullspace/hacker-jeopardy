@@ -99,18 +99,6 @@ def prompt_right_answer(screen, height):
                   2 + len(correct_answer_prompt),
                   " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH)
 
-def draw_window_question_prompts_and_refresh(
-    screen, prompts_func,
-    question, player_name="", state=None):
-    screen.clear()
-
-    height, width = screen.getmaxyx()
-    # draw response actions
-    prompts_func(screen, height)
-
-    draw_question(screen, question, player_name, state=state)
-    screen.refresh()
-
 # initialize colour pairs that will be used in app
 def init_colors():
     for i, background in enumerate( (
@@ -233,8 +221,14 @@ def draw_grid(
                   CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
-def draw_question(screen, question, player_name, state):
+def draw_window_question_prompts_and_refresh(
+    screen, prompts_func, question, player_name="", state=None):
+
+    screen.clear()
+
     height, width = screen.getmaxyx()
+    # draw response actions
+    prompts_func(screen, height)
 
     fill = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
 
@@ -269,3 +263,6 @@ def draw_question(screen, question, player_name, state):
             height-PLAYER_NAME_BOTTOM_OFFSET,
             QUESTION_BOX_HORIZ_BORDER, player_name,
             CURSES_COLOUR_PAIR_REALLY_GOOD)
+
+    screen.refresh()
+
