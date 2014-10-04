@@ -117,6 +117,7 @@ def run_question(
     selected_question, answered_questions, scores):
     draw_window_question_prompts_and_refresh(
         screen, question,
+        player_names, NOBODY_BUZZED,
         state=QUESTION_PRE_BUZZ_EXIT)
 
     while True:
@@ -169,7 +170,7 @@ def run_buzzin_attempts(
         player_name = ("" if buzzed_in_player_id == NOBODY_BUZZED
                        else player_names[buzzed_in_player_id] )
         draw_window_question_prompts_and_refresh(
-            screen, question, player_name, state=state)
+            screen, question, player_names, buzzed_in_player_id, state=state)
         if state in STATES_WITH_BUZZ_OPEN:
             buzzed_in_player_id = wait_4_buzz(players_allowed)
             if state == QUESTION_PRE_BUZZ:
@@ -212,7 +213,7 @@ def run_buzzin_attempts(
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
     
     draw_window_question_prompts_and_refresh(
-        screen, answer, state=state )
+        screen, answer, player_names, buzzed_in_player_id, state=state )
     while True:
         if screen.getch() == ord(' '):
             break

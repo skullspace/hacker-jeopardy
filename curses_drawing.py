@@ -206,7 +206,7 @@ def draw_grid(
 
 # draws the selected question on the screen
 def draw_window_question_prompts_and_refresh(
-    screen, question, player_name="", state=None):
+    screen, question, player_names, buzzed_in_player_id, state=None):
 
     screen.clear()
 
@@ -257,6 +257,10 @@ def draw_window_question_prompts_and_refresh(
         vert_top_skip=0, vert_bottom_skip=2,
         horiz_border=QUESTION_TXT_HORIZ_BORDER,
         color=bkg_color)
+
+    player_name = (
+        "" if buzzed_in_player_id < 0
+        else player_names[buzzed_in_player_id])
 
     if len(player_name) > 0:
         player_line = center(player_name,
