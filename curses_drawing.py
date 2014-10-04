@@ -257,13 +257,20 @@ def draw_window_question_prompts_and_refresh(
             else player_names )
         )
     
-    player_color = (
+    player_color_norm = (
         CURSES_COLOUR_PAIR_MEH
         if state == QUESTION_WAIT_ANSWER
         else CURSES_COLOUR_PAIR_GOOD_FEEL )
 
-    for player_name in player_names_to_show:
+    for i, player_name in enumerate(player_names_to_show):
+        player_color = (
+            CURSES_COLOUR_PAIR_BAD_FEEL
+            if i in mis_buzz_players
+            else player_color_norm )
+
         player_str = player_name
+        if i > 0:
+            player_str = ALL_PLAYER_SEP + player_str
         player_str = player_str[:status_characters_remaining]
         add_to_screen_if_gt_zero(
             screen, player_str,

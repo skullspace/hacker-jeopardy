@@ -173,6 +173,8 @@ def run_buzzin_attempts(
         (NOBODY_BUZZED,) + 
         tuple( range(len(player_names)) ))
 
+    mis_buzz_players = set()
+
     buzzed_in_player_id = NOBODY_BUZZED
 
     # should draw something to show our readyness for buzzing
@@ -180,15 +182,15 @@ def run_buzzin_attempts(
         player_name = ("" if buzzed_in_player_id == NOBODY_BUZZED
                        else player_names[buzzed_in_player_id] )
         draw_window_question_prompts_and_refresh(
-            screen, question, player_names, buzzed_in_player_id, state=state)
+            screen, question, player_names, buzzed_in_player_id, state=state,
+            mis_buzz_players=mis_buzz_players)
         if state in STATES_WITH_BUZZ_OPEN:
             buzzed_in_player_id = wait_4_buzz(players_allowed)
             if state == QUESTION_PRE_BUZZ:
                 if buzzed_in_player_id == NOBODY_BUZZED:
                     state = QUESTION_BUZZ_OPEN
                 else:
-                    # this is where we'll record an early bird penalty
-                    pass
+                    mis_buzz_players.add(buzzed_in_player_id)
                 continue # makes for less indendation below
 
             # everything below here is state != QUESTION_PRE_BUZZ
