@@ -161,21 +161,41 @@ def run_buzzin_attempts(
         (NOBODY_BUZZED,) + 
         tuple( range(len(player_names)) ))
 
+    buzzed_in_player_id = NOBODY_BUZZED
+
     # should draw something to show our readyness for buzzing
-
     while state not in END_STATES:
-        draw_window_question_prompts_and_refresh(
-            screen, waiting_for_buzz_prompt,
-            correct_answer, incorrect_answer, question,
-            state=state)
+        if state in STATES_WITH_BUZZ_OPEN:
+            draw_window_question_prompts_and_refresh(
+                screen, waiting_for_buzz_prompt,
+                correct_answer, incorrect_answer, question,
+                state=state)
 
-        buzzed_in_player_id = wait_4_buzz(players_allowed)
-        beep_for_player(buzzed_in_player_id)
+            buzzed_in_player_id = wait_4_buzz(players_allowed)
+            if state == QUESTION_PRE_BUZZ:
+                if buzzed_in_player_id == NOBODY_BUZZED:
+                    state = QUESTION_BUZZ_OPEN
+                else:
+                    # this is where we'll record an early bird penalty
+                    pass
+                continue # makes for less indendation below
 
-        if buzzed_in_player_id == NOBODY_BUZZED:
-            break
-        else: # else a real player
-            players_allowed.remove(buzzed_in_player_id)
+            # everything below here is state != QUESTION_PRE_BUZZ
+            # thanks to continue above
+
+            beep_for_player(buzzed_in_player_id)
+
+            if buzzed_in_player_id == NOBODY_BUZZED:
+                state = QUESTION_EVERYBODY_WRONG
+                correct_answer = False
+                incorrect_answer = True
+            else: # else a real player
+                players_allowed.remove(buzzed_in_player_id)
+                state = QUESTION_WAIT_ANSWER
+        else:
+            # only possible state we could be in, two END_STATES stop the loop
+            # three apply to above if, one is never in this loop
+            assert(state == QUESTION_WAIT_ANSWER)
 
             # draw name of player and prompt re correct answer
             draw_window_question_prompts_and_refresh(
@@ -190,15 +210,17 @@ def run_buzzin_attempts(
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions,
                     scores, question_score)
-                break
+                state = QUESTION_ANSWERED_RIGHT
             else:
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions,
                     scores, -question_score)
 
-        # if all the players have had a chance
-        if len(players_allowed) == 1:
-            break
+                # if all the players have had a chance
+                if len(players_allowed) == 1:
+                    state = QUESTION_EVERYBODY_WRONG
+                else:
+                    state = QUESTION_BUZZ_OPEN_AFTER_WRONG
     
     if not correct_answer:
         draw_window_question_prompts_and_refresh(
