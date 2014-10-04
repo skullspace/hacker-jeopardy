@@ -190,7 +190,10 @@ def draw_grid(
         for j, score in enumerate(POINTS):
             cur_color = CURSES_COLOUR_PAIR_GOOD_FEEL
             if (i, score) == tuple(selected_question):
-                cur_color = CURSES_COLOUR_PAIR_REALLY_GOOD
+                if (i, score) in answered_questions:
+                    cur_color = CURSES_COLOUR_PAIR_MEH
+                else:
+                    cur_color = CURSES_COLOUR_PAIR_REALLY_GOOD
             elif (i, score) in answered_questions:
                 cur_color = CURSES_COLOUR_PAIR_BAD_FEEL
 
@@ -209,7 +212,8 @@ def draw_grid(
 
 # draws the selected question on the screen
 def draw_window_question_prompts_and_refresh(
-    screen, question, player_names, buzzed_in_player_id, state=None):
+    screen, question, player_names, buzzed_in_player_id, state=None,
+    mis_buzz_players=() ):
 
     screen.clear()
 
