@@ -262,13 +262,13 @@ def draw_window_question_prompts_and_refresh(
 
     msg_stuff = {
         QUESTION_PRE_BUZZ_EXIT:
-            (" space to return, s to show ", CURSES_COLOUR_PAIR_MEH),
+            (" spc to ret, s to show ", CURSES_COLOUR_PAIR_MEH),
         QUESTION_PRE_BUZZ: None,
         QUESTION_BUZZ_OPEN:
             (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
         QUESTION_WAIT_ANSWER:
-            (" correct answer: r ", CURSES_COLOUR_PAIR_REALLY_GOOD,
-             " incorrect answer: w ", CURSES_COLOUR_PAIR_BAD_FEEL, ),
+            (" (r)ight", CURSES_COLOUR_PAIR_REALLY_GOOD,
+             " (w)rong", CURSES_COLOUR_PAIR_BAD_FEEL, ),
         QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
         QUESTION_ANSWERED_RIGHT: None,
         QUESTION_EVERYBODY_WRONG: None,
