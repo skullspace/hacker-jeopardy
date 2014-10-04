@@ -212,27 +212,6 @@ def draw_window_question_prompts_and_refresh(
 
     height, width = screen.getmaxyx()
 
-    msg_stuff = {
-        QUESTION_PRE_BUZZ_EXIT:
-            (" space to return, s to show ", CURSES_COLOUR_PAIR_GOOD_FEEL),
-        QUESTION_PRE_BUZZ: None,
-        QUESTION_BUZZ_OPEN:
-            (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
-        QUESTION_WAIT_ANSWER:
-            (" correct answer: r ", CURSES_COLOUR_PAIR_REALLY_GOOD,
-             " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH, ),
-        QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
-        QUESTION_ANSWERED_RIGHT: None,
-        QUESTION_EVERYBODY_WRONG: None,
-        }[state]
-    if msg_stuff != None:
-        horiz_position = 2
-        for msg, msg_color_pair in zip(*[iter(msg_stuff)]*2 ):
-            screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                          horiz_position, msg, msg_color_pair)
-            horiz_position += len(msg)
-
-
     fill = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
 
     bkg_color = {
@@ -257,6 +236,26 @@ def draw_window_question_prompts_and_refresh(
         vert_top_skip=0, vert_bottom_skip=2,
         horiz_border=QUESTION_TXT_HORIZ_BORDER,
         color=bkg_color)
+
+    msg_stuff = {
+        QUESTION_PRE_BUZZ_EXIT:
+            (" space to return, s to show ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+        QUESTION_PRE_BUZZ: None,
+        QUESTION_BUZZ_OPEN:
+            (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+        QUESTION_WAIT_ANSWER:
+            (" correct answer: r ", CURSES_COLOUR_PAIR_REALLY_GOOD,
+             " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH, ),
+        QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
+        QUESTION_ANSWERED_RIGHT: None,
+        QUESTION_EVERYBODY_WRONG: None,
+        }[state]
+    if msg_stuff != None:
+        horiz_position = 2
+        for msg, msg_color_pair in zip(*[iter(msg_stuff)]*2 ):
+            screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                          horiz_position, msg, msg_color_pair)
+            horiz_position += len(msg)
 
     player_name = (
         "" if buzzed_in_player_id < 0
