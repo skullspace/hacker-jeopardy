@@ -83,22 +83,6 @@ def draw_window_grid_and_refresh(
 
     screen.refresh()
 
-def waiting_for_buzz_prompt(screen, height):
-    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
-                  " waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL)
-
-def prompt_buzz_enable(screen, height):
-    screen.addstr(height-BOT_INSTRUCT_OFFSET, 2,
-                  " allow buzz in: s ", CURSES_COLOUR_PAIR_GOOD_FEEL)
-
-def prompt_right_answer(screen, height):
-    correct_answer_prompt = " correct answer: r "
-    screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                  2, correct_answer_prompt, CURSES_COLOUR_PAIR_REALLY_GOOD)
-    screen.addstr(height-BOT_INSTRUCT_OFFSET,
-                  2 + len(correct_answer_prompt),
-                  " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH)
-
 # initialize colour pairs that will be used in app
 def init_colors():
     for i, background in enumerate( (
@@ -222,13 +206,32 @@ def draw_grid(
 
 # draws the selected question on the screen
 def draw_window_question_prompts_and_refresh(
-    screen, prompts_func, question, player_name="", state=None):
+    screen, question, player_name="", state=None):
 
     screen.clear()
 
     height, width = screen.getmaxyx()
-    # draw response actions
-    prompts_func(screen, height)
+
+    msg_stuff = {
+        QUESTION_PRE_BUZZ_EXIT:
+            (" space to return, s to show ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+        QUESTION_PRE_BUZZ: None,
+        QUESTION_BUZZ_OPEN:
+            (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+        QUESTION_WAIT_ANSWER:
+            (" correct answer: r ", CURSES_COLOUR_PAIR_REALLY_GOOD,
+             " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH, ),
+        QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
+        QUESTION_ANSWERED_RIGHT: None,
+        QUESTION_EVERYBODY_WRONG: None,
+        }[state]
+    if msg_stuff != None:
+        horiz_position = 2
+        for msg, msg_color_pair in zip(*[iter(msg_stuff)]*2 ):
+            screen.addstr(height-BOT_INSTRUCT_OFFSET,
+                          horiz_position, msg, msg_color_pair)
+            horiz_position += len(msg)
+
 
     fill = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
 

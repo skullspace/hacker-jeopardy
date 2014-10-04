@@ -20,8 +20,7 @@ import sys
 # from this project
 from wait_4_buzz import wait_4_buzz
 from curses_drawing import \
-    (draw_window_grid_and_refresh, waiting_for_buzz_prompt,
-     prompt_buzz_enable, prompt_right_answer,
+    (draw_window_grid_and_refresh,
      draw_window_question_prompts_and_refresh,
      init_colors, draw_splash, 
      )
@@ -117,7 +116,7 @@ def run_question(
     screen, question, answer, question_score, 
     selected_question, answered_questions, scores):
     draw_window_question_prompts_and_refresh(
-        screen, prompt_buzz_enable, question,
+        screen, question,
         state=QUESTION_PRE_BUZZ_EXIT)
 
     while True:
@@ -169,7 +168,7 @@ def run_buzzin_attempts(
     while state not in END_STATES:
         if state in STATES_WITH_BUZZ_OPEN:
             draw_window_question_prompts_and_refresh(
-                screen, waiting_for_buzz_prompt, question,
+                screen, question,
                 state=state)
 
             buzzed_in_player_id = wait_4_buzz(players_allowed)
@@ -198,7 +197,7 @@ def run_buzzin_attempts(
 
             # draw name of player and prompt re correct answer
             draw_window_question_prompts_and_refresh(
-                screen, prompt_right_answer,
+                screen,
                 question,
                 player_names[buzzed_in_player_id],
                 state=state)
@@ -220,7 +219,7 @@ def run_buzzin_attempts(
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
     
     draw_window_question_prompts_and_refresh(
-        screen, lambda *x: None, answer, state=state )
+        screen, answer, state=state )
     while True:
         if screen.getch() == ord(' '):
             break
