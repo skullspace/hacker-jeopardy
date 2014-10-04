@@ -115,7 +115,7 @@ def run_question(
     screen, question, answer, question_score, 
     selected_question, answered_questions, scores):
     draw_window_question_prompts_and_refresh(
-        screen, prompt_buzz_enable, False, False, question,
+        screen, prompt_buzz_enable, question,
         state=QUESTION_PRE_BUZZ_EXIT)
 
     while True:
@@ -154,8 +154,6 @@ def run_buzzin_attempts(
     screen, question, answer, question_score,
     answered_questions, scores):
     state = QUESTION_PRE_BUZZ # was QUESTION_PRE_BUZZ_EXIT until now
-    correct_answer = False
-    incorrect_answer = False
 
     players_allowed = set(
         (NOBODY_BUZZED,) + 
@@ -167,8 +165,7 @@ def run_buzzin_attempts(
     while state not in END_STATES:
         if state in STATES_WITH_BUZZ_OPEN:
             draw_window_question_prompts_and_refresh(
-                screen, waiting_for_buzz_prompt,
-                correct_answer, incorrect_answer, question,
+                screen, waiting_for_buzz_prompt, question,
                 state=state)
 
             buzzed_in_player_id = wait_4_buzz(players_allowed)
@@ -187,8 +184,6 @@ def run_buzzin_attempts(
 
             if buzzed_in_player_id == NOBODY_BUZZED:
                 state = QUESTION_EVERYBODY_WRONG
-                correct_answer = False
-                incorrect_answer = True
             else: # else a real player
                 players_allowed.remove(buzzed_in_player_id)
                 state = QUESTION_WAIT_ANSWER
@@ -200,13 +195,11 @@ def run_buzzin_attempts(
             # draw name of player and prompt re correct answer
             draw_window_question_prompts_and_refresh(
                 screen, prompt_right_answer,
-                False, False, question,
+                question,
                 player_names[buzzed_in_player_id],
                 state=state)
 
-            correct_answer = run_wait_for_right_wrong(screen)
-            incorrect_answer = not correct_answer
-            if correct_answer:
+            if run_wait_for_right_wrong(screen):
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions,
                     scores, question_score)
@@ -223,8 +216,7 @@ def run_buzzin_attempts(
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
     
     draw_window_question_prompts_and_refresh(
-        screen, lambda *x: None,
-        correct_answer, incorrect_answer, answer, state=state )
+        screen, lambda *x: None, answer, state=state )
     while True:
         if screen.getch() == ord(' '):
             break

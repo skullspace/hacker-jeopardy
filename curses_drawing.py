@@ -12,6 +12,8 @@ import curses, math
 from textwrap import wrap
 from string import center
 
+from question_states import *
+
 SPLASH_TEXT = "Hacker Jeopardy!!!"
 SPLASH_ANY_KEY_MSG = " any key to continue"
 
@@ -99,7 +101,6 @@ def prompt_right_answer(screen, height):
 
 def draw_window_question_prompts_and_refresh(
     screen, prompts_func,
-    correct_answer, incorrect_answer,
     question, player_name="", state=None):
     screen.clear()
 
@@ -107,8 +108,7 @@ def draw_window_question_prompts_and_refresh(
     # draw response actions
     prompts_func(screen, height)
 
-    draw_question(screen, correct_answer, incorrect_answer,
-                  question, player_name)
+    draw_question(screen, question, player_name, state=state)
     screen.refresh()
 
 # initialize colour pairs that will be used in app
@@ -233,20 +233,20 @@ def draw_grid(
                   CURSES_COLOUR_PAIR_MAX_CONTRAST )
 
 # draws the selected question on the screen
-def draw_question(screen, correct_answer, incorrect_answer,
-                  question, player_name):
+def draw_question(screen, question, player_name, state):
     height, width = screen.getmaxyx()
 
     fill = " " * (width-QUESTION_BOX_HORIZ_BORDER*2)
 
-    # default colour to blue
-    bkg_color = COLOUR_PAIR_GOOD_FEEL
-    if correct_answer:
-        # if answer is correct, switch to green colour
-        bkg_color = COLOUR_PAIR_REALLY_GOOD
-    elif incorrect_answer:
-        # if answer is incorrect, switch to red colour
-        bkg_color = COLOUR_PAIR_BAD_FEEL
+    bkg_color = {
+        QUESTION_PRE_BUZZ_EXIT: COLOUR_PAIR_GOOD_FEEL,
+        QUESTION_PRE_BUZZ: COLOUR_PAIR_GOOD_FEEL,
+        QUESTION_BUZZ_OPEN: COLOUR_PAIR_GOOD_FEEL,
+        QUESTION_WAIT_ANSWER: COLOUR_PAIR_GOOD_FEEL,
+        QUESTION_BUZZ_OPEN_AFTER_WRONG: COLOUR_PAIR_BAD_FEEL,
+        QUESTION_ANSWERED_RIGHT: COLOUR_PAIR_REALLY_GOOD,
+        QUESTION_EVERYBODY_WRONG: COLOUR_PAIR_BAD_FEEL,
+        }[state]
 
     # okay, so its a little inefficient to draw all the fill and over
     # draw it with text second. Sue me.
