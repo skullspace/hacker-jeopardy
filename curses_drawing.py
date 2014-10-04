@@ -244,29 +244,31 @@ def draw_window_question_prompts_and_refresh(
     status_horiz_cursor = 0
 
     player_str = ""
+    player_color = CURSES_COLOUR_PAIR_GOOD_FEEL
     if state == QUESTION_PRE_BUZZ:
         player_str = ALL_PLAYER_SEP.join(player_names)
     elif state == QUESTION_WAIT_ANSWER:
         player_str = player_names[buzzed_in_player_id]
+        player_color = CURSES_COLOUR_PAIR_MEH
     
     
     player_str = player_str[:status_characters_remaining]
     add_to_screen_if_gt_zero(screen, player_str,
                              height-BOT_INSTRUCT_OFFSET,
                              status_horiz_cursor,
-                             CURSES_COLOUR_PAIR_GOOD_FEEL )
+                             player_color )
     status_characters_remaining -= len(player_str)
     status_horiz_cursor += len(player_str)    
 
     msg_stuff = {
         QUESTION_PRE_BUZZ_EXIT:
-            (" space to return, s to show ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+            (" space to return, s to show ", CURSES_COLOUR_PAIR_MEH),
         QUESTION_PRE_BUZZ: None,
         QUESTION_BUZZ_OPEN:
             (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
         QUESTION_WAIT_ANSWER:
             (" correct answer: r ", CURSES_COLOUR_PAIR_REALLY_GOOD,
-             " incorrect answer: w ", CURSES_COLOUR_PAIR_MEH, ),
+             " incorrect answer: w ", CURSES_COLOUR_PAIR_BAD_FEEL, ),
         QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
         QUESTION_ANSWERED_RIGHT: None,
         QUESTION_EVERYBODY_WRONG: None,
