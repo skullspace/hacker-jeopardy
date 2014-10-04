@@ -248,20 +248,33 @@ def draw_window_question_prompts_and_refresh(
 
     player_str = ""
     player_color = CURSES_COLOUR_PAIR_GOOD_FEEL
-    if state == QUESTION_PRE_BUZZ:
-        player_str = ALL_PLAYER_SEP.join(player_names)
-    elif state == QUESTION_WAIT_ANSWER:
-        player_str = player_names[buzzed_in_player_id]
-        player_color = CURSES_COLOUR_PAIR_MEH
+
+    player_names_to_show = (
+        (player_names[buzzed_in_player_id],)
+        if state == QUESTION_WAIT_ANSWER
+        else (
+            ("",) if state != QUESTION_PRE_BUZZ
+            else player_names )
+        )
     
-    
-    player_str = player_str[:status_characters_remaining]
-    add_to_screen_if_gt_zero(screen, player_str,
-                             height-BOT_INSTRUCT_OFFSET,
-                             status_horiz_cursor,
-                             player_color )
-    status_characters_remaining -= len(player_str)
-    status_horiz_cursor += len(player_str)    
+    player_color = (
+        CURSES_COLOUR_PAIR_MEH
+        if state == QUESTION_WAIT_ANSWER
+        else CURSES_COLOUR_PAIR_GOOD_FEEL )
+
+    for player_name in player_names_to_show:
+        player_str = player_name
+        player_str = player_str[:status_characters_remaining]
+        add_to_screen_if_gt_zero(
+            screen, player_str,
+            height-BOT_INSTRUCT_OFFSET,
+            status_horiz_cursor,
+            player_color
+            )
+        status_characters_remaining -= len(player_str)
+        status_horiz_cursor += len(player_str)
+        if status_characters_remaining == 0:
+            break
 
     msg_stuff = {
         QUESTION_PRE_BUZZ_EXIT:
