@@ -222,13 +222,12 @@ def run_buzzin_attempts(
                 else:
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
     
-    if not correct_answer:
-        draw_window_question_prompts_and_refresh(
-            screen, lambda *x: None,
-            False, True, answer, state=state )
-        while True:
-            if screen.getch() == ord(' '):
-                break
+    draw_window_question_prompts_and_refresh(
+        screen, lambda *x: None,
+        correct_answer, incorrect_answer, answer, state=state )
+    while True:
+        if screen.getch() == ord(' '):
+            break
 
 def run_wait_for_right_wrong(screen):
     while True:
