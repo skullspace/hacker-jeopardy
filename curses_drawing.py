@@ -171,9 +171,8 @@ def draw_grid(
     for i, category in enumerate(questions):
         category_name = (category["name"]
                          if len(category["name"]) <= category_width
-                         else category["abrev_name"]
+                         else category["abrev_name"][:category_width]
                          )[:category_width]
-        assert( len(category_name) <= category_width )
 
         horizontal_position = (
             GRID_HORIZ_BORDER + i*category_width +
