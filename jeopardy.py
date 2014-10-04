@@ -26,6 +26,7 @@ from curses_drawing import \
      )
 from beep_sound import beep_for_player
 from question_states import *
+from debug import SHOW_STANDARD_ERROR
 
 PLAYER_SCORE_SEPARATION = ":"
 
@@ -142,7 +143,8 @@ def run_question(
             return False
 
 def main(screen):
-    sys.stderr = open(devnull, 'w')
+    if not SHOW_STANDARD_ERROR:
+        sys.stderr = open(devnull, 'w')
 
     screen.keypad(1)
     
