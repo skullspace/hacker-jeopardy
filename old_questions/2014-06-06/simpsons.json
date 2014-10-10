@@ -1,0 +1,31 @@
+  {
+    "name": "Simpsons",
+    "abrev_name": "simp",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This character famously shot Mr. Burns.",
+        "answer": "Maggie Simpson"
+      },
+      {
+        "points": "200",
+        "question": "In \"Principal and the Pauper\", this character was revealed to be an imposter named Armin Tanzarian.",
+        "answer": "Principal Skinner"
+      },
+      {
+        "points": "300",
+        "question": "This is sideshow bob's real name.",
+        "answer": "Robert Terwilliger"
+      },
+      {
+        "points": "400",
+        "question": "This music store is seen next door to Moe's Tavern throughout the series.",
+        "answer": "King Toot"
+      },
+      {
+        "points": "500",
+        "question": "This is the name of Patty and Selma's apartment complex.",
+        "answer": "Spinster City Apartments"
+      }
+    ]
+  },

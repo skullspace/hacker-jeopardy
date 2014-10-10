@@ -1,0 +1,31 @@
+  {
+    "name": "Serial Killers",
+    "abrev_name": "Kill",
+    "questions": [
+      {
+        "points": "100",
+        "question": "Jack the Ripper preyed on this vulnerable class of women.",
+        "answer": "Prostitutes"
+      },
+      {
+        "points": "200",
+        "question": "Son of Sam claimed that this told him to kill people.",
+        "answer": "A demon possessing his neighbour's dog"
+      },
+      {
+        "points": "300",
+        "question": "This CBS series, entering its 10th season, follows a team of behavioural analysts who profile serial killers.",
+        "answer": "Criminal Minds"
+      },
+      {
+        "points": "400",
+        "question": "This is the Unabomber's real name.",
+        "answer": "Theodore John \"Ted\" Kaczynski"
+      },
+      {
+        "points": "500",
+        "question": "This rare type of serial killer will intentionally harm people in order to be seen as the one who saves them.",
+        "answer": "Malignant Hero"
+      }
+    ]
+  },

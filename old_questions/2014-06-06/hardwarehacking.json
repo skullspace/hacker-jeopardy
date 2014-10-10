@@ -1,0 +1,31 @@
+  {
+    "name": "Hardware hacking",
+    "abrev_name": "hrdX",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This device is used for examining the signals.",
+        "answer": "An oscilloscope"
+      },
+      {
+        "points": "200",
+        "question": "This standard is widely implemented for use in on-chip debugging.",
+        "answer": "JTAG."
+      },
+      {
+        "points": "300",
+        "question": "This is the process of trying to force hardware to experience faults:: Glitching or fault injection",
+        "answer": null
+      },
+      {
+        "points": "400",
+        "question": "This NSA codename refers to a US government standard mandating emission standards for electronic devices.",
+        "answer": "TEMPEST"
+      },
+      {
+        "points": "500",
+        "question": "This is the technique used to derive information about a device's internal processes by its power usage.",
+        "answer": "Differential power analysis"
+      }
+    ]
+  },

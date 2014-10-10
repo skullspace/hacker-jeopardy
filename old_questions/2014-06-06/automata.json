@@ -1,0 +1,31 @@
+  {
+    "name": "Automata",
+    "abrev_name": "Auto",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This man, recently granted a royal pardon for his \"homosexuality\" conviction, was the father of the modern mathematical notion of a computer.",
+        "answer": "Alan Mathison Turing"
+      },
+      {
+        "points": "200",
+        "question": "This kind of automaton is effectively a regular expression.",
+        "answer": "Discrete Finite Automaton"
+      },
+      {
+        "points": "300",
+        "question": "This kind of automaton can parse most programming languages.",
+        "answer": "A Pushdown Automaton"
+      },
+      {
+        "points": "400",
+        "question": "One-dimensional automaton were used to model this reaction, leading to the development of the Hydrogen bomb.",
+        "answer": "Neutron chain reaction"
+      },
+      {
+        "points": "500",
+        "question": "This class of automata function on infinite inputs: Omega-automata",
+        "answer": null
+      }
+    ]
+  },

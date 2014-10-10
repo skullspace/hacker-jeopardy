@@ -1,0 +1,31 @@
+  {
+    "name": "Jeopardy",
+    "abrev_name": "JPY",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This TV show parodied Jeopardy + celebrities w/ soft ball questions, non-answers and bad behavior. \"Suck on it Trebek!\"",
+        "answer": "What is Saturday Night Live?"
+      },
+      {
+        "points": "200",
+        "question": "This IBM computer system beat two human champions in a match shown over three days.",
+        "answer": "What is Watson?"
+      },
+      {
+        "points": "300",
+        "question": "The person credited as the show's creator",
+        "answer": "Who is Merv Griffin?"
+      },
+      {
+        "points": "400",
+        "question": "The part of the game w/ the heaviest game theory. Arthur Chu did well w/ it in early 2014. Remember second place!",
+        "answer": "What is wagering in Final Jeopardy?"
+      },
+      {
+        "points": "500",
+        "question": "These two champions got themselves a beat down from a IBM computer system on a human vs machine challenge aired over three days.",
+        "answer": "Who are Ken Jennings and Brad Rutter?"
+      }
+    ]
+  },

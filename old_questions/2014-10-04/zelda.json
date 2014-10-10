@@ -1,0 +1,31 @@
+  {
+    "name": "ZELDA - Ocarina of Time",
+    "abrev_name": "ZOT",
+    "questions": [
+      {
+        "points": "100",
+        "question": "The main character of the Zelda series",
+        "answer": "Who is Link?"
+      },
+      {
+        "points": "200",
+        "question": "The name of the horse",
+        "answer": "Who is Epona?"
+      },
+      {
+        "points": "300",
+        "question": "This animal helps you glide",
+        "answer": "What is a Cucco?"
+      },
+      {
+        "points": "400",
+        "question": "The number of gold skulltulas",
+        "answer": "What is 100?"
+      },
+      {
+        "points": "500",
+        "question": "Who is the seventh sage?",
+        "answer": "Zelda/Sheik"
+      }
+    ]
+  },

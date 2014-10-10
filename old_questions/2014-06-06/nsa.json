@@ -1,0 +1,31 @@
+  {
+    "name": "No Such Agency (and other TLAs)",
+    "abrev_name": "NsA",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This man, who may be a hero or a traitor, allegedly stole a trove of information from Booz Allen, and has been releasing it ever since.",
+        "answer": "Edward Snowden"
+      },
+      {
+        "points": "200",
+        "question": "This was the codename of an NSA project to tap into datastores of major companies.",
+        "answer": "Prism"
+      },
+      {
+        "points": "300",
+        "question": "This US agency's founder, J. Edgar Hoover,  was rumoured to have a fondness for cross-dressing.",
+        "answer": "The FBI"
+      },
+      {
+        "points": "400",
+        "question": "This surveillance network was first publically reported in Duncan Campbell's 1988 article, \"Somebody's Listening\"",
+        "answer": "ECHELON"
+      },
+      {
+        "points": "500",
+        "question": "This CIA project, lasting from 1950 - 1970, experimented with mind control using a combination of kidnapping, torture, hypnosis and LSD, and is a fertile source of conspiracy theories.",
+        "answer": "MKUltra"
+      }
+    ]
+  },

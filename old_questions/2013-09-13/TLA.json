@@ -1,0 +1,26 @@
+  {
+    "name": "Three letter agencies",
+    "abrev_name": "TLA",
+    "questions": [
+      {
+        "question": "This is the agency that will give you the \"love pat\" at airports all over America",
+        "answer": "TSA"
+      },
+      {
+        "question": "This agency is famous for the \"prism\" technology this year",
+        "answer": "NSA"
+      },
+      {
+        "question": "This agency, amongst other things, regulates alcohol and firearms",
+        "answer": "ATF"
+      },
+      {
+        "question": "This Canadian agency is responsible for signal intelligence",
+        "answer": "CSE (or CST, CSEC, CSTC, CSE-CST)"
+      },
+      {
+        "question": "This agency led the raid that killed Osama Bin Laden",
+        "answer": "CIA"
+      }
+    ]
+  },

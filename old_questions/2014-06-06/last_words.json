@@ -1,0 +1,31 @@
+  {
+    "name": "Famous Last Words",
+    "abrev_name": "FmLW",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This man famously asked \"Et tu, Brute\" as he was murdered.",
+        "answer": "Julius Caesar"
+      },
+      {
+        "points": "200",
+        "question": "Lawrence Oates, who uttered \"I may be some time\" before leaving the Scott Expedition's camp and never being seen again, was on an expedition to this place.",
+        "answer": "The South Pole"
+      },
+      {
+        "points": "300",
+        "question": "When asked by a priest to renounce Satan, this man famously said \"this is no time for making enemies\".",
+        "answer": "Voltaire"
+      },
+      {
+        "points": "400",
+        "question": "Lee Harvey Oswald famously said these last words to a Dallas Policeman.",
+        "answer": "\"Aw, nobody's gonna shoot me\""
+      },
+      {
+        "points": "500",
+        "question": "This was the last thing Graham Chapman said to his adopted son.",
+        "answer": "\"Hello\""
+      }
+    ]
+  },

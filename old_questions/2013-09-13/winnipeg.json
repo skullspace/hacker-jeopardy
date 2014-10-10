@@ -1,0 +1,26 @@
+  {
+    "name": "Winnipeg",
+    "abrev_name": "Wpg",
+    "questions": [
+      {
+        "question": "This is the first - and only - hackerspace in Winnipeg",
+        "answer": "SkullSpace"
+      },
+      {
+        "question": "Winnipeg officially became a city in this year (the same year that Manitoba became a province)",
+        "answer": "1873"
+      },
+      {
+        "question": "The Northwest Company built this fort, which was re-built in 1978 by the Festival du Voyageur",
+        "answer": "Fort Gibraltar"
+      },
+      {
+        "question": "This ship is the featured exhibit at the Manitoba Museum",
+        "answer": "The Nonsuch"
+      },
+      {
+        "question": "This is Winnipeg's motto (Latin or English are fine)",
+        "answer": "\"Unum Cum Virtute Multorum\" (One with the Strength of Many)"
+      }
+    ]
+  },

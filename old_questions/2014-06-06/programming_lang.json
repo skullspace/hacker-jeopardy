@@ -1,0 +1,32 @@
+  {
+    "name": "Programming languages",
+    "abrev_name": "pgml",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This language featured a turtle with a retractable pen.",
+        "answer": "Logo"
+      },
+      {
+        "points": "200",
+        "question": "This language has been likened to an octopus fashioned by nailing legs to a dog.",
+        "answer": "C++"
+      },
+      {
+        "points": "300",
+        "question": "This language's earliest builtin functions were named specifically to have varying lengths due to an awful hash function.",
+        "answer": "PHP"
+      },
+      {
+        "points": "400",
+        "question": "Before there was the C language, there was the B language, and before that there was this language.",
+        "answer": "BCPL"
+      },
+      {
+        "points": "500",
+        "question": "This language, described as a cross between Forth and Lemmings, was designed to be as hard to compile as possible.",
+        "answer": "Befunge"
+      }
+    ]
+  },
+  

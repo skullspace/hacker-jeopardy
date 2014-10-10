@@ -1,0 +1,31 @@
+  {
+    "name": "Anime",
+    "abrev_name": "ani",
+    "questions": [
+      {
+        "points": "100",
+        "question": "These two brothers are brilliant alchemists searching for knowledge of the Philosopher's Stone.",
+        "answer": "Edward and Alfred Elric"
+      },
+      {
+        "points": "200",
+        "question": "At the end of this anime's episodes, the main characters' dog sings a tale of woe.",
+        "answer": "Excel Saga"
+      },
+      {
+        "points": "300",
+        "question": "In this mindbending anime, a girl in a bear suit becomes God of the Internet.",
+        "answer": "Serial Experiments Lain"
+      },
+      {
+        "points": "400",
+        "question": "In this ultraviolent anime, the entire cast kills each other every few episodes before time is reset.",
+        "answer": "Higurashi When They Cry"
+      },
+      {
+        "points": "500",
+        "question": "In this anime, a brilliant hacker helps those in need, being paid for his good deeds with trinkets.",
+        "answer": "Battle Programmer Shirase"
+      }
+    ]
+  },

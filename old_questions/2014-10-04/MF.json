@@ -1,0 +1,32 @@
+{
+    "name": "8 days, of Mandatory Fun (Weird Al's latest album)",
+    "abrev_name": "8MF",
+    "questions": [
+      {
+        "points": "100",
+        "question":
+	"\"Got my new resume it's printed in\" this Tacky font choice",
+        "answer": "What is Comic Sans?"
+      },
+      {
+        "points": "200",
+        "question": "In his Royals parady, Al dons this on his head to protect himself from thought control radiation.",
+        "answer": "What is aluminum foil? (or a tin foil/aluminum hat)"
+      },
+      {
+        "points": "300",
+        "question": "Not a true Word Crime, its okay \"If you really wanna\" do this to \"that Oxford comma\"",
+        "answer": "What is \"leave out\"?"
+      },
+      {
+        "points": "400",
+        "question": "OECD / wealthy people issues: \"I bought too many groceries for my refrigerator; Forgot my gardener's name, I'll have to ask him later\"",
+        "answer": "What are \"First World Problems\"?"
+      },
+      {
+        "points": "500",
+        "question": "Escape from the category, finish this Handy rhyme: \"Still rocking my screwdriver; Got the whole world thinking I'm...\"",
+        "answer": "Who is MacGyver?"
+      }
+      ]
+},

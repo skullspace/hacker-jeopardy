@@ -1,0 +1,31 @@
+  {
+    "name": "Lord Of the Rings",
+    "abrev_name": "LTR",
+    "questions": [
+      {
+        "points": "100",
+        "question": "The name of Gandalf's horse",
+        "answer": "Who is Shadowfax?"
+      },
+      {
+        "points": "200",
+        "question": "The name of the giant spider in the movie",
+        "answer": "Who is Shelob?"
+      },
+      {
+        "points": "300",
+        "question": "The gift Galadriel gave Gimli",
+        "answer": "Three strands of her hair"
+      },
+      {
+        "points": "400",
+        "question": "The creator of the Valar and middle-earth",
+        "answer": "What is/who is Illuvator?"
+      },
+      {
+        "points": "500",
+        "question": "The most evil of the Valar",
+        "answer": "Who is Melkor?"
+      }
+    ]
+  },

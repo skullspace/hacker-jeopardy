@@ -1,0 +1,31 @@
+  {
+    "name": "Harry Potter",
+    "abrev_name": "HRP",
+    "questions": [
+      {
+        "points": "100",
+        "question": "These are the four houses",
+        "answer": "What are Hufflepuff, Ravenclaw, Slytherin, and Gryffindor"
+      },
+      {
+        "points": "200",
+        "question": "This is Hermione's patronus",
+        "answer": "What is Otter?"
+      },
+      {
+        "points": "300",
+        "question": "The address of Harry's aunt and uncle",
+        "answer": "What is Number 4 Privet Drive?"
+      },
+      {
+        "points": "400",
+        "question": "This is who Harry dates in the end of the series",
+        "answer": "Who is Ginny Weasley?"
+      },
+      {
+        "points": "500",
+        "question": "The name of he-who-must-not-be-named's snake?",
+        "answer": "Who is Nagini?"
+      }
+    ]
+  },

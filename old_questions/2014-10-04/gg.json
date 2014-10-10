@@ -1,0 +1,31 @@
+ {
+    "name": "Group Games",
+    "abrev_name": "GG",
+    "questions": [
+      {
+"question": "Unscrupulous landowners bankrupt their tenants in this capitalist favourite.",
+"answer": "What is Monopoly?"
+},
+      {
+"question": "This game of flexibility makes a great first date.",
+"answer": "What is Twister?"
+},
+
+      {
+"question": "Variants of this game include 5-card draw and 7-card stud.",
+"answer": "What is poker?"
+},
+
+      {
+"question": "I'd tell you what this game is called, but I can't talk. 2 syllables.",
+"answer": "What is charades?"
+},
+
+      {
+"question": "An army is needed for this game played by Alice in Wonderland.",
+"answer": "What is chess?"
+}
+
+
+]
+},

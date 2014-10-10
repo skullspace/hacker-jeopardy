@@ -1,0 +1,31 @@
+  {
+    "name": "Sci Fi",
+    "abrev_name": "Sci Fi",
+    "questions": [
+      {
+        "points": "100",
+        "question": "Some pointy-eared aliens made First Contact with Earth in this Sci Fi universe.",
+        "answer": "Star Trek"
+      },
+      {
+        "points": "200",
+        "question": "Thanks to changes in editing, a famous debate in Star Wars is whether Han shot first, or this character.",
+        "answer": "Greedo"
+      },
+      {
+        "points": "300",
+        "question": "This minor character is seen throughout the Futurama series, but the rest of the Planet Express crew rarely remember who he is.",
+        "answer": "Scruffy, the Janitor"
+      },
+      {
+        "points": "400",
+        "question": "This is the name of Morpheus' ship in The Matrix.",
+        "answer": "The Nebuchadnezzar"
+      },
+      {
+        "points": "500",
+        "question": "This Cylon model, one of the 13 Humanoids, had his entire line murdered before the series began.",
+        "answer": "Daniel, Number 7"
+      }
+    ]
+  },

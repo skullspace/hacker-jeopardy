@@ -1,0 +1,31 @@
+  {
+    "name": "Star Trek",
+    "abrev_name": "Tek",
+    "questions": [
+      {
+"question": "Commander Data is this kind of artificial life form.",
+"answer": "What is an android?"
+},
+
+      {
+"question": "Unlike the speedy transporter, this is the slow way to get to a planet.",
+"answer": "What is by shuttle craft?"
+},
+
+      {
+"question": "This stops the Enterprise from interfering in the development of alien civilizations.",
+"answer": "What is the Prime Directive?"
+},
+
+      {
+"question": "They were original Vulcan but broke off and embraced emotion and even a new language.",
+"answer": "Who are the Romulans?"
+},
+
+      {
+"question": "The ritual response to "Live Long And Prospect".",
+"answer": "What is "Peace and Long Life"?"
+}
+
+]
+},

@@ -1,0 +1,31 @@
+  {
+    "name": "Hacker movies",
+    "abrev_name": "hx mov",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This movie popularized the phrase \"hack the Gibson\".",
+        "answer": "Hackers"
+      },
+      {
+        "points": "200",
+        "question": "This movie featured breaking into a government agency during fellatio.",
+        "answer": "Swordfish"
+      },
+      {
+        "points": "300",
+        "question": "This movie contained the famous line \"the only winning move is not to play\".",
+        "answer": "WarGames"
+      },
+      {
+        "points": "400",
+        "question": "This movie's was based on a novel titled \"Men Who Hate Women\".",
+        "answer": "Girl with the Dragon Tattoo"
+      },
+      {
+        "points": "500",
+        "question": "This movie featured the memorable phrase \"My voice is my passport\".",
+        "answer": "Sneakers"
+      }
+    ]
+  },

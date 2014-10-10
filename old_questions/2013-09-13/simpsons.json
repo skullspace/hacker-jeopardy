@@ -1,0 +1,26 @@
+  {
+    "name": "Simpsons",
+    "abrev_name": "simp",
+    "questions": [
+      {
+        "question": "He's the all-too-friendly next door neighbour",
+        "answer": "Ned Flanders"
+      },
+      {
+        "question": "This is the name of the Simpsons family's dog",
+        "answer": "Santa's Little Helper"
+      },
+      {
+        "question": "In the famous two-part episode, this person was the one who shot Mr Burns",
+        "answer": "Maggie Simpson"
+      },
+      {
+        "question": "These are the names of the three main bullies (not counting Nelson)",
+        "answer": "Jimbo, Kearney, and Dolph (or \"James Jones\", \"Kevin Zzyzwicz\", and \"Darren Starbeam\")"
+      },
+      {
+        "question": "This toy, released by Kid First Industries, was programmed to attack other toys",
+        "answer": "Funzo"
+      }
+    ]
+  },

@@ -1,0 +1,31 @@
+  {
+    "name": "Linux hacking tools",
+    "abrev_name": "LhT",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This is the 'swiss army knife' of network programming: a program that can connect, listen, execute backdoors, transfer files, and more!",
+        "answer": "netcat (or nc)"
+      },
+      {
+        "points": "200",
+        "question": "This password-cracking tool is named after a famous serial killer.",
+        "answer": "john the ripper"
+      },
+      {
+        "points": "300",
+        "question": "This commandline utility will show all syscalls made by a process.",
+        "answer": "strace"
+      },
+      {
+        "points": "400",
+        "question": "This interrupt is how you initiate a system call.",
+        "answer": "int 80h"
+      },
+      {
+        "points": "500",
+        "question": "The Metasploit Framework was originally written by HD Moore in this language, up to version 2.7.",
+        "answer": "Perl"
+      }
+    ]
+  },

@@ -1,0 +1,26 @@
+  {
+    "name": "Crypto",
+    "abrev_name": "cyto",
+    "questions": [
+      {
+        "question": "This simple cipher shifts each character by a given value",
+        "answer": "Caesar cipher"
+      },
+      {
+        "question": "This was the effective keysize of the DES cipher",
+        "answer": "56 bits (7 bytes)"
+      },
+      {
+        "question": "This country was the first to break the Enigma machine",
+        "answer": "Poland (at the Polish Cipher Bureau)"
+      },
+      {
+        "question": "The AES standards defines this many possible block sizes",
+        "answer": "1 (128 bits)"
+      },
+      {
+        "question": "This cipher was used incorrectly in WEP",
+        "answer": "RC4"
+      }
+    ]
+  },

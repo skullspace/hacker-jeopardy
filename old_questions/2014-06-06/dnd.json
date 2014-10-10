@@ -1,0 +1,31 @@
+  {
+    "name": "D&D",
+    "abrev_name": "D&D",
+    "questions": [
+      {
+        "points": "100",
+        "question": "D&D stands for this.",
+        "answer": "Dungeons and Dragons"
+      },
+      {
+        "points": "200",
+        "question": "D&D was originally created by this man.",
+        "answer": "Gary Gygax"
+      },
+      {
+        "points": "300",
+        "question": "TSR, the original publisher of D&D, stands for this.",
+        "answer": "Tactical Studies Rules"
+      },
+      {
+        "points": "400",
+        "question": "This outdoor structure is commonly used as a joke monster.",
+        "answer": "A gazebo"
+      },
+      {
+        "points": "500",
+        "question": "In the AD&D monster manual, this creature's illustration was the only one that is credited to two people.",
+        "answer": "The Invisible Stalker"
+      }
+    ]
+  },

@@ -1,0 +1,31 @@
+  {
+    "name": "TV Tropes",
+    "abrev_name": "TvT",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This show established the trope \"jumping the shark\" after they refused to listen to common sense and be cancelled.",
+        "answer": "Happy Days"
+      },
+      {
+        "points": "200",
+        "question": "This show established the trope \"growing the beard\" after one of the main characters grew a beard, after which ratings improved.",
+        "answer": "Star Trek: The Next Generation"
+      },
+      {
+        "points": "300",
+        "question": "This show established the trope \"epileptic trees\" after one fan's unlikely explanation of an unexplained phenomenon shown in the show.",
+        "answer": "Lost"
+      },
+      {
+        "points": "400",
+        "question": "This series established the trope \"for me it was Tuesday\" after a villain downplays the significance of killing someone's father.",
+        "answer": "Street Fighter"
+      },
+      {
+        "points": "500",
+        "question": "This movie established the trope \"fridge logic\" when Alfred Hitchcock was asked about a continuity error.",
+        "answer": "Vertigo"
+      }
+    ]
+  },

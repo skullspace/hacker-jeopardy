@@ -1,0 +1,26 @@
+  {
+    "name": "Hacker movies",
+    "abrev_name": "Hmov",
+    "questions": [
+      {
+        "question": "\"Zero Cool\" is the star of this movie, where his claim to fame is crashing 1,507 systems in one day",
+        "answer": "Hackers"
+      },
+      {
+        "question": "This is the name of the game that a young hacker thinks he's playing with the WOPR Supercomputer",
+        "answer": "Global Thermonuclear War"
+      },
+      {
+        "question": "\"Takedown\", a 2000 film never released, is the story of the pursuit and arrest of this famous hacker",
+        "answer": "Kevin Mitnick"
+      },
+      {
+        "question": "This symbol was used to indicate backdoored Web sites in \"The Net\"",
+        "answer": "Pi"
+      },
+      {
+        "question": "These are the four most common passwords, according to the cult classic \"Hackers\"",
+        "answer": "Love, Sex, Secret, and God"
+      }
+    ]
+  },

@@ -1,0 +1,26 @@
+  {
+    "name": "Ports!",
+    "abrev_name": "prts",
+    "questions": [
+      {
+        "question": "This is the most common protocol to run on port 80",
+        "answer": "HTTP"
+      },
+      {
+        "question": "I would use this port to resolve a domain name into an ip address",
+        "answer": "53"
+      },
+      {
+        "question": "This is the port that the \"echo\" service runs on",
+        "answer": "7"
+      },
+      {
+        "question": "This port is commonly used by FTP as the data channel",
+        "answer": "20 (*not* 21)"
+      },
+      {
+        "question": "Blizzard \"stole\" this port from dtspcd, a network daemon that accepts requests from clients to execute commands",
+        "answer": "6112"
+      }
+    ]
+  },

@@ -1,0 +1,31 @@
+  {
+    "name": "Shows cancelled too early",
+    "abrev_name": "cancel",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This show's alien language was changed twice due to viewers decoding it.",
+        "answer": "Futurama"
+      },
+      {
+        "points": "200",
+        "question": "In this cartoon series about college, none of the students are ever seen attending class.",
+        "answer": "Undergrads"
+      },
+      {
+        "points": "300",
+        "question": "This show regularly featured commercials for the fictional company Veridian Dynamics.",
+        "answer": "Better off Ted"
+      },
+      {
+        "points": "400",
+        "question": "This show features a character that wears jean cutoffs and refers to his condition as being a \"nevernude\".",
+        "answer": "Arrested Development"
+      },
+      {
+        "points": "500",
+        "question": "This show famously had its pilot episode, which explained the setting and character backstories, aired as its final episode during its original run.",
+        "answer": "Firefly"
+      }
+    ]
+  },

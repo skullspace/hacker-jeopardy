@@ -1,0 +1,31 @@
+  {
+    "name": "Classic Horror",
+    "abrev_name": "cl horr",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This classic horror story written by Mary Shelley was about a mad scientist attempting to create life.",
+        "answer": "Frankenstein"
+      },
+      {
+        "points": "200",
+        "question": "The Cthulhu Mythos was created by this prolific writer of \"weird tales\".",
+        "answer": "Howard Philip (HP) Lovecraft"
+      },
+      {
+        "points": "300",
+        "question": "All copies of this 1922 unlicensed Dracula movie were later ordered to be destroyed after a lawsuit by Bram Stoker's heirs.",
+        "answer": "Nosferatu"
+      },
+      {
+        "points": "400",
+        "question": "The Mummy, portrayed by Boris Karloff, is a story about this ancient Egyptian priest coming back to life.",
+        "answer": "Imhotep"
+      },
+      {
+        "points": "500",
+        "question": "In the Edgar Allan Poe story \"A predicament\", originally called \"Scythe of time\", a woman is beheaded by this (the head later gives a speech, but the woman can't hear it because she now lacks ears).",
+        "answer": "A clock"
+      }
+    ]
+  },

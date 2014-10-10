@@ -1,0 +1,26 @@
+  {
+    "name": "Famous hackers",
+    "abrev_name": "FmX",
+    "questions": [
+      {
+        "question": "This is the core maintainer of the Linux operating system",
+        "answer": "Linus Torvalds"
+      },
+      {
+        "question": "Rumours that he could launch nuclear missiles by whistling into the phone caused this man to be left in solitary confinement for 8 months",
+        "answer": "Kevin Mitnick"
+      },
+      {
+        "question": "John \"Captain Crunch\" Draper discovered that toy whistles from the Captain Crunch box blew this very important frequency",
+        "answer": "2600 hertz"
+      },
+      {
+        "question": "This man wrote - and shares his name with - the first (known) computer worm in history",
+        "answer": "Robert Morris"
+      },
+      {
+        "question": "This man helped the FBI capture Kevin Mitnick",
+        "answer": "Tsutomu Shimomura"
+      }
+    ]
+  },

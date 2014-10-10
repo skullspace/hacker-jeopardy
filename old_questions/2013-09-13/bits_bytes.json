@@ -1,0 +1,26 @@
+  {
+    "name": "Bits and bytes",
+    "abrev_name": "bits",
+    "questions": [
+      {
+        "question": "This is \"7\" in hexadecimal",
+        "answer": "7"
+      },
+      {
+        "question": "This is the largest number that can be represented with 8 bits",
+        "answer": "255"
+      },
+      {
+        "question": "This is the hex number 0x80, in decimal",
+        "answer": "128"
+      },
+      {
+        "question": "This is the most common technique for representing negative numbers at the bit level",
+        "answer": "Two's complement"
+      },
+      {
+        "question": "This is the two's complement of the binary number, 11111111",
+        "answer": "1 (or 00000001)"
+      }
+    ]
+  },

@@ -1,0 +1,31 @@
+  {
+    "name": "The Internets",
+    "abrev_name": "net",
+    "questions": [
+      {
+        "points": "100",
+        "question": "This is the much beloved RSS reader that Google discontinued in 2013.",
+        "answer": "Google Reader"
+      },
+      {
+        "points": "200",
+        "question": "In 2014, Facebook surprised the world by buying this 3-D gaming platform.",
+        "answer": "Oculus Rift"
+      },
+      {
+        "points": "300",
+        "question": "It is often said that if the Internet had an enema, the hose would be inserted into this image board.",
+        "answer": "4chan"
+      },
+      {
+        "points": "400",
+        "question": "This encrypted email provider chose to shut down rather than comply with FBI orders.",
+        "answer": "Lavabit"
+      },
+      {
+        "points": "500",
+        "question": "When Woody Harrelson did an AMA on Reddit, fans were disappointed to find out he only wanted to talk about this movie.",
+        "answer": "Rampart"
+      }
+    ]
+  },

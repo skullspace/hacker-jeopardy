@@ -1,0 +1,26 @@
+  {
+    "name": "Tech companies",
+    "abrev_name": "TeXC",
+    "questions": [
+      {
+        "question": "This company bought DOS in the early 1980s, and is still one of the most powerful tech companies in the world",
+        "answer": "Microsoft"
+      },
+      {
+        "question": "This company stunned millions when they bought Tumblr earlier this year",
+        "answer": "Yahoo"
+      },
+      {
+        "question": "IOS was developed by this company",
+        "answer": "Cisco"
+      },
+      {
+        "question": "This company currently owns the rights to Java",
+        "answer": "Oracle"
+      },
+      {
+        "question": "This large networking company was named after the city where it was founded - San Francisco",
+        "answer": "Cisco"
+      }
+    ]
+  },

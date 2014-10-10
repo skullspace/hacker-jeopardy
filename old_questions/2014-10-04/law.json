@@ -1,0 +1,51 @@
+  {
+
+    "name": "It's the Law!",
+    "abrev_name": "Law",
+
+    "questions": [
+
+      {
+
+        "question": "E = I * R",
+
+        "answer": "Ohm's Law"
+
+      },
+
+      {
+
+        "question": "a + b = b + a",
+
+        "answer": "Commutative Law"
+
+      },
+
+      {
+
+        "question": "At any node in an electrical circuit, the sum of currents flowing into that node is equal to the sum of currents flowing out of that node.",
+
+        "answer": "Kirchhoff's Current Law, or First Law"
+
+      },
+
+      {
+
+        "question": "F = G *((m1 * m2) / r^2)",
+
+        "answer": "Newton's Law (of Universal Gravitation)"
+
+      },
+
+      {
+
+        "question": "The force of attraction or repulsion between two magnetic poles is directly proportional to the product of their pole strength & inversely proportional to the square of the distance between them.",
+
+
+        "answer": "Coulomb's Law (of Magnetism)"
+
+      }
+
+    ]
+
+  },

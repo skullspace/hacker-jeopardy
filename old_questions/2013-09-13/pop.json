@@ -1,0 +1,26 @@
+  {
+    "name": "\"pop\" culture",
+    "abrev_name": "pop",
+    "questions": [
+      {
+        "question": "It runs on port 110",
+        "answer": "POP3 / Post Office Protocol"
+      },
+      {
+        "question": "This popular soda, first brewed in Winnipeg in 1971, is beginning to make a comeback",
+        "answer": "Pic-a-pop"
+      },
+      {
+        "question": "This popular snack features clusters of popcorn, almonds, and pecans covered in a candy glaze",
+        "answer": "Poppysock"
+      },
+      {
+        "question": "This children's book was written by Dr Suess",
+        "answer": "Hop On Pop"
+      },
+      {
+        "question": "This musician, known as an innovator and \"godfather\" of punk rock, is actually named \"James Newell Osterberg\"",
+        "answer": "Iggy Pop"
+      }
+    ]
+  },

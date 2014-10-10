@@ -1,0 +1,26 @@
+  {
+    "name": "Star Trek",
+    "abrev_name": "trek",
+    "questions": [
+      {
+        "question": "This race is well known for their combative attitude and ridged foreheads",
+        "answer": "Klingons"
+      },
+      {
+        "question": "This popular invention is a safe way to explore fantasies, except when it breaks (and you get slapped with a paternity suit)",
+        "answer": "Holodeck or Holosuite"
+      },
+      {
+        "question": "The \"T\" in \"James T Kirk\" stands for this",
+        "answer": "Tiberius"
+      },
+      {
+        "question": "This character's name comes from the Bajoran word for \"Unknown Sample\"",
+        "answer": "Odo"
+      },
+      {
+        "question": "This is a test given to every Starfleet cadet that no one is expected to pass (except James T Kirk, who cheated)",
+        "answer": "Kobayashi Maru"
+      }
+    ]
+  },

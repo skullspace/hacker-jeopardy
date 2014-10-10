@@ -1,0 +1,26 @@
+  {
+    "name": "Beer!",
+    "abrev_name": "beer",
+    "questions": [
+      {
+        "question": "This beverage, brewed since ancient times, is made from hops and grains?",
+        "answer": "Beer"
+      },
+      {
+        "question": "This is the common unit for measuring bitterness of beer",
+        "answer": "International Bitterness Units (or IBU)"
+      },
+      {
+        "question": "\"Bitburger\" beer comes from this country",
+        "answer": "Germany"
+      },
+      {
+        "question": "According to (likely incorrect) legend, this is the reason the Pilgrims chose to land at Plymouth Rock",
+        "answer": "They ran out of beer"
+      },
+      {
+        "question": "The oldest known recipe for beer was found on a stone tablet from this ancient civilization",
+        "answer": "The Sumerians"
+      }
+    ]
+  },

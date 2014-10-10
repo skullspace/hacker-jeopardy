@@ -1,0 +1,25 @@
+  {
+    "name": "Off the Cuff EE",
+    "abrev_name": "EE",
+    "questions": [
+      {
+        "question": "This popular serial data bus features among other things, tasty \"Miso\".  What is this bus called?",
+        "answer": "What is SPI or Serial Peripheral Interface?"
+      },
+      {
+        "question": "*Troll Alert* In order to guarantee your submission is posted on Hackaday, your project must include this",
+        "answer": "What is Arduino?"
+      },
+      {
+        "question": "Among other amazing things, this device is capable of remapping I/O pins, running software defined processors, and mining Bitcoin.",
+        "answer": "What is a FPGA or Field Programmable Gate Array?"
+      },
+      {
+        "question": "What is the famous algorithm that allows one to analyze a signal, captured in the time domain, in the frequency Domain?",
+        "answer": "What is Fourier Transform or FFT (Fast Fourier Transform)?"
+      },
+      { "question": "Cr8tr of the C64-DTV, she is a prev emplee of Valve Corp, has fabed transistors @ home, and is currently one of the founding members of Techincal Illusions",
+	"answer": "Who is Jeri Ellsworth?"
+      }
+    ]
+    },

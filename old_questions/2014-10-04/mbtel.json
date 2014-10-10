@@ -1,0 +1,27 @@
+
+	{
+	"name": "Manitoba Telecom history",
+	"abrev_name": "MB Tel hist",
+	"questions": [
+		{
+		"question": "This UofM network provided dial-up internet access to students and employees before being bought out", 
+		"answer": "MBNet"
+		},	
+		{
+		"question": "This service provided dial-up text-only web and e-mail access at no cost", 
+		"answer": "Manitoba Freenet"
+		},
+		{
+		"question": "This MB and BC Wireless ISP cheaply obtained 2.5ghz spectrum in 1999 to serve rural areas, and resold that spectrum in 2010 for $80 million", 
+		"answer": "Skyweb"
+		},
+		{
+		"question": "In 1981 this small Manitoba town was the site of a $10m experiment where analog TV, telephone and Telidon network access were delivered over fiber optic cabling", 
+		"answer": "Elie"
+		},
+		{
+		"question": "This person was an operator of many BBBes including Man Remote, Man-Hub-13, Man-Hub-4, Man-Net-EC, Man-Net-NEC, Man-Net-PC, Manitoba Remote, Network 23, Network 23 BBS, NLA-11, NLA-Hub-13, Sanctuary HST", 
+		"answer": "Adam Thompson"
+		},
+		]
+	},

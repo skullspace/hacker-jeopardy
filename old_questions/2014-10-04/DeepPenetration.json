@@ -1,0 +1,26 @@
+  {
+    "name": "Deep Penetration",
+    "abrev_name": "DeepPen",
+    "questions": [
+      {
+        "question": "This popular open source tool is used to discover hosts and services on a computer network",
+        "answer": "NMAP"
+      },
+      {
+        "question": "This type of attack is commonly performed with the text ' or '1'='1' -- ",
+        "answer": "SQL Injection"
+      },
+      {
+        "question": "A flaw that occurs whenever an application takes untrusted data and sends it to a web browser without proper validation or escaping.",
+        "answer": "XSS (Cross Site Scripting)"
+      },
+      {
+        "question": "This not-for-profit organization famously publishes a top-10 list of software vulnerabilities.",
+        "answer": "OWASP (The Open Web Application Security Project)"
+      },
+      {
+        "question": "NMAP supports this type of output in addition to its Interactive, XML, Grepable, and normal modes",
+        "answer": "Script Kiddie"
+      }
+    ]
+  },

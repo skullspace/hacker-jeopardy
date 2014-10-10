@@ -1,0 +1,31 @@
+  {
+    "name": "POKEMON",
+    "abrev_name": "PKM",
+    "questions": [
+      {
+        "points": "100",
+        "question": "The reason Ash got Pikachu",
+        "answer": "What is, he was late getting up/getting to Oak's lab?"
+      },
+      {
+        "points": "200",
+        "question": "Ash's adversary's name",
+        "answer": "Who is Garry Oak?"
+      },
+      {
+        "points": "300",
+        "question": "This town is where Ash was from",
+        "answer": "What is Pallet town?"
+      },
+      {
+        "points": "400",
+        "question": "The original three Peokemon that Jesse and James had in the TV series",
+        "answer": "Who were Meowth, ekans, and koffing?"
+      },
+      {
+        "points": "500",
+        "question": "This was how Clefairy evolves",
+        "answer": "What is Moonstone?"
+      }
+    ]
+  },

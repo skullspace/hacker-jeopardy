@@ -1,0 +1,27 @@
+
+  {
+    "name": "Wireless",
+    "abrev_name": "wrlss",
+    "questions": [
+      {
+        "question": "This typically runs from 87.5 to 108.0 MHz",
+        "answer": "FM"
+      },
+      {
+        "question": "This is the first wireless standard to use the 5.4ghz band",
+        "answer": "802.11a (will also accept just 'a')"
+      },
+      {
+        "question": "It's what WEP stands for",
+        "answer": "Wired Equivalent Privacy (must be exact!)"
+      },
+      {
+        "question": "This is the number of non-overlapping channels on a 802.11g network",
+        "answer": "3"
+      },
+      {
+        "question": "This is the common name for the 802.11i standard",
+        "answer": "WPA2"
+      }
+    ]
+  },
