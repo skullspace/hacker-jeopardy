@@ -24,8 +24,8 @@ def main():
     # Pull pins to GND to trigger the interrupt
     for pin in pin_table:
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(pin, GPIO.FALLING, callback=button_pressed, bouncetime=300)
-
+        GPIO.add_event_detect(pin, GPIO.FALLING,
+                              callback=button_pressed, bouncetime=300)
     try:
         while True: pass
     except:
