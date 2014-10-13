@@ -10,7 +10,7 @@
 # @author Jeremy Hiebert <jkhiebert@gmail.com>
 # @author Mark Jenkins <mark@markjenkins.ca>
 
-import curses, json
+import curses, json, time
 from curses import wrapper
 from pickle import dump, load
 from os.path import exists
@@ -33,6 +33,9 @@ PLAYER_SCORE_SEPARATION = ":"
 SHOW_CATEGORY = True
 
 NOBODY_BUZZED = -1
+
+# seconds how long the host must wait before revealing the question's answer
+MIN_QUESTION_TIME = 2
 
 questions_file = 'questions.json'
 PERSIST_FILE = 'database.pickle'
@@ -168,6 +171,7 @@ def run_buzzin_attempts(
     screen, question, answer, question_score,
     answered_questions, scores):
     state = QUESTION_PRE_BUZZ # was QUESTION_PRE_BUZZ_EXIT until now
+    state_start_time = time.time()
 
     players_allowed = set(
         (NOBODY_BUZZED,) + 
@@ -179,6 +183,7 @@ def run_buzzin_attempts(
 
     # should draw something to show our readyness for buzzing
     while state not in END_STATES:
+        previous_state = state
         player_name = ("" if buzzed_in_player_id == NOBODY_BUZZED
                        else player_names[buzzed_in_player_id] )
         draw_window_question_prompts_and_refresh(
@@ -199,7 +204,9 @@ def run_buzzin_attempts(
             beep_for_player(buzzed_in_player_id)
 
             if buzzed_in_player_id == NOBODY_BUZZED:
-                state = QUESTION_EVERYBODY_WRONG
+                # Make sure players have had some time to answer first
+                if time.time() - state_start_time > MIN_QUESTION_TIME:
+                    state = QUESTION_EVERYBODY_WRONG
             else: # else a real player
                 players_allowed.remove(buzzed_in_player_id)
                 state = QUESTION_WAIT_ANSWER
@@ -223,7 +230,10 @@ def run_buzzin_attempts(
                     state = QUESTION_EVERYBODY_WRONG
                 else:
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
-    
+
+        if previous_state != state:
+            state_start_time = time.time()
+
     draw_window_question_prompts_and_refresh(
         screen, answer, player_names, buzzed_in_player_id, state=state )
     while True:
