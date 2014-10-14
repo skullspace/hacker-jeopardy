@@ -27,7 +27,6 @@
 # 4) call this program with the device node
 
 from sys import argv
-import time
 
 from evdev import InputDevice
 
@@ -38,13 +37,8 @@ def main():
     dev = InputDevice(argv[1])
     buzz_id = int(argv[2])
 
-    buzzed_at = 0
+    for event in dev.read_loop():
+        buzz(buzz_id)
 
-    for i, event in enumerate(dev.read_loop()):
-        print i
-        now_time = time.time()
-        if buzz_id != -1 or now_time - buzzed_at >= 2:
-            buzz(buzz_id)
-            buzzed_at = now_time
 if __name__ == "__main__":
     main()
