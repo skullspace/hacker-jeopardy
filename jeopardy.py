@@ -40,14 +40,11 @@ MIN_QUESTION_TIME = 2
 questions_file = 'questions.json'
 PERSIST_FILE = 'database.pickle'
 
-with open('buzzin') as f:
-    player_names = list(player_name.strip() for player_name in f )
-
-def make_player_scores(scores):
+def make_player_scores(player_names, scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
                  for a in zip(player_names, scores) )
 
-def edit_names(screen):
+def edit_names(screen, player_names):
     height, width = screen.getmaxyx()
     
     player_codes = tuple(ord(str(a)) for a in range(len(player_names)))
@@ -78,7 +75,8 @@ def edit_scores(screen, scores):
                     break
             break
 
-def run_questions_menu(screen, questions, answered_questions, scores):
+def run_questions_menu(screen, questions, answered_questions, player_names,
+                       scores):
     selected_question = [0, 100]
 
     # initialize selected question bounds
@@ -87,7 +85,7 @@ def run_questions_menu(screen, questions, answered_questions, scores):
 
     draw_window_grid_and_refresh(
         screen, questions, selected_question, answered_questions,
-        make_player_scores(scores) )
+        make_player_scores(player_names, scores) )
 
     while True:
         event = screen.getch()
@@ -120,22 +118,23 @@ def run_questions_menu(screen, questions, answered_questions, scores):
                 # 0 through n-1 indexed and calucated by adding 1 and multipling
                 # by 100 or whatever. (change to *200 for modern jeopardy..)
                 selected_question[1]*100//100,
-                selected_question, answered_questions, scores
+                selected_question, answered_questions, player_names, scores
                 )
 
         elif event == ord("e"):
             edit_scores(screen, scores)
-            save_database(answered_questions, scores)
+            save_database(answered_questions, player_names, scores)
         elif event == ord("n"):
-            edit_names(screen)
+            edit_names(screen, player_names)
+            save_database(answered_questions, player_names, scores)
 
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions,
-            make_player_scores(scores) )
+            make_player_scores(player_names, scores) )
 
 def run_question(
     screen, category, question, answer, question_score, 
-    selected_question, answered_questions, scores):
+    selected_question, answered_questions, player_names, scores):
 
     pre_question = (
         question if not SHOW_CATEGORY
@@ -151,9 +150,9 @@ def run_question(
 
         if event == ord('s'):
             answered_questions.add( tuple(selected_question) )
-            save_database(answered_questions, scores)
+            save_database(answered_questions, player_names, scores)
             run_buzzin_attempts(screen, question, answer, question_score,
-                                answered_questions, scores)
+                                answered_questions, player_names, scores)
             return True
 
         elif event == ord(" "):
@@ -175,15 +174,16 @@ def main(screen):
     with open(questions_file) as f:
         questions = json.load(f)
 
-    answered_questions, scores = load_database(questions)
+    answered_questions, player_names, scores = load_database(questions)
 
-    run_questions_menu(screen, questions, answered_questions, scores)
+    run_questions_menu(screen, questions, answered_questions, player_names,
+                       scores)
     screen.clear()
 
 # get the buzzed in player name
 def run_buzzin_attempts(
     screen, question, answer, question_score,
-    answered_questions, scores):
+    answered_questions, player_names, scores):
     state = QUESTION_PRE_BUZZ # was QUESTION_PRE_BUZZ_EXIT until now
     state_start_time = time.time()
 
@@ -231,12 +231,12 @@ def run_buzzin_attempts(
 
             if run_wait_for_right_wrong(screen):
                 adjust_score_and_save(
-                    buzzed_in_player_id, answered_questions,
+                    buzzed_in_player_id, answered_questions, player_names,
                     scores, question_score)
                 state = QUESTION_ANSWERED_RIGHT
             else:
                 adjust_score_and_save(
-                    buzzed_in_player_id, answered_questions,
+                    buzzed_in_player_id, answered_questions, player_names,
                     scores, -question_score)
 
                 # if all the players have had a chance
@@ -266,20 +266,24 @@ def run_wait_for_right_wrong(screen):
 def load_database(questions):
     if not exists(PERSIST_FILE):
         attempted_questions = set()
+        with open('buzzin') as f:
+            player_names = list(player_name.strip() for player_name in f )
+        #TODO: Combine names and scores into one datastructure
         scores = [0,] * len(player_names)
     else:
         with open(PERSIST_FILE) as f:
-            attempted_questions, scores = load(f)
+            attempted_questions, player_names, scores = load(f)
 
-    return attempted_questions, scores
+    return attempted_questions, player_names, scores
 
-def adjust_score_and_save(player_id, attempted_questions, scores, adj):
+def adjust_score_and_save(player_id, attempted_questions, player_names,
+                          scores, adj):
     scores[player_id] += adj
-    save_database(attempted_questions, scores)
+    save_database(attempted_questions, player_names, scores)
 
-def save_database(attempted_questions, scores):
+def save_database(attempted_questions, player_names, scores):
     with open(PERSIST_FILE, 'w') as f:
-        dump( (attempted_questions, scores), f )
+        dump( (attempted_questions, player_names, scores), f )
 
 if __name__=='__main__':
     curses.wrapper(main)
