@@ -41,12 +41,24 @@ questions_file = 'questions.json'
 PERSIST_FILE = 'database.pickle'
 
 with open('buzzin') as f:
-    player_names = tuple( player_name.strip()
-                          for player_name in f )
+    player_names = list(player_name.strip() for player_name in f )
 
 def make_player_scores(scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
                  for a in zip(player_names, scores) )
+
+def edit_names(screen):
+    height, width = screen.getmaxyx()
+    
+    player_codes = tuple(ord(str(a)) for a in range(len(player_names)))
+    while True:
+        event = screen.getch()
+        if event in player_codes:
+            code = int(chr(event))
+            curses.echo()
+            player_names[code] = screen.getstr(height-1, 2)
+            curses.noecho()
+            break
 
 def edit_scores(screen, scores):
     height, width = screen.getmaxyx()
@@ -114,6 +126,8 @@ def run_questions_menu(screen, questions, answered_questions, scores):
         elif event == ord("e"):
             edit_scores(screen, scores)
             save_database(answered_questions, scores)
+        elif event == ord("n"):
+            edit_names(screen)
 
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions,
