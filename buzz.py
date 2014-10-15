@@ -8,15 +8,18 @@
 # without any warranty.
 # http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html
 # @author Mark Jenkins <mark@markjenkins.ca>
+# @author Jay Smith <jayvsmith@gmail.com>
 
-from urllib import urlopen
+import socket
 
 HOST = "localhost"
 PORT = 8000
 
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
 def buzz(buzz_number):
     try:
-        urlopen("http://%s:%s/%s" % (HOST, PORT, buzz_number) )
+        s.sendto(str(buzz_number), (HOST, PORT))
     except IOError:
         pass
 
