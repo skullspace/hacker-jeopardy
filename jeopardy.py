@@ -44,10 +44,16 @@ def make_player_scores(player_names, scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
                  for a in zip(player_names, scores) )
 
+def get_player_id_codes(player_names):
+    ORD_OF_ZERO = ord('0')
+    # run through tuple( because range in python 3 won't return a tuple
+    # but an iterator
+    return tuple( range(ORD_OF_ZERO, ORD_OF_ZERO+len(player_names)) )
+
 def edit_names(screen, player_names):
     height, width = screen.getmaxyx()
     
-    player_codes = tuple(ord(str(a)) for a in range(len(player_names)))
+    player_codes = get_player_id_codes(player_names)
     while True:
         event = screen.getch()
         if event in player_codes:
@@ -60,7 +66,7 @@ def edit_names(screen, player_names):
 def edit_scores(screen, scores):
     height, width = screen.getmaxyx()
     
-    score_codes = tuple(ord(str(a)) for a in range(len(scores)))
+    score_codes = get_player_id_codes(scores)
     while True:
         event = screen.getch()
         if event in score_codes:
