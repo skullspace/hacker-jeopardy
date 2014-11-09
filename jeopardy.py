@@ -22,7 +22,7 @@ from wait_4_buzz import wait_4_buzz
 from curses_drawing import \
     (draw_window_grid_and_refresh,
      draw_window_question_prompts_and_refresh,
-     init_colors, draw_splash, 
+     init_colors, draw_splash,
      )
 from beep_sound import beep_for_player
 from question_states import *
@@ -53,7 +53,7 @@ def get_player_id_codes(player_names):
 
 def edit_names(screen, player_names):
     height, width = screen.getmaxyx()
-    
+
     player_codes = get_player_id_codes(player_names)
     while True:
         event = screen.getch()
@@ -66,7 +66,7 @@ def edit_names(screen, player_names):
 
 def edit_scores(screen, scores):
     height, width = screen.getmaxyx()
-    
+
     score_codes = get_player_id_codes(scores)
     while True:
         event = screen.getch()
@@ -141,7 +141,7 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
             make_player_scores(player_names, scores) )
 
 def run_question(
-    screen, category, question, answer, question_score, 
+    screen, category, question, answer, question_score,
     selected_question, answered_questions, player_names, scores, answer_server):
 
     answer_server.current_answer = answer
@@ -149,7 +149,7 @@ def run_question(
     pre_question = (
         question if not SHOW_CATEGORY
         else "%s for %s" % (category, question_score) )
-        
+
     draw_window_question_prompts_and_refresh(
         screen, pre_question,
         player_names, NOBODY_BUZZED,
@@ -173,26 +173,28 @@ def main(screen):
         sys.stderr = open(devnull, 'w')
 
     screen.keypad(1)
-    
+
     # initialize colours
     init_colors()
 
     draw_splash(screen)
     screen.getch()
-    screen.clear()    
+    screen.clear()
 
     answer_server = AnswerServer()
     threading.Thread(target=answer_server.serve_forever).start()
 
-    with open(questions_file) as f:
-        questions = json.load(f)
+    try:
+        with open(questions_file) as f:
+            questions = json.load(f)
 
-    answered_questions, player_names, scores = load_database(questions)
+        answered_questions, player_names, scores = load_database(questions)
 
-    run_questions_menu(screen, questions, answered_questions, player_names,
-                       scores, answer_server)
-    screen.clear()
-    answer_server.shutdown()
+        run_questions_menu(screen, questions, answered_questions, player_names,
+                           scores, answer_server)
+        screen.clear()
+    finally:
+        answer_server.shutdown()
 
 # get the buzzed in player name
 def run_buzzin_attempts(
@@ -202,7 +204,7 @@ def run_buzzin_attempts(
     state_start_time = time.time()
 
     players_allowed = set(
-        (NOBODY_BUZZED,) + 
+        (NOBODY_BUZZED,) +
         tuple( range(len(player_names)) ))
 
     mis_buzz_players = set()
@@ -271,7 +273,7 @@ def run_buzzin_attempts(
 def run_wait_for_right_wrong(screen):
     while True:
         event = screen.getch()
-        
+
         if event == ord('r'):
             return True
         elif event == ord('w'):
