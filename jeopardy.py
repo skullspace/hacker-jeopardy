@@ -10,7 +10,7 @@
 # @author Jeremy Hiebert <jkhiebert@gmail.com>
 # @author Mark Jenkins <mark@markjenkins.ca>
 
-import curses, json, time
+import curses, json, time, threading
 from curses import wrapper
 from pickle import dump, load
 from os.path import exists
@@ -27,6 +27,7 @@ from curses_drawing import \
 from beep_sound import beep_for_player
 from question_states import *
 from debug import SHOW_STANDARD_ERROR
+from answer_server import AnswerServer
 
 PLAYER_SCORE_SEPARATION = ":"
 
@@ -82,7 +83,7 @@ def edit_scores(screen, scores):
             break
 
 def run_questions_menu(screen, questions, answered_questions, player_names,
-                       scores):
+                       scores, answer_server):
     selected_question = [0, 100]
 
     # initialize selected question bounds
@@ -124,7 +125,8 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
                 # 0 through n-1 indexed and calucated by adding 1 and multipling
                 # by 100 or whatever. (change to *200 for modern jeopardy..)
                 selected_question[1]*100//100,
-                selected_question, answered_questions, player_names, scores
+                selected_question, answered_questions, player_names, scores,
+                answer_server
                 )
 
         elif event == ord("e"):
@@ -140,7 +142,9 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
 
 def run_question(
     screen, category, question, answer, question_score, 
-    selected_question, answered_questions, player_names, scores):
+    selected_question, answered_questions, player_names, scores, answer_server):
+
+    answer_server.current_answer = answer
 
     pre_question = (
         question if not SHOW_CATEGORY
@@ -177,14 +181,18 @@ def main(screen):
     screen.getch()
     screen.clear()    
 
+    answer_server = AnswerServer()
+    threading.Thread(target=answer_server.serve_forever).start()
+
     with open(questions_file) as f:
         questions = json.load(f)
 
     answered_questions, player_names, scores = load_database(questions)
 
     run_questions_menu(screen, questions, answered_questions, player_names,
-                       scores)
+                       scores, answer_server)
     screen.clear()
+    answer_server.shutdown()
 
 # get the buzzed in player name
 def run_buzzin_attempts(
