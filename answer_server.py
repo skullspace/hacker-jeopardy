@@ -7,6 +7,7 @@
 # http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html
 # @author Jay Smith <jayvsmith@gmail.com>
 
+import threading
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from debug import HTTP_ANSWER_SERVER_ENABLED
 
@@ -30,14 +31,17 @@ class _AnswerServer(HTTPServer):
         HTTPServer.__init__(self, ('',PORT), _AnswerRequestHandler)
         self.current_answer = "None Yet"
 
+    def serve_answers(self):
+        threading.Thread(target=self.serve_forever).start()
+
 class _DisabledAnswerServer(object):
     #Stub class that does nothing
-    def serve_forever(self):
+    def serve_answers(self):
         return
     def shutdown(self):
         return
 
-def BuildAnswerServer():
+def build_answer_server():
     if HTTP_ANSWER_SERVER_ENABLED:
         return _AnswerServer()
     else:

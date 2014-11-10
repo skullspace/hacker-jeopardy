@@ -10,7 +10,7 @@
 # @author Jeremy Hiebert <jkhiebert@gmail.com>
 # @author Mark Jenkins <mark@markjenkins.ca>
 
-import curses, json, time, threading
+import curses, json, time
 from curses import wrapper
 from pickle import dump, load
 from os.path import exists
@@ -27,7 +27,7 @@ from curses_drawing import \
 from beep_sound import beep_for_player
 from question_states import *
 from debug import SHOW_STANDARD_ERROR
-from answer_server import BuildAnswerServer
+from answer_server import build_answer_server
 
 PLAYER_SCORE_SEPARATION = ":"
 
@@ -181,8 +181,8 @@ def main(screen):
     screen.getch()
     screen.clear()
 
-    answer_server = BuildAnswerServer()
-    threading.Thread(target=answer_server.serve_forever).start()
+    answer_server = build_answer_server()
+    answer_server.serve_answers()
 
     try:
         with open(questions_file) as f:
