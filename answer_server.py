@@ -8,10 +8,11 @@
 # @author Jay Smith <jayvsmith@gmail.com>
 
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
+from debug import HTTP_ANSWER_SERVER_ENABLED
 
 PORT = 80
 
-class AnswerRequestHandler(BaseHTTPRequestHandler):
+class _AnswerRequestHandler(BaseHTTPRequestHandler):
     def do_HEAD(self):
         self.send_response(200)
         self.send_header('content_type', 'text/plain')
@@ -24,8 +25,20 @@ class AnswerRequestHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
         return
 
-class AnswerServer(HTTPServer):
+class _AnswerServer(HTTPServer):
     def __init__(self):
-        HTTPServer.__init__(self, ('',PORT), AnswerRequestHandler)
+        HTTPServer.__init__(self, ('',PORT), _AnswerRequestHandler)
         self.current_answer = "None Yet"
 
+class _DisabledAnswerServer(object):
+    #Stub class that does nothing
+    def serve_forever(self):
+        return
+    def shutdown(self):
+        return
+
+def BuildAnswerServer():
+    if HTTP_ANSWER_SERVER_ENABLED:
+        return _AnswerServer()
+    else:
+        return _DisabledAnswerServer()

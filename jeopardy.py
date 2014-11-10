@@ -27,7 +27,7 @@ from curses_drawing import \
 from beep_sound import beep_for_player
 from question_states import *
 from debug import SHOW_STANDARD_ERROR
-from answer_server import AnswerServer
+from answer_server import BuildAnswerServer
 
 PLAYER_SCORE_SEPARATION = ":"
 
@@ -181,7 +181,7 @@ def main(screen):
     screen.getch()
     screen.clear()
 
-    answer_server = AnswerServer()
+    answer_server = BuildAnswerServer()
     threading.Thread(target=answer_server.serve_forever).start()
 
     try:
