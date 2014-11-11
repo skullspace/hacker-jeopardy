@@ -10,7 +10,7 @@
 # @author Jeremy Hiebert <jkhiebert@gmail.com>
 # @author Mark Jenkins <mark@markjenkins.ca>
 
-import curses, json, time
+import curses, json, time, ConfigParser
 from curses import wrapper
 from pickle import dump, load
 from os.path import exists
@@ -26,7 +26,6 @@ from curses_drawing import \
      )
 from beep_sound import beep_for_player
 from question_states import *
-from debug import SHOW_STANDARD_ERROR
 from answer_server import build_answer_server
 
 PLAYER_SCORE_SEPARATION = ":"
@@ -38,8 +37,11 @@ NOBODY_BUZZED = -1
 # seconds how long the host must wait before revealing the question's answer
 MIN_QUESTION_TIME = 2
 
-questions_file = 'questions.json'
-PERSIST_FILE = 'database.pickle'
+Config = ConfigParser.ConfigParser()
+Config.read("config.ini")
+SHOW_STANDARD_ERROR = Config.getboolean("core", "show_standard_error")
+QUESTIONS_FILE = Config.get("core", "questions_file")
+PERSIST_FILE = Config.get("core", "persist_file")
 
 def make_player_scores(player_names, scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
@@ -185,7 +187,7 @@ def main(screen):
     answer_server.serve_answers()
 
     try:
-        with open(questions_file) as f:
+        with open(QUESTIONS_FILE) as f:
             questions = json.load(f)
 
         answered_questions, player_names, scores = load_database(questions)

@@ -10,10 +10,13 @@
 # @author Mark Jenkins <mark@markjenkins.ca>
 # @author Jay Smith <jayvsmith@gmail.com>
 
-import socket
+import socket, ConfigParser
 
-HOST = "localhost"
-PORT = 8000
+Config = ConfigParser.ConfigParser()
+Config.read("config.ini")
+
+HOST = Config.get("buzzer", "server_ip")
+PORT = Config.getint("buzzer", "udp_port")
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 

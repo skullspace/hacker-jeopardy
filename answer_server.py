@@ -7,11 +7,8 @@
 # http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html
 # @author Jay Smith <jayvsmith@gmail.com>
 
-import threading
+import threading, ConfigParser
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-from debug import HTTP_ANSWER_SERVER_ENABLED
-
-PORT = 80
 
 class _AnswerRequestHandler(BaseHTTPRequestHandler):
     def do_HEAD(self):
@@ -27,8 +24,8 @@ class _AnswerRequestHandler(BaseHTTPRequestHandler):
         return
 
 class _AnswerServer(HTTPServer):
-    def __init__(self):
-        HTTPServer.__init__(self, ('',PORT), _AnswerRequestHandler)
+    def __init__(self, port):
+        HTTPServer.__init__(self, ('',port), _AnswerRequestHandler)
         self.current_answer = "None Yet"
 
     def serve_answers(self):
@@ -42,7 +39,12 @@ class _DisabledAnswerServer(object):
         return
 
 def build_answer_server():
-    if HTTP_ANSWER_SERVER_ENABLED:
-        return _AnswerServer()
+    config = ConfigParser.ConfigParser()
+    config.read("config.ini")
+    enabled = config.getboolean("answer server", "enabled")
+    port = config.getint("answer server", "tcp_port")
+
+    if enabled:
+        return _AnswerServer(port)
     else:
         return _DisabledAnswerServer()
