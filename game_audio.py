@@ -13,21 +13,30 @@ config.read("config.ini")
 class _NoAudio(object):
     def beep_for_player(self, i):
         return
+    def everybody_wrong(self):
+        return
+    def wrong(self):
+        return
 
 class _PygameAudio(_NoAudio):
     def __init__(self):
         pygame.mixer.init()
         buzz_path = config.get("audio", "player_buzzed")
         wrong_answer_path = config.get("audio", "wrong_answer")
+        everybody_wrong_path = config.get("audio","all_wrong")
 
         self.player_buzz = pygame.mixer.Sound(buzz_path)
         self.wrong_answer = pygame.mixer.Sound(wrong_answer_path)
+        self.all_wrong = pygame.mixer.Sound(everybody_wrong_path)
 
     def beep_for_player(self, i):
-        if i > 0:
-            self.player_buzz.play()
-        else: #host buzzer
-            self.wrong_answer.play()
+        self.player_buzz.play()
+
+    def wrong(self):
+        self.wrong_answer.play()
+
+    def everybody_wrong(self):
+        self.all_wrong.play()
 
 class _BeepAudio(_NoAudio):
     def __init__(self, beep_command):
@@ -43,6 +52,9 @@ class _BeepAudio(_NoAudio):
                    if i not in self.beep_table
                    else self.beep_table[i])
         system("%s -r %s -l %s -f %s" % (self.beep_command, r, l, f))
+
+    def everybody_wrong(self):
+        self.beep_for_player(-1)
 
 def command_exists(cmd):
     return any(exists(join(pth, cmd))

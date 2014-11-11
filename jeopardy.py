@@ -230,14 +230,13 @@ def run_buzzin_attempts(
 
             # everything below here is state != QUESTION_PRE_BUZZ
             # thanks to continue above
-
-            audio.beep_for_player(buzzed_in_player_id)
-
             if buzzed_in_player_id == NOBODY_BUZZED:
                 # Make sure players have had some time to answer first
                 if time.time() - state_start_time > MIN_QUESTION_TIME:
+                    audio.everybody_wrong()
                     state = QUESTION_EVERYBODY_WRONG
             else: # else a real player
+                audio.beep_for_player(buzzed_in_player_id)
                 players_allowed.remove(buzzed_in_player_id)
                 state = QUESTION_WAIT_ANSWER
         else:
@@ -254,11 +253,12 @@ def run_buzzin_attempts(
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions, player_names,
                     scores, -question_score)
-
                 # if all the players have had a chance
                 if len(players_allowed) == 1:
+                    audio.everybody_wrong()
                     state = QUESTION_EVERYBODY_WRONG
                 else:
+                    audio.wrong()
                     state = QUESTION_BUZZ_OPEN_AFTER_WRONG
 
         if previous_state != state:
