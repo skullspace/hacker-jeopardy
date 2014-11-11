@@ -24,24 +24,22 @@ from curses_drawing import \
      draw_window_question_prompts_and_refresh,
      init_colors, draw_splash,
      )
-from beep_sound import beep_for_player
+from game_audio import build_audio_engine
 from question_states import *
 from answer_server import build_answer_server
 
+audio = build_audio_engine()
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
+
 PLAYER_SCORE_SEPARATION = ":"
-
 SHOW_CATEGORY = True
-
 NOBODY_BUZZED = -1
-
 # seconds how long the host must wait before revealing the question's answer
 MIN_QUESTION_TIME = 2
-
-Config = ConfigParser.ConfigParser()
-Config.read("config.ini")
-SHOW_STANDARD_ERROR = Config.getboolean("core", "show_standard_error")
-QUESTIONS_FILE = Config.get("core", "questions_file")
-PERSIST_FILE = Config.get("core", "persist_file")
+SHOW_STANDARD_ERROR = config.getboolean("core", "show_standard_error")
+QUESTIONS_FILE = config.get("core", "questions_file")
+PERSIST_FILE = config.get("core", "persist_file")
 
 def make_player_scores(player_names, scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
@@ -233,7 +231,7 @@ def run_buzzin_attempts(
             # everything below here is state != QUESTION_PRE_BUZZ
             # thanks to continue above
 
-            beep_for_player(buzzed_in_player_id)
+            audio.beep_for_player(buzzed_in_player_id)
 
             if buzzed_in_player_id == NOBODY_BUZZED:
                 # Make sure players have had some time to answer first
