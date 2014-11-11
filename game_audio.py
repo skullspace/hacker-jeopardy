@@ -17,6 +17,8 @@ class _NoAudio(object):
         return
     def wrong(self):
         return
+    def correct(self):
+        return
 
 class _PygameAudio(_NoAudio):
     def __init__(self):
@@ -24,19 +26,21 @@ class _PygameAudio(_NoAudio):
         buzz_path = config.get("audio", "player_buzzed")
         wrong_answer_path = config.get("audio", "wrong_answer")
         everybody_wrong_path = config.get("audio","all_wrong")
+        correct_answer_path = config.get("audio", "correct_answer")
 
         self.player_buzz = pygame.mixer.Sound(buzz_path)
         self.wrong_answer = pygame.mixer.Sound(wrong_answer_path)
         self.all_wrong = pygame.mixer.Sound(everybody_wrong_path)
+        self.correct_answer = pygame.mixer.Sound(correct_answer_path)
 
     def beep_for_player(self, i):
         self.player_buzz.play()
-
     def wrong(self):
         self.wrong_answer.play()
-
     def everybody_wrong(self):
         self.all_wrong.play()
+    def correct(self):
+        self.correct_answer.play()
 
 class _BeepAudio(_NoAudio):
     def __init__(self, beep_command):
@@ -70,3 +74,4 @@ def build_audio_engine():
         return _BeepAudio(beep_command)
     else:
         return _NoAudio()
+

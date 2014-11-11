@@ -249,6 +249,7 @@ def run_buzzin_attempts(
                     buzzed_in_player_id, answered_questions, player_names,
                     scores, question_score)
                 state = QUESTION_ANSWERED_RIGHT
+                audio.correct()
             else:
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions, player_names,
