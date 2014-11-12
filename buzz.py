@@ -12,11 +12,11 @@
 
 import socket, ConfigParser
 
-Config = ConfigParser.ConfigParser()
-Config.read("config.ini")
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
 
-HOST = Config.get("buzzer", "server_ip")
-PORT = Config.getint("buzzer", "udp_port")
+HOST = config.get("buzzer", "server_ip")
+PORT = config.getint("buzzer", "udp_port")
 
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
