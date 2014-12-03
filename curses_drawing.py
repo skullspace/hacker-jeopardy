@@ -295,7 +295,8 @@ def draw_window_question_prompts_and_refresh(
             (" (r)ight", CURSES_COLOUR_PAIR_REALLY_GOOD,
              " (w)rong", CURSES_COLOUR_PAIR_BAD_FEEL, ),
         QUESTION_BUZZ_OPEN_AFTER_WRONG:
-            (BUZZ_NOW_MSG, CURSES_COLOUR_PAIR_MEH),
+            (" wrong! ", CURSES_COLOUR_PAIR_BAD_FEEL,
+             BUZZ_NOW_MSG, CURSES_COLOUR_PAIR_MEH),
         QUESTION_ANSWERED_RIGHT: None,
         QUESTION_EVERYBODY_WRONG: None,
         }[state]
