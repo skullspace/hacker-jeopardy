@@ -17,7 +17,7 @@ from question_states import *
 SPLASH_TEXT = "Hacker Jeopardy!!!"
 SPLASH_ANY_KEY_MSG = " any key to continue"
 
-BUZZ_NOW_MSG = " waiting for buzz "
+BUZZ_NOW_MSG = " buzz in now! "
 
 # has to be greater than 1
 BOT_INSTRUCT_OFFSET = 1
