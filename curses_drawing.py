@@ -17,6 +17,8 @@ from question_states import *
 SPLASH_TEXT = "Hacker Jeopardy!!!"
 SPLASH_ANY_KEY_MSG = " any key to continue"
 
+BUZZ_NOW_MSG = " waiting for buzz "
+
 # has to be greater than 1
 BOT_INSTRUCT_OFFSET = 1
 
@@ -288,11 +290,12 @@ def draw_window_question_prompts_and_refresh(
             (" spc to ret, s to show ", CURSES_COLOUR_PAIR_MEH),
         QUESTION_PRE_BUZZ: None,
         QUESTION_BUZZ_OPEN:
-            (" waiting for buzz ", CURSES_COLOUR_PAIR_GOOD_FEEL),
+            (BUZZ_NOW_MSG, CURSES_COLOUR_PAIR_GOOD_FEEL),
         QUESTION_WAIT_ANSWER:
             (" (r)ight", CURSES_COLOUR_PAIR_REALLY_GOOD,
              " (w)rong", CURSES_COLOUR_PAIR_BAD_FEEL, ),
-        QUESTION_BUZZ_OPEN_AFTER_WRONG: None,
+        QUESTION_BUZZ_OPEN_AFTER_WRONG:
+            (BUZZ_NOW_MSG, CURSES_COLOUR_PAIR_MEH),
         QUESTION_ANSWERED_RIGHT: None,
         QUESTION_EVERYBODY_WRONG: None,
         }[state]
