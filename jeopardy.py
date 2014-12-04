@@ -144,7 +144,7 @@ def do_final_jeopardy(screen, player_names, scores):
         screen, config.get("core", "final_category"), FINAL_STATE_CATEGORY,
         player_names, scores )
     run_until_space(screen)
-    
+
     question = \
         open(config.get("core", "final_question_file")).readline().strip()
     answer = open(config.get("core", "final_answer_file")).readline().strip()
@@ -288,7 +288,7 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
             make_player_scores(player_names, scores) )
 
 def run_question(
-    screen, category, question, answer, is_dd, question_score, 
+    screen, category, question, answer, is_dd, question_score,
     selected_question, answered_questions, player_names, scores,
     daily_doubles, answer_server):
 
@@ -351,7 +351,8 @@ def run_question(
 
             else:
                 run_buzzin_attempts(screen, question, answer, question_score,
-                                    answered_questions, player_names, scores)
+                                    answered_questions, player_names, scores,
+                                    daily_doubles)
             return True
 
         elif event == ord(" "):
@@ -389,7 +390,7 @@ def main(screen):
 # get the buzzed in player name
 def run_buzzin_attempts(
     screen, question, answer, question_score,
-    answered_questions, player_names, scores):
+    answered_questions, player_names, scores, daily_doubles):
     state = QUESTION_PRE_BUZZ # was QUESTION_PRE_BUZZ_EXIT until now
     state_start_time = time.time()
 
@@ -502,10 +503,10 @@ def generate_daily_double_positions(questions):
         # many times.
         # Multiplying a tuple by a constant int is fun!
         # As is correctly making the arguments to range
-        daily_double_distrib.extend(    
+        daily_double_distrib.extend(
             tuple(range(
                     len(DAILY_DOUBLE_ROW_STATISTIC),
-                    len(DAILY_DOUBLE_ROW_STATISTIC) + 
+                    len(DAILY_DOUBLE_ROW_STATISTIC) +
                     num_rows - len(DAILY_DOUBLE_ROW_STATISTIC),
                     ) )
             * DAILY_DOUBLE_ROW_STATISTIC[-1] # last statistic
