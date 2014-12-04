@@ -14,6 +14,10 @@ from string import center
 
 from question_states import *
 
+(FINAL_STATE_BEGIN, FINAL_STATE_CATEGORY, FINAL_STATE_QUESTION,
+ FINAL_STATE_GO_AROUND, FINAL_STATE_GO_AROUND_ANSWER,
+ FINAL_STATE_ALL_SCORES ) = range(6)
+
 SPLASH_TEXT = "Hacker Jeopardy!!!"
 SPLASH_ANY_KEY_MSG = " any key to continue"
 
@@ -327,3 +331,27 @@ def draw_daily_double_splash(screen, player_names, player_scores):
         screen.addstr(height-i, 2, "%s : %s" % (player_name, player_score),
                       CURSES_COLOUR_PAIR_MEH )
     screen.refresh()
+
+def draw_final_jeopardy_splash(screen, msg, final_state,
+                               player_names, player_scores):
+    screen.clear()
+    height, width = screen.getmaxyx()
+
+    color = {
+        FINAL_STATE_BEGIN: COLOUR_PAIR_BAD_FEEL,
+        FINAL_STATE_CATEGORY: COLOUR_PAIR_GOOD_FEEL,
+        FINAL_STATE_QUESTION: COLOUR_PAIR_MAX_CONTRAST,
+        FINAL_STATE_GO_AROUND: COLOUR_PAIR_GOOD_FEEL,
+        FINAL_STATE_GO_AROUND_ANSWER: COLOUR_PAIR_REALLY_GOOD,
+        FINAL_STATE_ALL_SCORES: COLOUR_PAIR_GOOD_FEEL,
+        }[final_state]
+
+    text_in_screen_center(screen, msg, color=color)
+    for i, (player_score, player_name) in enumerate(
+        sorted(zip(player_scores, player_names),
+               reverse=True),
+        1):
+        screen.addstr(height-i-1, 2, "%s: %s" % (player_name, player_score),
+                      CURSES_COLOUR_PAIR_MEH )
+    screen.refresh()
+

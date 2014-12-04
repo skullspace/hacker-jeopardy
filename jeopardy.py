@@ -24,6 +24,10 @@ from curses_drawing import \
     (draw_window_grid_and_refresh,
      draw_window_question_prompts_and_refresh,
      init_colors, draw_splash, draw_daily_double_splash,
+     draw_final_jeopardy_splash,
+     FINAL_STATE_BEGIN, FINAL_STATE_CATEGORY, FINAL_STATE_QUESTION,
+     FINAL_STATE_GO_AROUND, FINAL_STATE_GO_AROUND_ANSWER,
+     FINAL_STATE_ALL_SCORES
      )
 from game_audio import build_audio_engine
 from question_states import *
@@ -82,15 +86,20 @@ def edit_scores(screen, scores):
         event = screen.getch()
         if event in score_codes:
             code = int(chr(event))
-            curses.echo()
-            while True:
-                try:
-                    scores[code] += int( screen.getstr(height-1, 2) )
-                except ValueError: pass
-                else:
-                    curses.noecho()
-                    break
+            scores[code] += edit_score_prompt(screen, code)
             break
+
+def edit_score_prompt(screen, code):
+    height, width = screen.getmaxyx()
+
+    curses.echo()
+    while True:
+        try:
+            score_change = int( screen.getstr(height-1, 2) )
+        except ValueError: pass
+        else:
+            curses.noecho()
+            return score_change
 
 def pick_dd_player(screen, player_names):
     height, width = screen.getmaxyx()
@@ -126,13 +135,80 @@ def input_dd_player_wager(screen, min_wager, max_wager):
                 curses.noecho()
                 return how_much
 
+def do_final_jeopardy(screen, player_names, scores):
+    draw_final_jeopardy_splash(
+        screen, "Final Jeopardy!", FINAL_STATE_BEGIN,
+        player_names, scores)
+    run_until_space(screen)
+    draw_final_jeopardy_splash(
+        screen, config.get("core", "final_category"), FINAL_STATE_CATEGORY,
+        player_names, scores )
+    run_until_space(screen)
+    
+    question = \
+        open(config.get("core", "final_question_file")).readline().strip()
+    answer = open(config.get("core", "final_answer_file")).readline().strip()
+
+    draw_final_jeopardy_splash(
+        screen,
+        question,
+        FINAL_STATE_QUESTION,
+        player_names, scores )
+    run_until_space(screen)
+
+    state = FINAL_STATE_GO_AROUND
+    q_or_a = question
+    for score, player_code, player_name in sorted(zip(
+            tuple(scores), # make a copy of scores as we're changing in place
+            tuple( range(len(player_names)) ),
+            player_names,
+            ) ):
+        if  score > 0:
+            draw_final_jeopardy_splash(
+                screen,
+                q_or_a,
+                state,
+                (player_name,), (score,) )
+            delta = -1
+            while not (0<= delta <= score):
+                delta = edit_score_prompt(screen, player_code)
+            scores[player_code] += delta
+            if delta > 0:
+                state = FINAL_STATE_GO_AROUND_ANSWER
+                q_or_a = answer
+            draw_final_jeopardy_splash(
+                screen,
+                q_or_a,
+                state,
+                player_names, scores )
+            run_until_space(screen)
+
+    winning_score = max(scores)
+    winners = [ player_name
+                for score, player_name in zip(scores, player_names)
+                if score == winning_score ]
+
+    draw_final_jeopardy_splash(
+        screen, "The winner is "+ ", ".join(winners) + "!",
+        FINAL_STATE_ALL_SCORES,
+        player_names, scores )
+    run_until_space(screen)
+
+    draw_final_jeopardy_splash(
+        screen, "Thanks for playing. Happy Hacking!",
+        FINAL_STATE_ALL_SCORES,
+        player_names, scores )
+    run_until_space(screen)
 
 def run_questions_menu(screen, questions, answered_questions, player_names,
                        scores, daily_doubles, answer_server):
+    number_of_rows = len(questions[0]["questions"])
+    total_avail_questions = len(questions) * number_of_rows
+
     selected_question = [0, 100]
 
     # initialize selected question bounds
-    max_question = int(len(questions[0]["questions"]) * 100)
+    max_question = number_of_rows * 100
     max_category = len(questions) - 1
 
     draw_window_grid_and_refresh(
@@ -191,6 +267,12 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
                 # remember we want to put in wrong penalities right away
                 save_database(answered_questions, player_names,
                               scores, daily_doubles)
+
+                if ( len(answered_questions) >= total_avail_questions):
+                    # should never answer more questions then we have...
+                    assert( len(answered_questions) == total_avail_questions)
+                    do_final_jeopardy(screen, player_names, scores)
+                    break
 
         elif event == ord("e"):
             edit_scores(screen, scores)
