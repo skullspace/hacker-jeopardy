@@ -112,13 +112,15 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
             if selected_question[0] > 0:
                 selected_question[0] -= 1
         elif event == ord(" "):
+            # that division arithmatic drives me nuts...
+            question_cat, question_row = (
+                selected_question[0], selected_question[1]//100-1)
 
             selected_question_dict = \
-                questions[selected_question[0]]["questions"][
-                selected_question[1]//100-1]
+                questions[question_cat]["questions"][question_row]
             run_question(
                 screen,
-                questions[selected_question[0]]["name"],
+                questions[question_cat]["name"],
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
                 # documenting the silly convention here, someday this should be
