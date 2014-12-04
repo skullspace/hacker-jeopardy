@@ -267,6 +267,9 @@ def run_buzzin_attempts(
 
     draw_window_question_prompts_and_refresh(
         screen, answer, player_names, buzzed_in_player_id, state=state )
+    run_until_space(screen)
+
+def run_until_space(screen):
     while True:
         if screen.getch() == ord(' '):
             break
