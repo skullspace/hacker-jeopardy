@@ -1,0 +1,8 @@
+buzz2.wav, wrong.wav, and correct.wav is by Betrof[1][2] and is licensed under CC BY 3.0[3]
+fail-jingle-stereo-mix.wav[4] is by Tobiasz 'unfa' Karoń[5] and is also licensed under CC BY 3.0
+
+[1] bertrof@hotmail.com
+[2] https://www.freesound.org/people/Bertrof/
+[3] http://creativecommons.org/licenses/by/3.0/
+[4] http://www.freesound.org/people/unfa/sounds/181351/
+[5] http://www.freesound.org/people/unfa/
