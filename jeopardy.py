@@ -265,6 +265,15 @@ def run_buzzin_attempts(
         if previous_state != state:
             state_start_time = time.time()
 
+    # state is one of these two,
+    # this approach is a a little more defensive against future changes
+    # vs just testing == QUESTION_ANSWERED_WRONG outright
+    if state != QUESTION_ANSWERED_RIGHT:
+        assert(state == QUESTION_EVERYBODY_WRONG)
+        draw_window_question_prompts_and_refresh(
+            screen, question, player_names, buzzed_in_player_id, state=state )
+        run_until_space(screen)
+
     draw_window_question_prompts_and_refresh(
         screen, answer, player_names, buzzed_in_player_id, state=state )
     run_until_space(screen)

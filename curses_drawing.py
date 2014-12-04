@@ -298,7 +298,8 @@ def draw_window_question_prompts_and_refresh(
             (" wrong! ", CURSES_COLOUR_PAIR_BAD_FEEL,
              BUZZ_NOW_MSG, CURSES_COLOUR_PAIR_MEH),
         QUESTION_ANSWERED_RIGHT: None,
-        QUESTION_EVERYBODY_WRONG: None,
+        QUESTION_EVERYBODY_WRONG: (" wrong!",  CURSES_COLOUR_PAIR_BAD_FEEL,
+                                   " audience?", CURSES_COLOUR_PAIR_MEH),
         }[state]
     if msg_stuff != None:
         for msg, msg_color_pair in zip(*[iter(msg_stuff)]*2 ):
