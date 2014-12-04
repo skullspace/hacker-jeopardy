@@ -16,13 +16,14 @@ from pickle import dump, load
 from os.path import exists
 from os import devnull
 import sys
+from random import sample, choice
 
 # from this project
 from wait_4_buzz import wait_4_buzz
 from curses_drawing import \
     (draw_window_grid_and_refresh,
      draw_window_question_prompts_and_refresh,
-     init_colors, draw_splash,
+     init_colors, draw_splash, draw_daily_double_splash,
      )
 from game_audio import build_audio_engine
 from question_states import *
@@ -40,6 +41,15 @@ MIN_QUESTION_TIME = 2
 SHOW_STANDARD_ERROR = config.getboolean("core", "show_standard_error")
 QUESTIONS_FILE = config.get("core", "questions_file")
 PERSIST_FILE = config.get("core", "persist_file")
+
+# traditionally 1 in the first round and 2 in the second, but we're only doing
+# single rounds so make it two
+# must not exceed the number of categories
+NUM_DAILY_DOUBLES = 2
+
+MIN_DAILY_DOUBLE_WAGER = 5
+# highest category value
+MAX_DAILY_DOUBLE_FOR_NEG = 500
 
 def make_player_scores(player_names, scores):
     return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
@@ -82,8 +92,43 @@ def edit_scores(screen, scores):
                     break
             break
 
+def pick_dd_player(screen, player_names):
+    height, width = screen.getmaxyx()
+
+    player_codes = get_player_id_codes(player_names)
+    while True:
+        event = screen.getch()
+        if event == ord(" "):
+            return None
+        elif event in player_codes:
+            return int(chr(event))
+
+            curses.echo()
+            while True:
+                try:
+                    how_much = int( screen.getstr(height-1, 2) )
+                except ValueError: pass
+                else:
+                    curses.noecho()
+                    break
+
+
+def input_dd_player_wager(screen, min_wager, max_wager):
+    height, width = screen.getmaxyx()
+
+    curses.echo()
+    while True:
+        try:
+            how_much = int( screen.getstr(height-1, 2) )
+        except ValueError: pass
+        else:
+            if min_wager <= how_much <= max_wager:
+                curses.noecho()
+                return how_much
+
+
 def run_questions_menu(screen, questions, answered_questions, player_names,
-                       scores, answer_server):
+                       scores, daily_doubles, answer_server):
     selected_question = [0, 100]
 
     # initialize selected question bounds
@@ -118,39 +163,76 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
 
             selected_question_dict = \
                 questions[question_cat]["questions"][question_row]
-            run_question(
+
+            is_dd = (question_cat, question_row) in daily_doubles
+
+            question_was_shown = run_question(
                 screen,
                 questions[question_cat]["name"],
                 selected_question_dict["question"],
                 selected_question_dict["answer"],
+                is_dd,
                 # documenting the silly convention here, someday this should be
                 # 0 through n-1 indexed and calucated by adding 1 and multipling
                 # by 100 or whatever. (change to *200 for modern jeopardy..)
                 selected_question[1]*100//100,
-                selected_question, answered_questions, player_names, scores,
+                selected_question, answered_questions, player_names,
+                scores, daily_doubles,
                 answer_server
                 )
+            if question_was_shown:
+                if is_dd:
+                    daily_doubles.remove( (question_cat, question_row) )
+                answered_questions.add( tuple(selected_question) )
+                save_database(answered_questions, player_names,
+                              scores, daily_doubles)
+                # perhaps other saving could be done here and not
+                # redundantly done in some of the sub-calls... but
+                # remember we want to put in wrong penalities right away
+                save_database(answered_questions, player_names,
+                              scores, daily_doubles)
 
         elif event == ord("e"):
             edit_scores(screen, scores)
-            save_database(answered_questions, player_names, scores)
+            save_database(answered_questions, player_names,
+                          scores, daily_doubles)
         elif event == ord("n"):
             edit_names(screen, player_names)
-            save_database(answered_questions, player_names, scores)
+            save_database(answered_questions, player_names,
+                          scores, daily_doubles)
 
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions,
             make_player_scores(player_names, scores) )
 
 def run_question(
-    screen, category, question, answer, question_score,
-    selected_question, answered_questions, player_names, scores, answer_server):
+    screen, category, question, answer, is_dd, question_score, 
+    selected_question, answered_questions, player_names, scores,
+    daily_doubles, answer_server):
 
     answer_server.current_answer = answer
 
-    pre_question = (
-        question if not SHOW_CATEGORY
-        else "%s for %s" % (category, question_score) )
+    if is_dd:
+        draw_daily_double_splash(screen, player_names, scores)
+        pick_player = pick_dd_player(screen, player_names)
+        if pick_player == None:
+            return False
+        else:
+            draw_daily_double_splash(
+                screen,
+                (player_names[pick_player],),
+                (scores[pick_player],) )
+            how_much = input_dd_player_wager(
+                screen,
+                MIN_DAILY_DOUBLE_WAGER,
+                max(scores[pick_player], MAX_DAILY_DOUBLE_FOR_NEG) )
+
+    pre_question = ( question if not SHOW_CATEGORY
+                     else "%s for %s" % (category,
+                                         question_score if not is_dd
+                                         else how_much
+                                         )
+                     )
 
     draw_window_question_prompts_and_refresh(
         screen, pre_question,
@@ -161,10 +243,33 @@ def run_question(
         event = screen.getch()
 
         if event == ord('s'):
-            answered_questions.add( tuple(selected_question) )
-            save_database(answered_questions, player_names, scores)
-            run_buzzin_attempts(screen, question, answer, question_score,
-                                answered_questions, player_names, scores)
+            if is_dd:
+                draw_window_question_prompts_and_refresh(
+                    screen, question, player_names, pick_player,
+                    QUESTION_WAIT_ANSWER)
+                correct = run_wait_for_right_wrong(screen)
+                scores[pick_player] += (
+                    how_much if correct
+                    else -how_much )
+                if correct:
+                    draw_window_question_prompts_and_refresh(
+                        screen, answer, player_names, pick_player,
+                        QUESTION_ANSWERED_RIGHT)
+                else:
+                    draw_window_question_prompts_and_refresh(
+                        screen, question, player_names, pick_player,
+                        QUESTION_EVERYBODY_WRONG)
+                    run_until_space(screen)
+                    draw_window_question_prompts_and_refresh(
+                        screen, answer, player_names, pick_player,
+                        QUESTION_EVERYBODY_WRONG)
+                # wait for space after showing the answer as is the case
+                # in both if and else above
+                run_until_space(screen)
+
+            else:
+                run_buzzin_attempts(screen, question, answer, question_score,
+                                    answered_questions, player_names, scores)
             return True
 
         elif event == ord(" "):
@@ -190,10 +295,11 @@ def main(screen):
         with open(QUESTIONS_FILE) as f:
             questions = json.load(f)
 
-        answered_questions, player_names, scores = load_database(questions)
+        answered_questions, player_names, scores, daily_doubles = \
+            load_database(questions)
 
         run_questions_menu(screen, questions, answered_questions, player_names,
-                           scores, answer_server)
+                           scores, daily_doubles, answer_server)
         screen.clear()
     finally:
         answer_server.shutdown()
@@ -249,13 +355,13 @@ def run_buzzin_attempts(
             if run_wait_for_right_wrong(screen):
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions, player_names,
-                    scores, question_score)
+                    scores, daily_doubles, question_score)
                 state = QUESTION_ANSWERED_RIGHT
                 audio.correct()
             else:
                 adjust_score_and_save(
                     buzzed_in_player_id, answered_questions, player_names,
-                    scores, -question_score)
+                    scores, daily_doubles, -question_score)
                 # if all the players have had a chance
                 if len(players_allowed) == 1:
                     audio.everybody_wrong()
@@ -294,6 +400,42 @@ def run_wait_for_right_wrong(screen):
         elif event == ord('w'):
             return False
 
+def generate_daily_double_positions(questions):
+    num_cat = len(questions)
+    assert(NUM_DAILY_DOUBLES <= num_cat)
+
+    # based on http://j-archive.com/ddstats.php?season=26
+    # but with some minimal probability of row 1 being a daily double added in
+    DAILY_DOUBLE_ROW_STATISTIC = [1, 53, 119, 170, 109]
+    daily_double_distrib = []
+    num_rows = len(questions[0])
+    for i, stat in enumerate(DAILY_DOUBLE_ROW_STATISTIC):
+        if i == num_rows:
+            break
+        daily_double_distrib.extend( (i,) * stat )
+
+    # if we have more rows than our statistical table
+    if num_rows > len(DAILY_DOUBLE_ROW_STATISTIC):
+        # use the last statistic and add all remaining rows in that
+        # many times.
+        # Multiplying a tuple by a constant int is fun!
+        # As is correctly making the arguments to range
+        daily_double_distrib.extend(    
+            tuple(range(
+                    len(DAILY_DOUBLE_ROW_STATISTIC),
+                    len(DAILY_DOUBLE_ROW_STATISTIC) + 
+                    num_rows - len(DAILY_DOUBLE_ROW_STATISTIC),
+                    ) )
+            * DAILY_DOUBLE_ROW_STATISTIC[-1] # last statistic
+            )
+
+    # we sample NUM_DAILY_DOUBLES of the categories because there
+    # can be at most 1 daily double per category, and in each case
+    # chose the row from the row distribution table
+    return [ (cat, choice(daily_double_distrib))
+        for cat in sample(range(num_cat), NUM_DAILY_DOUBLES)
+        ]
+
 def load_database(questions):
     if not exists(PERSIST_FILE):
         attempted_questions = set()
@@ -301,20 +443,21 @@ def load_database(questions):
             player_names = list(player_name.strip() for player_name in f )
         #TODO: Combine names and scores into one datastructure
         scores = [0,] * len(player_names)
+        daily_doubles = generate_daily_double_positions(questions)
     else:
         with open(PERSIST_FILE) as f:
-            attempted_questions, player_names, scores = load(f)
+            attempted_questions, player_names, scores, daily_doubles = load(f)
 
-    return attempted_questions, player_names, scores
+    return attempted_questions, player_names, scores, daily_doubles
 
 def adjust_score_and_save(player_id, attempted_questions, player_names,
-                          scores, adj):
+                          scores, daily_doubles, adj):
     scores[player_id] += adj
-    save_database(attempted_questions, player_names, scores)
+    save_database(attempted_questions, player_names, scores, daily_doubles)
 
-def save_database(attempted_questions, player_names, scores):
+def save_database(attempted_questions, player_names, scores, daily_doubles):
     with open(PERSIST_FILE, 'w') as f:
-        dump( (attempted_questions, player_names, scores), f )
+        dump( (attempted_questions, player_names, scores, daily_doubles), f )
 
 if __name__=='__main__':
     curses.wrapper(main)

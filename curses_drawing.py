@@ -317,3 +317,13 @@ def add_to_screen_if_gt_zero(screen, msg, y, x, curses_color_pair):
     if len(msg)>0:
         screen.addstr(
             y, x, msg, curses_color_pair )
+
+def draw_daily_double_splash(screen, player_names, player_scores):
+    screen.clear()
+    height, width = screen.getmaxyx()
+    text_in_screen_center(screen, "Daily Double!!!", color=COLOUR_PAIR_MEH)
+    for i, (player_name, player_score) in enumerate(reversed(
+        zip(player_names, player_scores) ), 1):
+        screen.addstr(height-i, 2, "%s : %s" % (player_name, player_score),
+                      CURSES_COLOUR_PAIR_MEH )
+    screen.refresh()
