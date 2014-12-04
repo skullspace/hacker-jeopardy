@@ -408,7 +408,7 @@ def generate_daily_double_positions(questions):
     # but with some minimal probability of row 1 being a daily double added in
     DAILY_DOUBLE_ROW_STATISTIC = [1, 53, 119, 170, 109]
     daily_double_distrib = []
-    num_rows = len(questions[0])
+    num_rows = len(questions[0]["questions"])
     for i, stat in enumerate(DAILY_DOUBLE_ROW_STATISTIC):
         if i == num_rows:
             break
