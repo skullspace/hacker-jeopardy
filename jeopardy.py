@@ -470,6 +470,8 @@ def run_buzzin_attempts(
     run_until_space(screen)
 
 def run_until_space(screen):
+    #First flush the buffer that accumulated while waiting for buzzers
+    curses.flushinp()
     while True:
         if screen.getch() == ord(' '):
             break
