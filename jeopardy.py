@@ -56,9 +56,14 @@ MIN_DAILY_DOUBLE_WAGER = 5
 # highest category value
 MAX_DAILY_DOUBLE_FOR_NEG = 500
 
-def make_player_scores(player_names, scores):
-    return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % a
-                 for a in zip(player_names, scores) )
+PLAYER_NAME_GRID_CUTOFF = 3
+
+def make_player_scores(player_names, scores, cutoff=None):
+    if cutoff == None:
+        cutoff = max(len(x) for x in player_names)
+    return tuple(("%s" + PLAYER_SCORE_SEPARATION + "%s") % (
+            name[:cutoff],score)
+                 for name,score in zip(player_names, scores) )
 
 def get_player_id_codes(player_names):
     ORD_OF_ZERO = ord('0')
@@ -218,7 +223,8 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
 
     draw_window_grid_and_refresh(
         screen, questions, selected_question, answered_questions,
-        make_player_scores(player_names, scores) )
+        make_player_scores(player_names, scores,
+                           cutoff=PLAYER_NAME_GRID_CUTOFF) )
 
     while True:
         event = screen.getch()
@@ -290,7 +296,8 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
 
         draw_window_grid_and_refresh(
             screen, questions, selected_question, answered_questions,
-            make_player_scores(player_names, scores) )
+            make_player_scores(player_names, scores,
+                               cutoff=PLAYER_NAME_GRID_CUTOFF) )
 
 def run_question(
     screen, category, question, answer, is_dd, question_score,
