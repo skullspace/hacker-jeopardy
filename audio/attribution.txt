@@ -1,8 +1,12 @@
 buzz2.wav, wrong.wav, and correct.wav is by Betrof[1][2] and is licensed under CC BY 3.0[3]
 failjingle.ogg[4] is by Tobiasz 'unfa' Karoń[5] and is also licensed under CC BY 3.0
+final_question.ogg[6] is the last 32 seconds of Variatio 8 a 2 Clav. (track 9) from the Open Goldberg Variations[7] which has been dedicated to the public domain[8] . Ogg Vorbis file re-encoded from mp3.
 
 [1] bertrof@hotmail.com
 [2] https://www.freesound.org/people/Bertrof/
 [3] http://creativecommons.org/licenses/by/3.0/
 [4] http://www.freesound.org/people/unfa/sounds/181351/
 [5] http://www.freesound.org/people/unfa/
+[6] https://soundcloud.com/open-goldberg/kimiko-ishizaka-goldberg-13
+[7] http://www.opengoldbergvariations.org/
+[8] http://creativecommons.org/publicdomain/zero/1.0/

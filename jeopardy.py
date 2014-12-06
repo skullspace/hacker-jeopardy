@@ -17,6 +17,7 @@ from os.path import exists
 from os import devnull
 import sys
 from random import sample, choice
+from time import sleep
 
 # from this project
 from wait_4_buzz import wait_4_buzz
@@ -154,6 +155,10 @@ def do_final_jeopardy(screen, player_names, scores):
         question,
         FINAL_STATE_QUESTION,
         player_names, scores )
+    run_until_space(screen)
+    audio.final_question()
+    sleep(30)
+    curses.flushinp()
     run_until_space(screen)
 
     state = FINAL_STATE_GO_AROUND
