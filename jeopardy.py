@@ -40,6 +40,7 @@ config.read("config.ini")
 
 PLAYER_SCORE_SEPARATION = ":"
 SHOW_CATEGORY = True
+DISABLE_DD = not SHOW_CATEGORY
 NOBODY_BUZZED = -1
 # seconds how long the host must wait before revealing the question's answer
 MIN_QUESTION_TIME = 2
@@ -251,7 +252,8 @@ def run_questions_menu(screen, questions, answered_questions, player_names,
             selected_question_dict = \
                 questions[question_cat]["questions"][question_row]
 
-            is_dd = (question_cat, question_row) in daily_doubles
+            is_dd = ( (question_cat, question_row) in daily_doubles
+                      and (not DISABLE_DD) )
 
             question_was_shown = run_question(
                 screen,
