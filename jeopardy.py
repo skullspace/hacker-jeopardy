@@ -529,6 +529,7 @@ def load_database(questions):
         #TODO: Combine names and scores into one datastructure
         scores = [0,] * len(player_names)
         daily_doubles = generate_daily_double_positions(questions)
+        save_database(attempted_questions, player_names, scores, daily_doubles)
     else:
         with open(PERSIST_FILE) as f:
             attempted_questions, player_names, scores, daily_doubles = load(f)
