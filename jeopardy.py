@@ -180,9 +180,11 @@ def do_final_jeopardy(screen, player_names, scores):
                 q_or_a,
                 state,
                 (player_name,), (score,) )
-            delta = -1
-            while not (0<= delta <= score):
+            delta = None
+            while True:
                 delta = edit_score_prompt(screen, player_code)
+                if 0<= abs(delta) <= score:
+                    break
             scores[player_code] += delta
             if delta > 0:
                 state = FINAL_STATE_GO_AROUND_ANSWER
