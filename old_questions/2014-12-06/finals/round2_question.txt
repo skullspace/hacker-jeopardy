@@ -1,0 +1,1 @@
+ARM CPUs can switch back and forth to this shorter, simpler machine language

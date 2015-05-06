@@ -1,0 +1,158 @@
+[
+  {
+    "name": "Nicknames",
+    "questions": [
+      {
+        "question": "This SkullSpace member goes by the online name \"iago-x86\"",
+        "answer": "Ron"
+      },
+      {
+        "question": "He's better known as \"Number 1\" on Star Trek: The Next Generation",
+        "answer": "Commander Riker"
+      },
+      {
+        "question": "William Stephenson, a Winnipeg spy and the inspiration for James Bond, used this code name",
+        "answer": "Intrepid"
+      },
+      {
+        "question": "She's known as \"Starbuck\" on Battlestar Galactica",
+        "answer": "Kara Thrace"
+      },
+      {
+        "question": "On the science fiction show Fringe, the parallel-universe version of \"Walter\" was known by this name",
+        "answer": "\"Walternate\""
+      }
+    ],
+    "abrev_name": "Nick"
+  },
+  {
+    "name": "The Law",
+    "questions": [
+      {
+        "question": "IANAL stands for this phrase",
+        "answer": "I am not a lawyer"
+      },
+      {
+        "question": "This US law criminalizes technology used to circumvent DRM",
+        "answer": "DMCA"
+      },
+      {
+        "question": "In the UK, lawyers generally belong to one of these two designations",
+        "answer": "Barrister or Solicitor"
+      },
+      {
+        "question": "This local politician proposed the controversial Protecting Children from Internet Predators Act",
+        "answer": "Vic Toews"
+      },
+      {
+        "question": "This US law was used to threaten Aaron Swartz with 55 years in jail and $4 million in fines",
+        "answer": "CFAA"
+      }
+    ],
+    "abrev_name": "DLaw"
+  },
+  {
+    "name": "90s TV",
+    "questions": [
+      {
+        "question": "The Fresh Prince of Bel-Air is originally from here",
+        "answer": "West Philadelphia"
+      },
+      {
+        "question": "Uncle Jesse helped Bob Sagat raise his three daughters in this city",
+        "answer": "San Francisco"
+      },
+      {
+        "question": "Steve Urkel amused the nation for almost a decade on this show",
+        "answer": "Family Matters"
+      },
+      {
+        "question": "After the stores stopped selling them, Elaine Benes had to ration these contraceptives",
+        "answer": "Sponges"
+      },
+      {
+        "question": "The original group of storytellers on Are You Afraid of the Dark went under this name",
+        "answer": "The Midnight Society"
+      }
+    ],
+    "abrev_name": "90TV"
+  },
+  {
+    "name": "kullSpace",
+    "questions": [
+      {
+        "question": "SkullSpace has weekly meetings on this day",
+        "answer": "Tuesday"
+      },
+      {
+        "question": "SkullSpace movie nights were started by this person",
+        "answer": "Justin Lacko"
+      },
+      {
+        "question": "Thanks to Thor, this is typically done to begin and end SkullSpace meetings",
+        "answer": "Ring the bell"
+      },
+      {
+        "question": "SkullSpace nearly had its first location be beneath this restaurant",
+        "answer": "Peasant Cookery"
+      },
+      {
+        "question": "This music video for this song was partly filmed on SkullSpace's roof",
+        "answer": "Snakes & Ladders"
+      }
+    ],
+    "abrev_name": "SkSp"
+  },
+  {
+    "name": "The Simpsons",
+    "questions": [
+      {
+        "question": "He's the retiree with a long white beard",
+        "answer": "Jasper Beardly"
+      },
+      {
+        "question": "This was the secret ingredient in the Flaming Homer",
+        "answer": "Krusty-brand children's cough syrup"
+      },
+      {
+        "question": "This is the name of the Simpson Family's Cat",
+        "answer": "Snowball II"
+      },
+      {
+        "question": "Grandpa Simpson lives in this retirement home",
+        "answer": "Springfield Retirement Castle"
+      },
+      {
+        "question": "He was in jail for pushing his mother down the stairs (and said that, if he had an opportunity to go back in time, he'd \"certainly reconsider it\")",
+        "answer": "Drederick Tatum"
+      }
+    ],
+    "abrev_name": "Simp"
+  },
+  {
+    "name": "Gaming",
+    "questions": [
+      {
+        "question": "This common character trait reflects how nimble a character is",
+        "answer": "Dexterity"
+      },
+      {
+        "question": "This epic, cooperative board game revolves around collecting clues and preventing a great old one from awakening",
+        "answer": "Arkham Horror"
+      },
+      {
+        "question": "Players of this game build a network, hack into it, and narc on each other",
+        "answer": "Hacker"
+      },
+      {
+        "question": "In Paranoia, the Computer controls the entirety of the primary setting which has this name",
+        "answer": "The Alpha Complex"
+      },
+      {
+        "question": "This private police force patrols the streets of Seattle in Shadowrun",
+        "answer": "Lone Star"
+      }
+    ],
+    "abrev_name": "Gamg"
+  }
+]

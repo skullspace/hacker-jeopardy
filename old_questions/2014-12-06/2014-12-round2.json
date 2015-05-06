@@ -1,0 +1,158 @@
+[
+  {
+    "name": "Your \"Mom\"",
+    "questions": [
+      {
+        "question": "This person is so fat, she has her own postal code",
+        "answer": "Your Mom"
+      },
+      {
+        "question": "This company built Bender, on Futurama",
+        "answer": "Mom's Friendly Robot Company"
+      },
+      {
+        "question": "This CBS TV series, starring Anna Faris, premiered in 2013",
+        "answer": "Mom"
+      },
+      {
+        "question": "This organization in the Harry Potter franchise policies the use of magic",
+        "answer": "Ministry of Magic"
+      },
+      {
+        "question": "This medication is used to treat constipation",
+        "answer": "Milk of Magnesia"
+      }
+    ],
+    "abrev_name": "Mom"
+  },
+  {
+    "name": "Identify That Constant!",
+    "questions": [
+      {
+        "question": "This file format starts with \"\\x89PNG\\r\\n\\x1a\\n\"",
+        "answer": "PNG"
+      },
+      {
+        "question": "This file format starts with \"PK\\x03\\x04\"",
+        "answer": "ZIP"
+      },
+      {
+        "question": "This file format starts with \"D0CF11E0\"",
+        "answer": "Microsoft Office"
+      },
+      {
+        "question": "This file format starts with \"MZ\"",
+        "answer": "Protable Executable"
+      },
+      {
+        "question": "This algorithm uses the constants 0x67452301, 0xefcdab89, 0x98badcfe, and 0x10325476",
+        "answer": "MD5"
+      }
+    ],
+    "abrev_name": "Cnst"
+  },
+  {
+    "name": "Internet Controversies",
+    "questions": [
+      {
+        "question": "Now living in Russia, he famously leaked classified NSA documents",
+        "answer": "Edward Snowden"
+      },
+      {
+        "question": "Bradley Manning is now known by this name",
+        "answer": "Chelsea Manning"
+      },
+      {
+        "question": "For years this company maintained that they owned the copyright to the Linux code contributed by IBM",
+        "answer": "SCO-Linux"
+      },
+      {
+        "question": "After billing himself as the world's #1 hacker, this man's company, LIGATT, was hacked",
+        "answer": "Gregory D. Evans"
+      },
+      {
+        "question": "This company used LZW compression when it created the GIF format, without obtaining permission to use the patents",
+        "answer": "CompuServe"
+      }
+    ],
+    "abrev_name": "NtCn"
+  },
+  {
+    "name": "The Tangled Web",
+    "questions": [
+      {
+        "question": "This organization releases a report of the top ten Web application vulnerabilities every few years",
+        "answer": "OWASP"
+      },
+      {
+        "question": "This is the HTML element used to embed one page in another",
+        "answer": "<iframe>"
+      },
+      {
+        "question": "This refers to the hierarchy of objects on a Web page",
+        "answer": "DOM"
+      },
+      {
+        "question": "This obsolete protocol was a menu-driven competitor to HTTP",
+        "answer": "Gopher"
+      },
+      {
+        "question": "In order to be considered the \"same origin\", two web pages must share a common protocol scheme, domain name, and this",
+        "answer": "Port number"
+      }
+    ],
+    "abrev_name": "Web"
+  },
+  {
+    "name": "Epidemics",
+    "questions": [
+      {
+        "question": "As of late 2014, this hemorrhagic virus is killing thousands in West Africa",
+        "answer": "Ebola"
+      },
+      {
+        "question": "The Slammer worm spread very quickly using a small UDP payload to infect vulnerable installations of this program",
+        "answer": "SQL Server 2000"
+      },
+      {
+        "question": "Jonas Salk invented a vaccine for this virus, nearly eradicating it worldwide",
+        "answer": "Polio"
+      },
+      {
+        "question": "This was the first mass-mailing computer virus, released a full year before the famous ILOVEYOU virus",
+        "answer": "Melissa"
+      },
+      {
+        "question": "The Black Plague was introduced to this country in 1349, after a ghost ship carrying the disease washed ashore",
+        "answer": "Norway"
+      }
+    ],
+    "abrev_name": "epid"
+  },
+  {
+    "name": "Ron's Music",
+    "questions": [
+      {
+        "question": "Ron's first MP3 player was this sleek white device made by Apple",
+        "answer": "iPod"
+      },
+      {
+        "question": "Ron carefully ensures these tags, which list the name, artist and album of every song, are up to date",
+        "answer": "ID3"
+      },
+      {
+        "question": "This is Ron's favourite podcast, starring Dan Savage",
+        "answer": "Savage Lovecast"
+      },
+      {
+        "question": "Metallica played a live show with this group on one of Ron's first albums: Metallica S&M",
+        "answer": "San Francisco Symphony Orchestra"
+      },
+      {
+        "question": "Fans were shocked to find out that this man - Gwar's frontman for the past 30 years - died earlier this year",
+        "answer": "Dave Brockie or Oderus Urungus"
+      }
+    ],
+    "abrev_name": "Musc"
+  }
+]

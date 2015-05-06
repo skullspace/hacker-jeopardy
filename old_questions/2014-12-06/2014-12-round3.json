@@ -1,0 +1,158 @@
+[
+  {
+    "name": "Programmer Holy Wars",
+    "questions": [
+      {
+        "question": "You can indent your code correctly with spaces or incorrectly with one of these characters",
+        "answer": "tab"
+      },
+      {
+        "question": "Emacs users joke that this editor has two modes: beep at you and delete your work",
+        "answer": "vi"
+      },
+      {
+        "question": "With a homerow starting with \"aeou\", this keyboard layout is a popular alternative to QWERTY",
+        "answer": "Dvorak"
+      },
+      {
+        "question": "JavaScript programmers occasionally argue about the proper usage of this line-delimiting character",
+        "answer": "semi-colon"
+      },
+      {
+        "question": "Adherents of the single-exit philosophy refuse to use these two loop-control keywords",
+        "answer": "break (last) and continue (next)"
+      }
+    ],
+    "abrev_name": "HlWr"
+  },
+  {
+    "name": "Horror stories",
+    "questions": [
+      {
+        "question": "According to the Call of Cthulhu, with strange eons even this might die",
+        "answer": "death"
+      },
+      {
+        "question": "In Romero's Living Dead movies, one simply has to do this to become a zombie",
+        "answer": "die"
+      },
+      {
+        "question": "This fictional city is located under the Pacific Ocean",
+        "answer": "R'lyeh"
+      },
+      {
+        "question": "This Showtime TV series gave famous directors an opportunity to create one-hour episodes",
+        "answer": "Masters of Horror"
+      },
+      {
+        "question": "This Italian director filmed numerous classic horror movies, including \"Demons\" and \"Susperia\"",
+        "answer": "Dario Argento"
+      }
+    ],
+    "abrev_name": "Horr"
+  },
+  {
+    "name": "Hardware Hacking",
+    "questions": [
+      {
+        "question": "This side-channel attack measures how long each action takes in order to reveal private information",
+        "answer": "Timing attack"
+      },
+      {
+        "question": "This asynchronous protocol requires only four pins: power, ground, send, and receive",
+        "answer": "UART"
+      },
+      {
+        "question": "TDI, TDO, TMS, and TCK are a few of the pins used by this hardware hacking protocol",
+        "answer": "JTAG"
+      },
+      {
+        "question": "This device, created by Michael Ossman, is used to hack bluetooth",
+        "answer": "Ubertooth"
+      },
+      {
+        "question": "This toy, marketed to young girls, is commonly used for hardware projects using RF communications",
+        "answer": "IM-ME"
+      }
+    ],
+    "abrev_name": "Hrdw"
+  },
+  {
+    "name": "Cartoons",
+    "questions": [
+      {
+        "question": "This boy ain't right (on King of the Hill)",
+        "answer": "Bobby Hill"
+      },
+      {
+        "question": "This reporter was friendly with the Teenage Mutant Ninja Turtles",
+        "answer": "April O'Neil"
+      },
+      {
+        "question": "He-Man was primarily set on this fictional planet",
+        "answer": "Eternia"
+      },
+      {
+        "question": "Sterling Archer is obsessed with \"Baboo\", who is this type of wild cat",
+        "answer": "Ocelot"
+      },
+      {
+        "question": "It's the \"real\" name of Scooby Doo's buddy Shaggy",
+        "answer": "Norville Rogers"
+      }
+    ],
+    "abrev_name": "Toon"
+  },
+  {
+    "name": "Hacking Movies",
+    "questions": [
+      {
+        "question": "This primitive special effect replaces the background with another image",
+        "answer": "Blue/Green screen"
+      },
+      {
+        "question": "This movie was the first to use computer generated interpolation to create the famous \"bullet time\" effect",
+        "answer": "The Matrix"
+      },
+      {
+        "question": "This was the first full-length (30 minute) computer animated TV series",
+        "answer": "ReBoot"
+      },
+      {
+        "question": "This was the first feature-length animated movie",
+        "answer": "Toy Story"
+      },
+      {
+        "question": "This movie was the first to use AI for digital actors",
+        "answer": "Lord of the Rings"
+      }
+    ],
+    "abrev_name": "HkMv"
+  },
+  {
+    "name": "The Internet",
+    "questions": [
+      {
+        "question": "One of the earliest \"memes\" instructed users not to copy this",
+        "answer": "That floppy"
+      },
+      {
+        "question": "Users playing this Web-based game have the goal of baking a lot of cookies",
+        "answer": "Cookie Clicker"
+      },
+      {
+        "question": "This shirt became famous after receiving hundreds of ironic Amazon reviews",
+        "answer": "Three Wolf Moon"
+      },
+      {
+        "question": "This popular YouTuber got his start when he made a video about the British Empire",
+        "answer": "CGPGrey"
+      },
+      {
+        "question": "This popular axiom states that the first 30% of any video is worthless and can be skipped",
+        "answer": "The Wadsworth Constant"
+      }
+    ],
+    "abrev_name": "DNet"
+  }
+]
