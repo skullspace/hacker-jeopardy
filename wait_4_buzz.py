@@ -9,13 +9,17 @@
 # http://www.gnu.org/prep/maintain/html_node/License-Notices-for-Other-Files.html
 # @author Mark Jenkins <mark@markjenkins.ca>
 # @author Jay Smith <jayvsmith@gmail.com>
+# @author Sara Arenson <sara_arenson@yahoo.ca>
 
 import socket
+import time
 from buzz import PORT as BUZZ_PORT
 
-def wait_4_buzz(players_allowed_to_answer):
+def wait_4_buzz(players_allowed_to_answer, mis_buzz_player_penalty):
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.bind(('', BUZZ_PORT))
+
+    wait_start_time = time.time()
 
     # keep handling requests one at a time until one of them manages
     # to set the buzz_from attribute
@@ -23,7 +27,9 @@ def wait_4_buzz(players_allowed_to_answer):
         data = s.recv(256)
         try:
             buzz_from = int(data)
-            if buzz_from in players_allowed_to_answer:
+            if (buzz_from in players_allowed_to_answer) and \
+               (wait_start_time + mis_buzz_player_penalty[buzz_from]
+                < time.time() ):
                 s.close()
                 return buzz_from
         except ValueError:

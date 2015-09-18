@@ -415,6 +415,7 @@ def run_buzzin_attempts(
         tuple( range(len(player_names)) ))
 
     mis_buzz_players = set()
+    mis_buzz_player_penalty = [ 0, ] * len(player_names)
 
     buzzed_in_player_id = NOBODY_BUZZED
 
@@ -427,12 +428,14 @@ def run_buzzin_attempts(
             screen, question, player_names, buzzed_in_player_id, state=state,
             mis_buzz_players=mis_buzz_players)
         if state in STATES_WITH_BUZZ_OPEN:
-            buzzed_in_player_id = wait_4_buzz(players_allowed)
+            buzzed_in_player_id = wait_4_buzz(players_allowed,
+                                              mis_buzz_player_penalty)
             if state == QUESTION_PRE_BUZZ:
                 if buzzed_in_player_id == NOBODY_BUZZED:
                     state = QUESTION_BUZZ_OPEN
                 else:
                     mis_buzz_players.add(buzzed_in_player_id)
+                    mis_buzz_player_penalty[buzzed_in_player_id] += 2
                 continue # makes for less indendation below
 
             # everything below here is state != QUESTION_PRE_BUZZ
