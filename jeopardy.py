@@ -510,7 +510,7 @@ def generate_daily_double_positions(questions):
 
     # based on http://j-archive.com/ddstats.php?season=26
     # but with some minimal probability of row 1 being a daily double added in
-    DAILY_DOUBLE_ROW_STATISTIC = [1, 53, 119, 170, 109]
+    DAILY_DOUBLE_ROW_STATISTIC = [0, 53, 119, 170, 109]
     daily_double_distrib = []
     num_rows = len(questions[0]["questions"])
     for i, stat in enumerate(DAILY_DOUBLE_ROW_STATISTIC):
