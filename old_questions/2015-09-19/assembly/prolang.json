@@ -1,0 +1,28 @@
+{
+	"name" : "Programming Languages",
+	"abrev_name" : "ProL",
+	"questions" : [
+{
+    "question":  "The de facto language for Web browser scripting",
+  "answer":  "What is JavaScript?"
+},
+{
+  "question":  "The Linux kernel, Apache web server, and OpenSSL crypto toolkit
+are written in this",
+  "answer":  "What is C? (not C++)"
+}.
+{
+    "answer":  "Referred to as \"A fractal of bad design\", you can thank this language for Wordpress, Drupal, MediaWiki and Facebook.",
+  "question":  "What is PHP?"
+},
+{
+    "question":  "This very old programming language that was heavily used in business systems shares a name with the home place of humanity in Battlestar Galactica.",
+"answer":  "What is COBOL?"
+},
+{
+    "question":  "This Turing tarpit of an esoteric language consists of only 8 possible symbols and is known for its crude name that implies it will hurt your head.",
+  "answer":  "What is Brainfuck?"
+}
+]
+
+},

@@ -1,0 +1,31 @@
+{
+	"name" : "Trains, Planes, and Automobiles",
+	"abrev_name" : "TP&A",
+	"questions" : [
+{
+"question": "This Canadian actor co-starred with Steve Martin in the film Planes, Trains, and Automobiles",
+"answer": "Who is John Candy?"
+},
+
+{
+"question": "Cory Doctorow calls the 747 a flying Sun Solaris workstation in a fancy aluminum case. This Seattle based aviation company makes it.",
+"answer": "What is Boeing?"
+},
+
+{
+"question": "This chamber is where a cars movement is initiated, many cars have 4, 6, or 8.",
+"answer": "What are the cylinders?"
+},
+
+{
+"question": "This train technology hovers and reaches high speeds",
+"answer": "What mag lev"
+},
+
+{
+"question": "These are the three big, North American based auto makers.",
+"answer": "Who are Ford, GM, and Fiat Chrysler?"
+}
+
+]
+},

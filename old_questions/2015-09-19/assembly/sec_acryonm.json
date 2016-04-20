@@ -1,0 +1,30 @@
+{
+	"name" : "Security Acronyms",
+	"abrev_name" : "SeAc",
+	"questions" : [
+{
+"question": "CISSP",
+"answer": "What is Certified Information Systems Security Professional?"
+},
+
+{
+"question": "ACM",
+"answer": "What is the Association for Computing Machinery?"
+},
+
+{
+"question": "ISACA",
+"answer": "What is the Information Systems Audit and Control Association?"
+},
+
+{
+"question": "(ISC)2",
+"answer": "What is the International Information Systems Security Certification Consortium?"
+},
+
+{
+"question": "SANS",
+"answer": "What is the System Administration, Networking, and Security Institute?"
+}
+]
+},

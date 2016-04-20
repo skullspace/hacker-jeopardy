@@ -1,0 +1,31 @@
+{
+	"name" : "Adult Cartoons",
+	"abrev_name" : "Toon",
+	"questions" : [
+		{
+"question": "Rick and Morty was inspired by this 1980's movie franchise",
+"answer": "What is Back to the Future?"
+},
+
+{
+    "question": "This cartoon spy agency from Archer used to share a name with a prominent terrorist organization",
+"answer": "What is ISIS?"
+},
+
+{
+"question": "Adult fans of My Little Pony - Friendship is Magic are referred to as this.",
+"answer": "What are Bronies?"
+},
+
+{
+    "question": "This man is constantly trying to steal Hermes wife in Futurama.",
+"answer": "Who is Barbados Slim?"
+},
+
+{
+"question": "This post-apocalyptic world serves as the setting for Finn and his magical dog Jake",
+"answer": "What is the land of Ooo?"
+}
+]
+},
+

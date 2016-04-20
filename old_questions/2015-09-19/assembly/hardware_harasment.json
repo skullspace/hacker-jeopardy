@@ -1,0 +1,28 @@
+{
+	"name" : "Hardware Harassment",
+	"abrev_name" : "HH",
+	"questions" : [
+		{
+			"question" : "What are you doing if you set some computer component so that it runs faster than the manufacturer-specified speed?",
+			"answer" : "What is over-clocking?"
+
+		},
+		{
+			"question" : "What test has a hardware (or software) component passed if it doesn't catch fire the first time it is used?",
+			"answer" : "What is the smoke test?"
+		},
+		{
+			"question" : "This component of a CPU is responsible for fixed width calculation.",
+			"answer" : "What is the ALU (or arithmetic logical unit)?"
+		},
+		{
+			"question": "What effect did the Turbo Button have on early personal computers?",
+		    "answer": "What is slowed down the processor?"
+		},
+		{
+			"question" : "This 'local' bus was displaced by PCI and EISA, and was the first to provide memory-mapped I/O to the PC.",
+			"answer" : "What is VESA Local Bus (or VLB)?"
+		}
+	]
+
+},

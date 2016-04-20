@@ -1,0 +1,29 @@
+{
+	"name" : "Dr Who?",
+	"abrev_name" : "drwho",
+	"questions" : [
+	"question": "When the Doctor's in a jam this helps him open things",
+	"answer" : "What is the sonic screwdriver?"
+        },
+
+        {
+	"question": "This craft is larger on the inside than the inside",
+	"answer" : "What is the TARDIS?"
+        },
+
+	{
+	"question": "This actor was known for his long scarf and jelly babies",
+	"answer" : "Who is Tom Baker?"
+        },
+
+        "question": "This ginger haired companion is married to Rory",
+	"answer" : "Who is Amy?"
+        },
+
+        {
+	"question": "The doctor belongs to this species.",
+	"answer" : "Who are the time lords."
+        }
+        ]
+},
+

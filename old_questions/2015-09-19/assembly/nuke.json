@@ -1,0 +1,27 @@
+{
+	"name" : "Name that Nuke",
+	"abrev_name" : "Nuke",
+	"questions" : [
+{
+    "question": "The first nuclear test, and also a character in the Matrix",
+"answer": "What is Trinity?"
+},
+{
+"question": "Beach clothing named after an atoll where 23 nuclear detonations took place between 1946 and 1958",
+"answer": "What is a \"bikini\"?"
+},
+
+{"question": "This corpulent bomb was detonated over Nagasaki",
+"answer": "What is Fat Man?"
+},
+
+{"question": "The original working name of the hydrogen bomb; also describes the Parr family in The Incredibles.",
+"answer": "What is \"Super\"?"
+},
+{
+"question": "Code named Joe-1 by the US, the electrifying name of the first Soviet nuclear test",
+"answer": "What is \"First Lightning\"?"
+}
+]
+},
+

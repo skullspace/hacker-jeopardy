@@ -1,0 +1,195 @@
+{
+	"name" : "Name that Nuke",
+	"abrev_name" : "Nuke",
+	"questions" : [
+{
+    "question": "The first nuclear test, and also a character in the Matrix",
+"answer": "What is Trinity?"
+},
+{
+"question": "Beach clothing named after an atoll where 23 nuclear detonations took place between 1946 and 1958",
+"answer": "What is a \"bikini\"?"
+},
+
+{"question": "This corpulent bomb was detonated over Nagasaki",
+"answer": "What is Fat Man?"
+},
+
+{"question": "The original working name of the hydrogen bomb; also describes the Parr family in The Incredibles.",
+"answer": "What is \"Super\"?"
+},
+{
+"question": "Code named Joe-1 by the US, the electrifying name of the first Soviet nuclear test",
+"answer": "What is \"First Lightning\"?"
+}
+]
+},
+
+{
+	"name" : "Code Names",
+	"abrev_name" : "CdNm",
+	"questions" : [
+		{
+		    "question": "Jaguar, Panther, Tiger, Leopard, Snow Leopard, Lion, Mountain Lion",
+		    "answer": "What is Mac OS X?"
+		},
+
+	    {
+"question": "Hardy Heron, Jaunty Jackalope, Lucid Lynx, Natty Narwhal, Precise Pangolin, Trusty Tahr",
+		    "answer": "What is Ubuntu?"
+},
+
+	    {
+"question": "Chicago, Daytona, Memphis, Whistler, Longhorn, Blackcomb, Blue",
+	    "answer": "What is Microsoft Windows?"
+	    },
+
+	    {
+"question": "Yohan, Meron, Penryn, Sandy, Bridge, Haswell",
+	    "answer": "What are Intel processors?"
+	},
+
+    {"question": "Oak, Playground, Kestrel, Merlin, Tiger, Mustang, Dolphin",
+     "answer": "What is Java?"},
+
+    {"question": "Cupcake, Donot, Eclair, Froyo, Gingerbread",
+     "answer": "What is Android?"}
+]
+},
+{
+	"name" : "Acronym City",
+	"abrev_name" : "AC",
+	"questions" : [
+		{
+			"question": "Things are generally and tends toward FUBAR.",
+			"answer" : "What is Fucked Up Beyond All Recognition."
+		},
+		{
+			"question" : "A recursive wildebeest Acronym that is \"not Unix.\"",
+			"answer" : "What is 'GNU?'"
+		},
+		{
+			"question" : "PEBKAC is the answer to many problems computer usage problems.",
+			"answer" : "What is Problem Exists Between Keyboard and Chair?"
+		},
+		{
+			"question" : "This early and forgotten tool helped move things, especially email and news between unix systems separate from the internet?",
+			"answer" : "What is 'UUCP?'"
+		},
+		{
+			"question" : "This is the source-code motel, your code checks in but it never checks out. (Ken Thompson)",
+			"answer" : "What is 'SCCS?'"
+		}
+	]
+},
+  {
+
+    "name": "That's what she said",
+
+    "abrev_name": "TWSS",
+
+    "questions": [
+
+      {
+
+        "question": "Help me, Obi Wan Kenobi. You're my only hope.",
+
+        "answer": "Who is Princess Leia? (or Carrie Fisher)"
+
+      },
+
+      {
+
+        "question": "\"No one can make you feel inferior without your consent\" said FDR's first lady",
+
+        "answer": "Who is Eleanor Roosevelt?"
+
+      },
+
+      {
+
+        "question": "\"Humans are allergic to change. ... That's why I have a clock on my wall that runs counter-clockwise\" said this navy employed pioneer in computing",
+
+        "answer": "Who is Rear Admiral Grace Hopper?"
+
+      },
+
+      {
+
+        "question": "Charles Babbage, did you get my memo? \"The Analytical Engine has no pretensions whatever to originate anything.\"",
+
+        "answer": "Who is Lady Ada Lovelace?"
+
+      },
+
+
+      {
+
+        "question": "\"Because I could not stop for Death\" and \" and \"I taste a liquor never brewed\" are first lines from among the many thousand poems by this reclusive American." ,
+
+        "answer": "Emily Dickinson"
+
+      }
+
+    ]
+
+  },
+{
+	"name" : "Trains, Planes, and Automobiles",
+	"abrev_name" : "TP&A",
+	"questions" : [
+{
+"question": "This Canadian actor co-starred with Steve Martin in the film Planes, Trains, and Automobiles",
+"answer": "Who is John Candy?"
+},
+
+{
+"question": "Cory Doctorow calls the 747 a flying Sun Solaris workstation in a fancy aluminum case. This Seattle based aviation company makes it.",
+"answer": "What is Boeing?"
+},
+
+{
+"question": "This chamber is where a cars movement is initiated, many cars have 4, 6, or 8.",
+"answer": "What are the cylinders?"
+},
+
+{
+"question": "This train technology hovers and reaches high speeds",
+"answer": "What mag lev"
+},
+
+{
+"question": "These are the three big, North American based auto makers.",
+"answer": "Who are Ford, GM, and Fiat Chrysler?"
+}
+
+]
+},
+{
+	"name" : "Hardware Harassment",
+	"abrev_name" : "HH",
+	"questions" : [
+		{
+			"question" : "What are you doing if you set some computer component so that it runs faster than the manufacturer-specified speed?",
+			"answer" : "What is over-clocking?"
+
+		},
+		{
+			"question" : "What test has a hardware (or software) component passed if it doesn't catch fire the first time it is used?",
+			"answer" : "What is the smoke test?"
+		},
+		{
+			"question" : "This component of a CPU is responsible for fixed width calculation.",
+			"answer" : "What is the ALU (or arithmetic logical unit)?"
+		},
+		{
+			"question": "What effect did the Turbo Button have on early personal computers?",
+		    "answer": "What is slowed down the processor?"
+		},
+		{
+			"question" : "This 'local' bus was displaced by PCI and EISA, and was the first to provide memory-mapped I/O to the PC.",
+			"answer" : "What is VESA Local Bus (or VLB)?"
+		}
+	]
+
+},

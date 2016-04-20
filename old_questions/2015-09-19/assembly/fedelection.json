@@ -1,0 +1,32 @@
+{
+	"name" : "Body Talk",
+	"abrev_name" : "BT",
+	"questions" : [
+{
+"question": "These gentlemen leading two of the major parties are doing so in a federal election for the first time.",
+"answer": "Who are Thomas Mulcair and Justin Trudeau?"
+},
+
+{
+"question": "The promise for $15 a day care is inspired by the program in this province.",
+"answer": "What is Quebec?"
+},
+
+{
+"question": "She's a leader who made history by winning Saanich-Gulf Islands in 2011, trying to do it again this election.",
+"answer": "Who is Elizabeth May?"
+},
+
+{
+"question": "This is one of nine boutique personal tax measures the Conservative party has promised to introduce, re-introduce, or expand this campaign. (excluding measures already passed by parliament)",
+"answer": "What are adoption expense tax credit, earnings loss benefit for veterans, home-renovation tax credit, first time home buyer RRSP withdrawal, apprenticeship job creation tax credit, RESP low income grant, registered disability saving plan, single seniors credit, or service club memberships"
+},
+
+{
+"question": "Dan Vandal, Robert-Falcon Ouellette, and Kevin Lamoureux are some of the star candidates this party has put forward in Winnipeg.",
+"answer": "What is the Liberal Party of Canada?"
+}
+
+]
+
+},

@@ -1,0 +1,31 @@
+{
+	"name" : "Code Names",
+	"abrev_name" : "CdNm",
+	"questions" : [
+		{
+		    "question": "Jaguar, Panther, Tiger, Leopard, Snow Leopard, Lion, Mountain Lion",
+		    "answer": "What is Mac OS X?"
+		},
+
+	    {
+"question": "Hardy Heron, Jaunty Jackalope, Lucid Lynx, Natty Narwhal, Precise Pangolin, Trusty Tahr",
+		    "answer": "What is Ubuntu?"
+},
+
+	    {
+"question": "Chicago, Daytona, Memphis, Whistler, Longhorn, Blackcomb, Blue",
+	    "answer": "What is Microsoft Windows?"
+	    },
+
+	    {
+"question": "Yohan, Meron, Penryn, Sandy, Bridge, Haswell",
+	    "answer": "What are Intel processors?"
+	},
+
+    {"question": "Oak, Playground, Kestrel, Merlin, Tiger, Mustang, Dolphin",
+     "answer": "What is Java?"},
+
+    {"question": "Cupcake, Donot, Eclair, Froyo, Gingerbread",
+     "answer": "What is Android?"}
+]
+},

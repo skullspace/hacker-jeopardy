@@ -1,0 +1,31 @@
+{
+	"name" : "Math",
+	"abrev_name" : "MATH",
+	"questions" : [
+		{	
+"question": "This is 2^10 in decimal",
+"answer": "What is 1024?"
+},
+
+{
+"question": "This is 2^10 in hexadecimal",
+"answer": "What is 0x400?"
+},
+
+{
+"question": "The metric system prefix for 10^-6",
+"answer": "What is micro?"
+},
+
+{
+"question": "The product of all the integers from -10 to +10",
+"answer": "What is zero?"
+},
+
+{
+"question": "The next two terms in the sequence kilo, mega, giga, tera, peta",
+"answer": "What are exa and zetta?"
+}
+
+]
+},

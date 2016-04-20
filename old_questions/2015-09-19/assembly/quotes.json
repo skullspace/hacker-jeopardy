@@ -1,0 +1,27 @@
+{
+	"name" : "Famous Quotes",
+	"abrev_name" : "Quot",
+	"questions" : [
+{
+  "question": "This Finnish programmer who started the Git project said \"Software is like sex; it's better when it's free.\" Also \"NVIDIA, fuck you!\".",
+  "answer": "Who is Linus Torvalds?"
+},
+{
+  "question": "After creating the Web, he said \"it doesn't just connect machines, it connects people.\"",
+  "answer": "Who is Tim Berners-Lee?"
+},
+{
+  "question": "This Oracle board chair, CTO and former CEO said \"We don't have to fight open source, we have to exploit open source.\"",
+  "answer": "Who is Larry Ellison?"
+  },
+
+{
+  "question": "He said this in reference to a priority deque memo to another prof while working on the Art Of Computer Programming, not TeX or MetaFont, \"Beware of bugs in the above code; I have only proved it correct, not tried it.\"",
+  "answer": "Who is Donald Knuth?"
+},
+{
+  "question": "This Canadian OpenBSD programmer said \"I don't need dancing baloney - I need stuff that works.\"",
+  "answer": "Who is Theo de Raadt?"
+}
+]
+},

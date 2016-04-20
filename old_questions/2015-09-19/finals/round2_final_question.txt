@@ -1,0 +1,1 @@
+This cryptographic protocol is the successor to SSL (Secure Sockets Layer).

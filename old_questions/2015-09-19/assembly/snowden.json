@@ -1,0 +1,31 @@
+{
+	"name" : "Ed's Leaks",
+	"abrev_name" : "Snow",
+    "questions" : [
+
+	{
+	"question": "One of Snowden's first revelations, this colorfully named NSA program focused on electronic data mining.",
+	"answer": "What is PRISM?"
+	},
+	
+
+	{
+	"question": "The \"Beltway bandit\" consulting firm for whom Edward Snowden worked in Hawaii.",
+	"answer": "What is Booz Allen Hamilton?"
+	},
+	
+	{
+	"question": "This British newspaper was the first to publish Snowden's leaked information.",
+	"answer": "What is The Guardian?"
+	},
+	{
+	"question": "In the aftermath of Snowden's revelations, this Central European leader said, \"Spying on friends... is unacceptable.\"",
+	"answer": "Who is Angela Merkel?"
+	},
+
+{
+"question": "Snowden's original permission to stay in Russia was to expire in this year.",
+	"answer": "What is 2017?"
+}
+    ]
+},

@@ -1,0 +1,27 @@
+{
+	"name" : "Three Letter Extensions",
+	"abrev_name" : "TLE",
+	"questions" : [
+{
+"question": ".csv",
+"answer": "What is comma separated values?"
+},
+
+{
+"question": ".pdf",
+"answer": "What is Portable Document Format?"
+},
+
+{"question": ".jpeg",
+"answer": "Joint Photographic Experts Group?"
+},
+{
+"question": ".tar",
+"answer": "What is tape archive?"
+},
+{
+"question": ".emf",
+"answer": "What is (Windows) Enhanced Metafile?"
+}
+]
+},

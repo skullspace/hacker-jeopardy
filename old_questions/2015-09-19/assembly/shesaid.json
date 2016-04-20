@@ -1,0 +1,52 @@
+  {
+
+    "name": "That's what she said",
+
+    "abrev_name": "TWSS",
+
+    "questions": [
+
+      {
+
+        "question": "Help me, Obi Wan Kenobi. You're my only hope.",
+
+        "answer": "Who is Princess Leia? (or Carrie Fisher)"
+
+      },
+
+      {
+
+        "question": "\"No one can make you feel inferior without your consent\" said FDR's first lady",
+
+        "answer": "Who is Eleanor Roosevelt?"
+
+      },
+
+      {
+
+        "question": "\"Humans are allergic to change. ... That's why I have a clock on my wall that runs counter-clockwise\" said this navy employed pioneer in computing",
+
+        "answer": "Who is Rear Admiral Grace Hopper?"
+
+      },
+
+      {
+
+        "question": "Charles Babbage, did you get my memo? \"The Analytical Engine has no pretensions whatever to originate anything.\"",
+
+        "answer": "Who is Lady Ada Lovelace?"
+
+      },
+
+
+      {
+
+        "question": "\"Because I could not stop for Death\" and \" and \"I taste a liquor never brewed\" are first lines from among the many thousand poems by this reclusive American." ,
+
+        "answer": "Emily Dickinson"
+
+      }
+
+    ]
+
+  },

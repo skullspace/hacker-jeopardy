@@ -1,0 +1,202 @@
+[
+{
+	"name" : "Math",
+	"abrev_name" : "MATH",
+	"questions" : [
+		{	
+"question": "This is 2^10 in decimal",
+"answer": "What is 1024?"
+},
+
+{
+"question": "This is 2^10 in hexadecimal",
+"answer": "What is 0x400?"
+},
+
+{
+"question": "The metric system prefix for 10^-6",
+"answer": "What is micro?"
+},
+
+{
+"question": "The product of all the integers from -10 to +10",
+"answer": "What is zero?"
+},
+
+{
+"question": "The next two terms in the sequence kilo, mega, giga, tera, peta",
+"answer": "What are exa and zetta?"
+}
+
+]
+},
+{
+	"name" : "Programming Languages",
+	"abrev_name" : "ProL",
+	"questions" : [
+{
+    "question":  "The de facto language for Web browser scripting",
+  "answer":  "What is JavaScript?"
+},
+	    {
+		"question":  "The Linux kernel, Apache web server, and OpenSSL crypto toolkit are written in this",
+  "answer":  "What is C? (not C++)"
+	    },
+{
+    "answer":  "Referred to as \"A fractal of bad design\", you can thank this language for Wordpress, Drupal, MediaWiki and Facebook.",
+  "question":  "What is PHP?"
+},
+{
+    "question":  "This very old programming language that was heavily used in business systems shares a name with the home place of humanity in Battlestar Galactica.",
+"answer":  "What is COBOL?"
+},
+{
+    "question":  "This Turing tarpit of an esoteric language consists of only 8 possible symbols and is known for its crude name that implies it will hurt your head.",
+  "answer":  "What is Brainfuck?"
+}
+]
+
+},
+{
+	"name" : "Dr Who?",
+	"abrev_name" : "drwho",
+	"questions" : [
+	    {
+	    "question": "When the Doctor's in a jam this helps him open things",
+	"answer" : "What is the sonic screwdriver?"
+        },
+
+        {
+	"question": "This craft is larger on the inside than the inside",
+	"answer" : "What is the TARDIS?"
+        },
+
+	{
+	"question": "This actor was known for his long scarf and jelly babies",
+	"answer" : "Who is Tom Baker?"
+        },
+
+	    {
+            "question": "This ginger haired companion is married to Rory",
+	"answer" : "Who is Amy?"
+        },
+
+        {
+	"question": "The doctor belongs to this species.",
+	"answer" : "Who are the time lords."
+        }
+        ]
+},
+
+{
+	"name" : "Security Acronyms",
+	"abrev_name" : "SeAc",
+	"questions" : [
+{
+"question": "CISSP",
+"answer": "What is Certified Information Systems Security Professional?"
+},
+
+{
+"question": "ACM",
+"answer": "What is the Association for Computing Machinery?"
+},
+
+{
+"question": "ISACA",
+"answer": "What is the Information Systems Audit and Control Association?"
+},
+
+{
+"question": "(ISC)2",
+"answer": "What is the International Information Systems Security Certification Consortium?"
+},
+
+{
+"question": "SANS",
+"answer": "What is the System Administration, Networking, and Security Institute?"
+}
+]
+},
+{
+	"name" : "Ed's Leaks",
+	"abrev_name" : "Snow",
+    "questions" : [
+
+	{
+	"question": "One of Snowden's first revelations, this colorfully named NSA program focused on electronic data mining.",
+	"answer": "What is PRISM?"
+	},
+	
+
+	{
+	"question": "The \"Beltway bandit\" consulting firm for whom Edward Snowden worked in Hawaii.",
+	"answer": "What is Booz Allen Hamilton?"
+	},
+	
+	{
+	"question": "This British newspaper was the first to publish Snowden's leaked information.",
+	"answer": "What is The Guardian?"
+	},
+	{
+	"question": "In the aftermath of Snowden's revelations, this Central European leader said, \"Spying on friends... is unacceptable.\"",
+	"answer": "Who is Angela Merkel?"
+	},
+
+{
+"question": "Snowden's original permission to stay in Russia was to expire in this year.",
+	"answer": "What is 2017?"
+}
+    ]
+},
+  {
+    "name": "A Rose by Any Other Name ...",
+
+    "abrev_name": "Rose",
+
+    "questions": [
+
+      {
+
+        "question": "Samuel Langhorne Clemens's pen name took us on a Mississippi river rafting trip",
+
+        "answer": "Mark Twain"
+
+      },
+
+      {
+
+        "question": "Comic book guy will be very disappointed if you're not familiar with the better known name of character James (or Logan) Howlett",
+
+        "answer": "Who is Wolverine?"
+
+      },
+
+      {
+
+        "question": "He was born Bernard Shakey. Somebody clue Donald Trump into the sarcasm when he sings \"Rocking in the free world\".",
+
+        "answer": "Who is Neil Young?"
+
+      },
+
+
+      {
+
+        "question": "Vincent Furnier's stage name is like a barrel maker in Wonderland. \"No More Mr. Nice Guy\"",
+
+        "answer": "Who is Alice Cooper?"
+
+      },
+
+
+      {
+
+        "question": "Ronald Hyatt, \"The Hedgehog\" holds the Guinness Book of World Record for \"Most Appearances in Adult Films\"",
+
+        "answer": "Who is Ron Jeremy?"
+
+      }
+]
+  }
+]

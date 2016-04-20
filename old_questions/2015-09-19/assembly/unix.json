@@ -1,0 +1,27 @@
+{
+	"name" : "It's a Unix system. I know this!",
+	"abrev_name" : "Unix",
+	"questions" : [
+		{
+			"question" : "This god like user tends to have the uid and gid of 0.",
+			"answer" : "Whom is root?"
+		},
+		{
+			"question" : "One of the defining features of a UNIX is that everything is a...",
+			"answer" : "What is a 'file?'"
+		},
+		{
+			"question" : "This ubiquitous text editing tool with a two letter name was written by Bill Joy to edit files over remote modem connections.",
+			"answer" : "What is 'vi?'"
+		},
+		{
+			"question" : "The tool 'tar' was originally developed to operate these kinds of devices.",
+			"answer" : "What are 'tape drives?'"
+		},
+		{
+			"question" : "This Canadian university near Kitchener ON originally stole UNIX by phone",
+			"answer" : "What is Waterloo?"
+		}
+
+	]
+},

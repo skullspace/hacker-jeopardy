@@ -1,0 +1,26 @@
+{
+	"name" : "Acronym City",
+	"abrev_name" : "AC",
+	"questions" : [
+		{
+			"question": "Things are generally and tends toward FUBAR.",
+			"answer" : "What is Fucked Up Beyond All Recognition."
+		},
+		{
+			"question" : "A recursive wildebeest Acronym that is \"not Unix.\"",
+			"answer" : "What is 'GNU?'"
+		},
+		{
+			"question" : "PEBKAC is the answer to many problems computer usage problems.",
+			"answer" : "What is Problem Exists Between Keyboard and Chair?"
+		},
+		{
+			"question" : "This early and forgotten tool helped move things, especially email and news between unix systems separate from the internet?",
+			"answer" : "What is 'UUCP?'"
+		},
+		{
+			"question" : "This is the source-code motel, your code checks in but it never checks out. (Ken Thompson)",
+			"answer" : "What is 'SCCS?'"
+		}
+	]
+},
