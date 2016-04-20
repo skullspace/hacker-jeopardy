@@ -436,7 +436,7 @@ def run_buzzin_attempts(
                 else:
                     mis_buzz_players.add(buzzed_in_player_id)
                     mis_buzz_player_penalty[buzzed_in_player_id] = (
-                        min(5, mis_buzz_player_penalty[buzzed_in_player_id]+2))
+                        min(5, mis_buzz_player_penalty[buzzed_in_player_id]+1))
                 continue # makes for less indendation below
 
             # everything below here is state != QUESTION_PRE_BUZZ
